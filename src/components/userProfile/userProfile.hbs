@@ -33,17 +33,25 @@
         </span>
     </div>
     <div class="profile__fields">
-        {{> profileForm/profileForm }}
+
         {{#if isProfileView}}
-            <div class="profile__actions">
-            <a class = "profile__action" href="changeProfileData.hbs">Изменить данные</a>
-            <a class = "profile__action" href="changePassword.hbs">Изменить пароль</a>
-            <a class = "profile__action" href="#">Изменить выйти</a>
+        {{> profileForm/profileForm }}
+        <div class="profile__actions">
+            <a class="profile__action" href="changeProfileData.hbs">Изменить данные</a>
+            <a class="profile__action" href="changePassword.hbs">Изменить пароль</a>
+            <a class="profile__action" href="#">Изменить выйти</a>
         </div>
-         {{else}} 
-           {{> button/btn text = "Сохранить" classes = "btn_l"}}
+
         {{/if}}
-       
+        {{#if isProfileEdit}}
+        {{> profileForm/profileForm }}
+        {{> button/btn text = "Сохранить" classes = "btn_l"}}
+        {{/if}}
+
+        {{#if changePassword}}
+        {{> profilePasswordChange/profilePasswordChange }}
+        {{/if}}
+
     </div>
 
 </div>
