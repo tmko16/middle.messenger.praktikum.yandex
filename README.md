@@ -1,9 +1,27 @@
-Ссылка на figma 
-https://www.figma.com/file/Exu4fts3w1J5YaYObt5Udr/module_1_chat?node-id=0%3A1
+## Описание проекта 
+Спринт 1 из 4 проект чат от Яндекс.Практикум. 
 
+- ссылка на макет Figma https://www.figma.com/file/Exu4fts3w1J5YaYObt5Udr/module_1_chat?node-id=0%3A1 
+- ссылка на приложение Netlify https://steady-swan-db6500.netlify.app/
 
-Команды
-npm run dev - сборка проекта в dev режиме. 
-npm run build - сборка проекта в продашкн. 
-npm run start - запуск express сервера на порту 3000 с раздачей статики. 
+### Команды 
+-----
+- Сборка проекта 
 
+```
+npm run build
+```
+-------------
+- Запуск dev сервера для разработки 
+
+```
+npm run dev
+```
+-------------------
+- Запуск локального сервера 
+
+```
+npm run start
+```
+
+Запускает сборку проекта, а также поднимает express сервер на 3000 порту. 
