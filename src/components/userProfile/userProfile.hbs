@@ -20,18 +20,16 @@
         </span>
 
     </div>
-    <div class="profile__avatar">
-        <div class="profile__avatar-img">
-            <img src="https://cdn-s-static.arzamas.academy/storage/picture/7196/gallery_picture-673c9ad6-f79e-4890-a291-3e70ebc4f9b3.jpg"
-                alt="">
-        </div>
-        <span class="profile__name">
-            Сетару Канеда 2
-        </span>
-        <span class="profile__is-online">
-            online
-        </span>
-    </div>
+    {{#if isProfileView}}
+    {{> profileAvatar/avatarView/avatarView}}
+    {{/if}}
+    {{#if changePassword}}
+    {{> profileAvatar/avatarView/avatarView}}
+    {{/if}}
+    {{#if isProfileEdit }}
+    {{> profileAvatar/avatarEditable/avatarEditable}}
+
+    {{/if}}
     <div class="profile__fields">
 
         {{#if isProfileView}}

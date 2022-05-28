@@ -39,7 +39,17 @@
         color: var(--accent-color);
     }
 
-    &__avatar-img {
+    &__change-avatar-input {
+        display: none;
+    }
+
+    &__change-avatar {
+        cursor: pointer;
+        position: relative;
+    }
+
+    &__avatar-img,
+    &__avatar-img_editable {
 
         img {
             border-radius: 100px;
@@ -48,6 +58,18 @@
             object-fit: cover;
         }
 
+    }
+
+    &__avatar-img_editable {
+        img {
+            opacity: .5;
+        }
+
+        svg {
+            position: absolute;
+            left: 35px;
+            bottom: 35px;
+        }
     }
 
     &__fields {
