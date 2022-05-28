@@ -3,39 +3,45 @@
         {
             "title": "Почта",
             "type": "text",
-            "value": "akira-must-die@yandex.ru"
+            "value": "akira-must-die@yandex.ru",
+            "name": "email"
         },
         {
             "title": "Логин",
             "type": "text",
-            "value": "setCadena"
+            "value": "setCadena",
+            "name": "login"
         },
         {
             "title": "Имя",
             "type": "text",
-            "value": "Сётару "
+            "value": "Сётару",
+            "name": "first_name"
         },
         {
             "title": "Фамилия",
             "type": "text",
-            "value": "Канеда"
+            "value": "Канеда",
+            "name": "second_name"
         },
         {
             "title": "Имя в чате",
             "type": "text",
-            "value": "Канеда С."
+            "value": "Канеда С.",
+            "name": "display_name"
         },
         {
-            "title": "Почта",
+            "title": "Телефон",
             "type": "text",
-            "value": "akira-must-die@yandex.ru"
+            "value": "89222229929",
+            "name": "phone"
         }
     ],
     "changePasswordFields": [
         {
             "title": "Старый пароль",
             "type": "text",
-            "name": "password",
+            "name": "oldDassword",
             "placeholder": "********"
         },
         {
