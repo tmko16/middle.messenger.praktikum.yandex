@@ -1,0 +1,22 @@
+@radius : 10px;
+.msg {
+    padding: 10px;
+    background-color: var(--background-light-color);
+    margin: 10px;
+    width: 40%;
+
+}
+.msg_my {
+    align-self: flex-end;
+    background-color: var(--accent-rgba);
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+    border-bottom-left-radius: @radius;
+
+}
+.msg_alien {
+    align-self: flex-start;
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+    border-bottom-right-radius: @radius;
+}

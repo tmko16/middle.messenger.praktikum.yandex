@@ -1,0 +1,14 @@
+<div class="registration-form">
+    <div class="registration-form__content">
+        <div class="registration-form__title">{{ title }}</div>
+        <div class="registration-form__fields">
+            {{#each registration.fields}}
+                {{> formInput/formInput label = this.title name = this.name type = this.type }}
+            {{/each}}
+        </div>
+        <div class="registration-form__actions">
+            {{> button/btn text = "Регистрация" classes = "btn_l"}}
+            <a href="#">Нет аккаунта?</a>
+        </div>
+    </div>
+</div>
