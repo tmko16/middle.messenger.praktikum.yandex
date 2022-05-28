@@ -1,0 +1,11 @@
+{
+    "fields": [
+        {"title": "Почта","name": "mail"},
+        {"title": "Логин","name": "login"},
+        {"title": "Имя","name": "name"},
+        {"title": "Фамилия","name": "surname"},
+        {"title": "Телефон","name": "phone"},
+        {"title": "Пароль","name": "password"},
+        {"title": "Пароль еще раз","name": "confirmPassword"}
+    ]
+}

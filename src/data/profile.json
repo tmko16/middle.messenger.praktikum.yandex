@@ -1,0 +1,34 @@
+{
+    "fields": [
+        {
+            "title": "Почта",
+            "type": "text",
+            "value": "akira-must-die@yandex.ru"
+        },
+        {
+            "title": "Логин",
+            "type": "text",
+            "value": "setCadena"
+        },
+        {
+            "title": "Имя",
+            "type": "text",
+            "value": "Сётару "
+        },
+        {
+            "title": "Фамилия",
+            "type": "text",
+            "value": "Канеда"
+        },
+        {
+            "title": "Имя в чате",
+            "type": "text",
+            "value": "Канеда С."
+        },
+        {
+            "title": "Почта",
+            "type": "text",
+            "value": "akira-must-die@yandex.ru"
+        }
+    ]
+}

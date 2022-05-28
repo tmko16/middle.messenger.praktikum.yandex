@@ -1,0 +1,14 @@
+<div class="login-form">
+    <div class="login-form__content">
+        <div class="login-form__title">{{ title }}</div>
+        <div class="login-form__fields">
+            {{#each login.fields}}
+                {{> formInput/formInput label = this.title name = this.name type = this.type }}
+            {{/each}}
+        </div>
+        <div class="login-form__actions">
+            {{> button/btn text = "Авторизоваться" classes = "btn_l" href = "chat.hbs"}}
+            <a href="registration.hbs">Нет аккаунта?</a>
+        </div>
+    </div>
+</div>

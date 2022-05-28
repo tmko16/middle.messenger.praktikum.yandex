@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{#each css}}
+        <link rel="stylesheet" href="../styles/{{this}}">
+    {{/each}}
+    <title>
+        {{!-- {{> title}} --}}
+    </title>
+</head>
+<body>  
+    {{#block "main"}}
+    {{/block}}
+
+    {{#block "scripts"}}
+        {{#each scripts}}
+            <script defer src="{{this}}"></script>
+        {{/each}}
+    {{/block}}
+</body>
+</html>

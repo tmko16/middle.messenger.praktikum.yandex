@@ -1,0 +1,14 @@
+---
+title: Profile
+css:
+- reset.css
+- layout.less
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main>
+      {{> userProfile/userProfile isProfileView = 1 }}
+    </main>
+  {{/content}}
+{{/extend}}
