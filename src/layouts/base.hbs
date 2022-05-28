@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;900&display=swap');
+    </style>
     {{#each css}}
-        <link rel="stylesheet" href="../styles/{{this}}">
+    <link rel="stylesheet" href="../styles/{{this}}">
     {{/each}}
     <title>
         {{!-- {{> title}} --}}
     </title>
 </head>
-<body>  
-    {{#block "main"}}
-    {{/block}}
+
+<body>
+    <main>
+        {{#block "main"}}
+        {{/block}}
+    </main>
 
     {{#block "scripts"}}
-        {{#each scripts}}
-            <script defer src="{{this}}"></script>
-        {{/each}}
+    {{#each scripts}}
+    <script defer src="{{this}}"></script>
+    {{/each}}
     {{/block}}
 </body>
+
 </html>

@@ -1,14 +1,24 @@
 ---
 title: Вход
-css: 
-  - reset.css
-  - layout.less
+css:
+- reset.css
+- layout.less
 ---
 
 {{#extend "base"}}
-   {{#content "main"}}
-    <main>
-       {{> loginForm/loginForm}}
-    </main>
-  {{/content}}
+{{#content "main"}}
+<div class="navigation">
+  <ul>
+    <li><a href="login.hbs">Страница Логин</a></li>
+    <li><a href="registration.hbs">Страница Регистрации</a></li>
+    <li><a href="profile.hbs">Страница пользовательского профиля</a></li>
+    <li><a href="changePassword.hbs">Страница изменения пароля пользователя</a></li>
+    <li><a href="changeProfileData.hbs">Страница изменений данных пользователей</a></li>
+    <li><a href="404.hbs">Страница 404</a></li>
+    <li><a href="500.hbs">Страница 500</a></li>
+    <li><a href="chat.hbs">Чат с невыбранным сообщением</a></li>
+    <li><a href="chatDialog.hbs">Диалог с пользователем</a></li>
+  </ul>
+</div>
+{{/content}}
 {{/extend}}

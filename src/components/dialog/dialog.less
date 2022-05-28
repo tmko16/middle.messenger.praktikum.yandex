@@ -4,10 +4,10 @@
     justify-content: space-around;
     height: 90px;
     display: flex;
-   
+
     &__avatar {
         height: 50px;
-       
+
         img {
             height: 50px;
             width: 50px;
@@ -20,9 +20,8 @@
         flex-direction: column;
         gap: 10px;
     }
-    &__name {
-        font-weight: bolder;
-    }
+
+
     &__last-msg {
         font-weight: lighter;
         color: var(--text-color-light);
@@ -32,12 +31,15 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        align-items: flex-end;
 
     }
+
     &__last-msg-time {
-        font-size: 9px;
         letter-spacing: 2px;
-        color: var(--text-color-light)
+        color: var(--text-color-light);
+        font-size: 10px;
+
     }
 
     &__msg-count {
@@ -48,11 +50,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        span {
-            font-size: 11px;
-        }
+        font-size: 10px;
+
+        span {}
     }
 }
+
 .dialog:last-child {
     border-bottom: 1px solid var(--accent-color);
 }
