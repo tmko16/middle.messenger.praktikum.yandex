@@ -30,5 +30,25 @@
             "type": "text",
             "value": "akira-must-die@yandex.ru"
         }
+    ],
+    "changePasswordFields": [
+        {
+            "title": "Старый пароль",
+            "type": "text",
+            "name": "password",
+            "placeholder": "********"
+        },
+        {
+            "title": "Новый пароль",
+            "type": "text",
+            "name": "newPassword",
+            "placeholder": "********"
+        },
+        {
+            "title": "Повторите новый пароль",
+            "type": "text",
+            "name": "confirmPassword",
+            "placeholder": "********"
+        }
     ]
 }
