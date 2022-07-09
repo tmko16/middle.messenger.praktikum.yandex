@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "parcel  ./src/index.html   --open --no-cache",
-    "build": "parcel build ./src/pages/index.hbs ",
+    "build": "parcel build src/pagesOld/index.hbs ",
     "start": "npm run build && node ./server.js "
   },
   "engines": {
@@ -19,6 +19,7 @@
     "parcel": "^2.5.0"
   },
   "dependencies": {
+    "handlebars": "^4.7.7",
     "nanoid": "^4.0.0"
   }
 }

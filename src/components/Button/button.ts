@@ -1,16 +1,25 @@
+import Handlebars from "handlebars";
 import Block from "../../core/Block";
+import ButtonTemplate from './button.template';
 
 type ButtonProps = {
-    label: string,
-    href: string
-
-}
-export class Button extends Block {
-    constructor(props: ButtonProps) {
-        super('button', props);
+    text: string,
+    href?: string
+    events?: {
+        click?: () => void
     }
 
-    render(): string {
-        return this.props.label
+}
+
+export class Button extends Block {
+    constructor(props: ButtonProps) {
+        super(props);
+    }
+
+    render() {
+        //language=hbs
+        return `
+            <div> {{text}}</div>
+        `
     }
 }
