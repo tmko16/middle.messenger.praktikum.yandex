@@ -1,6 +1,6 @@
 // Нельзя создавать экземпляр данного класса
-import {EventBus} from "./EventBus";
 import {nanoid} from "nanoid";
+import EventBus from "./EventBus";
 //TODO: типизировать методы
 class Block {
     static EVENTS = {
@@ -25,12 +25,11 @@ class Block {
      */
     constructor(tagName: string = "div", props: object = {}) {
         const eventBus = new EventBus();
-
+        console.log(props);
         this._meta = {
             tagName,
             props
         };
-
         this.props = this._makePropsProxy(props);
 
         this.eventBus = () => eventBus;
@@ -42,6 +41,7 @@ class Block {
     _registerEvents(eventBus: EventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
@@ -77,6 +77,7 @@ class Block {
     }
 
     setProps = (nextProps:any) => {
+        console.log(nextProps)
         if (!nextProps) {
             return;
         }
@@ -123,6 +124,7 @@ class Block {
 
                 // Запускаем обновление компоненты
                 // Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
+                console.log('target' ,target);
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
                 return true;
             },
