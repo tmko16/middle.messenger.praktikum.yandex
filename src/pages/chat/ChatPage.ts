@@ -3,18 +3,24 @@ import {ChatTemplate} from "./Chat.template";
 import {Button} from "../../components/Button/button";
 
 import './chatPage.less'
+
 export class ChatPage extends Block {
+
     constructor() {
-        super({button: new Button({text:'test', events: {click: () => alert('yolo')}})});
+        super({yolo: () => alert('fds')});
+    }
+    yolo() {
+        alert('fdsfd')
     }
 
-
     protected render(): string {
+
+
         //language=hbs
         return `
             <div>
-                <span class="redsy">sdf</span>
-                {{{button}}}
+                <span class="redsy">312</span>
+                {{{Button text='dfgdf' onClick2=yolo}}}
             </div>
         `
     }

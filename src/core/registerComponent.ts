@@ -6,17 +6,17 @@ interface BlockConstructable<Props = any> {
 }
 
 export default function registerComponent<Props extends any>(Component: BlockConstructable<Props>) {
+
     Handlebars.registerHelper(Component.name, function (this: Props, { hash: { ref, ...hash }, data, fn }: HelperOptions) {
         if (!data.root.children) {
             data.root.children = {};
         }
-
+        debugger;
         if (!data.root.refs) {
             data.root.refs = {};
         }
 
         const { children, refs } = data.root;
-
         /**
          * Костыль для того, чтобы передавать переменные
          * внутрь блоков вручную подменяя значение
@@ -28,7 +28,7 @@ export default function registerComponent<Props extends any>(Component: BlockCon
         });
 
         const component = new Component(hash);
-
+        console.log(component)
         children[component.id] = component;
 
         if (ref) {

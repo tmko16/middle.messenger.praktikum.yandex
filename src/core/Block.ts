@@ -28,6 +28,7 @@ export default class Block<P = any> {
     protected refs: { [key: string]: HTMLElement } = {};
 
     public constructor(propsAndChildren?: P) {
+        propsAndChildren = propsAndChildren ?? {} as P;
         const {children, props} = this._getChildren(propsAndChildren);
         this.children = children;
         const eventBus = new EventBus();
@@ -50,7 +51,9 @@ export default class Block<P = any> {
     _getChildren(propsAndChildren?: P) {
         const children = {};
         const props = {};
+        if (propsAndChildren) {
 
+        }
         Object.entries(propsAndChildren as P).forEach(([key, value]) => {
             if (value instanceof Block) {
                 // @ts-ignore

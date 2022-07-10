@@ -5,6 +5,7 @@ import ButtonTemplate from './button.template';
 type ButtonProps = {
     text: string,
     href?: string
+    onClick2: any,
     events?: {
         click?: () => void
     }
@@ -13,7 +14,10 @@ type ButtonProps = {
 
 export class Button extends Block {
     constructor(props: ButtonProps) {
-        super(props);
+        super({...props, events: {
+            click: props.onClick2
+            }});
+        console.log(props, 'sdfsdfsdfsdf')
     }
 
     render() {
