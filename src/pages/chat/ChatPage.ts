@@ -2,10 +2,10 @@ import Block from "../../core/Block";
 import {ChatTemplate} from "./Chat.template";
 import {Button} from "../../components/Button/button";
 
-
+import './chatPage.less'
 export class ChatPage extends Block {
     constructor() {
-        super({button: new Button({text:'test'})});
+        super({button: new Button({text:'test', events: {click: () => alert('yolo')}})});
     }
 
 
@@ -13,7 +13,7 @@ export class ChatPage extends Block {
         //language=hbs
         return `
             <div>
-                <span>sdf</span>
+                <span class="redsy">sdf</span>
                 {{{button}}}
             </div>
         `
