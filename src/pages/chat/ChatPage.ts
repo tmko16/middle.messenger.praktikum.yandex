@@ -5,18 +5,17 @@ import {Button} from "../../components/Button/button";
 
 export class ChatPage extends Block {
     constructor() {
-        super();
-    }
-    componentDidMount() {
-        this.children.button = new Button({text:'st'})
+        super({button: new Button({text:'test'})});
     }
 
+
     protected render(): string {
-        console.log(this)
+        //language=hbs
         return `
-             <div>
-        <span>Это страница</span>
-    </div>
+            <div>
+                <span>sdf</span>
+                {{{button}}}
+            </div>
         `
     }
 }

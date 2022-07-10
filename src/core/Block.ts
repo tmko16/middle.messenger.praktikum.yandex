@@ -1,6 +1,6 @@
 import EventBus from './EventBus';
 import {nanoid} from 'nanoid';
-import Handlebars from 'handlebars';
+import Handlebars, {log} from 'handlebars';
 
 interface BlockMeta<P = any> {
     props: P;
@@ -20,14 +20,16 @@ export default class Block<P = any> {
 
     protected _element: HTMLElement | null = null;
     protected readonly props: P;
-    protected children: {[id: string]: Block} = {};
+    protected children: { [id: string]: Block } = {};
 
     eventBus: () => EventBus;
 
     protected state: any = {};
-    protected refs: {[key: string]: HTMLElement} = {};
+    protected refs: { [key: string]: HTMLElement } = {};
 
-    public constructor(props?: P) {
+    public constructor(propsAndChildren?: P) {
+        const {children, props} = this._getChildren(propsAndChildren);
+        this.children = children;
         const eventBus = new EventBus();
         this._meta = {
             props,
@@ -45,6 +47,22 @@ export default class Block<P = any> {
         eventBus.emit(Block.EVENTS.INIT, this.props);
     }
 
+    _getChildren(propsAndChildren?: P) {
+        const children = {};
+        const props = {};
+
+        Object.entries(propsAndChildren as P).forEach(([key, value]) => {
+            if (value instanceof Block) {
+                // @ts-ignore
+                children[key] = value;
+            } else {
+                // @ts-ignore
+                props[key] = value;
+            }
+        });
+
+        return {children, props};
+    }
 
     _registerEvents(eventBus: EventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -125,7 +143,7 @@ export default class Block<P = any> {
         // Хак, чтобы вызвать CDM только после добавления в DOM
         if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
             setTimeout(() => {
-                if (this.element?.parentNode?.nodeType !==  Node.DOCUMENT_FRAGMENT_NODE ) {
+                if (this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
                     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
                 }
             }, 100)
@@ -188,23 +206,26 @@ export default class Block<P = any> {
     }
 
     _compile(): DocumentFragment {
+        const propsAndStubs: Record<string, any> = {...this.props}
+        Object.entries(this.children).forEach(([key, child]) => {
+            propsAndStubs[key] = `<div data-id="${child.id}"></div>`
+        });
         const fragment = document.createElement('template');
-
         /**
          * Рендерим шаблон
          */
         const template = Handlebars.compile(this.render());
-        fragment.innerHTML = template({ ...this.state, ...this.props, children: this.children, refs: this.refs });
-        console.log(fragment.innerHTML);
-
+        fragment.innerHTML = template({...this.state, ...this.props, children: this.children, refs: this.refs, ...propsAndStubs});
+        // fragment.innerHTML = template({...this.state, ...this.props, children: this.children, refs: this.refs});
         /**
          * Заменяем заглушки на компоненты
          */
+        console.log('this',this)
         Object.entries(this.children).forEach(([id, component]) => {
             /**
              * Ищем заглушку по id
              */
-            const stub = fragment.content.querySelector(`[data-id="${id}"]`);
+            const stub = fragment.content.querySelector(`[data-id="${component.id}"]`);
 
             if (!stub) {
                 return;
@@ -222,7 +243,7 @@ export default class Block<P = any> {
              * Ищем элемент layout-а, куда вставлять детей
              */
             const layoutContent = content.querySelector('[data-layout="1"]');
-
+            console.log(layoutContent)
             if (layoutContent && stubChilds.length) {
                 layoutContent.append(...stubChilds);
             }
