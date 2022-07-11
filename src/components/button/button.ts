@@ -1,6 +1,5 @@
 import Handlebars from "handlebars";
 import Block from "../../core/Block";
-import ButtonTemplate from './button.template';
 
 type ButtonProps = {
     text: string,

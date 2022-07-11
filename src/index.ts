@@ -1,4 +1,4 @@
-import {Button} from "./components/Button/button";
+import {Button} from "./components/button/button";
 import renderDOM from "./core/renderDOM";
 import ChatPage from "./pages/chat";
 import registerComponent from "./core/registerComponent";
