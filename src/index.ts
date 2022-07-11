@@ -7,9 +7,11 @@ import registerComponent from "./core/registerComponent";
 import './app.less'
 import './reset.less';
 import RegistrationPage from "./pages/registration";
+import {ProfilePage} from "./pages/profile/profilePage";
 document.addEventListener("DOMContentLoaded", () => {
     // const chatPage = new ChatPage()
-    const registrationPage = new RegistrationPage();
-    renderDOM(registrationPage);
+    // const registrationPage = new RegistrationPage();
+    const profilePage = new ProfilePage({isProfileEdit: false, isProfileView: true, changePassword: false});
+    renderDOM(profilePage);
 
 });
