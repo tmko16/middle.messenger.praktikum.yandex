@@ -28,7 +28,6 @@ export default function registerComponent<Props extends any>(Component: BlockCon
         });
 
         const component = new Component(hash);
-        console.log(component)
         children[component.id] = component;
 
         if (ref) {

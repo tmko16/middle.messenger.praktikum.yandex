@@ -3,10 +3,11 @@ import renderDOM from "./core/renderDOM";
 import ChatPage from "./pages/chat";
 import registerComponent from "./core/registerComponent";
 // Index ts - точка входа
-document.addEventListener("DOMContentLoaded", () => {
-    registerComponent(Button)
-    const chatPage = new ChatPage()
 
+import './app.less'
+import './reset.less';
+document.addEventListener("DOMContentLoaded", () => {
+    const chatPage = new ChatPage()
     renderDOM(chatPage);
 
 });

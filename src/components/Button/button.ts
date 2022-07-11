@@ -17,7 +17,6 @@ export class Button extends Block {
         super({...props, events: {
             click: props.onClick2
             }});
-        console.log(props, 'sdfsdfsdfsdf')
     }
 
     render() {

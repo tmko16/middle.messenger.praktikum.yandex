@@ -51,9 +51,7 @@ export default class Block<P = any> {
     _getChildren(propsAndChildren?: P) {
         const children = {};
         const props = {};
-        if (propsAndChildren) {
 
-        }
         Object.entries(propsAndChildren as P).forEach(([key, value]) => {
             if (value instanceof Block) {
                 // @ts-ignore
@@ -211,6 +209,9 @@ export default class Block<P = any> {
     _compile(): DocumentFragment {
         const propsAndStubs: Record<string, any> = {...this.props}
         Object.entries(this.children).forEach(([key, child]) => {
+            if (Array.isArray(child)) {
+                console.log('YUY', child)
+            }
             propsAndStubs[key] = `<div data-id="${child.id}"></div>`
         });
         const fragment = document.createElement('template');
@@ -219,11 +220,11 @@ export default class Block<P = any> {
          */
         const template = Handlebars.compile(this.render());
         fragment.innerHTML = template({...this.state, ...this.props, children: this.children, refs: this.refs, ...propsAndStubs});
-        // fragment.innerHTML = template({...this.state, ...this.props, children: this.children, refs: this.refs});
         /**
          * Заменяем заглушки на компоненты
          */
-        console.log('this',this)
+
+        // Object.entries(this.children).forEach(([id, component]) => {
         Object.entries(this.children).forEach(([id, component]) => {
             /**
              * Ищем заглушку по id
@@ -246,7 +247,6 @@ export default class Block<P = any> {
              * Ищем элемент layout-а, куда вставлять детей
              */
             const layoutContent = content.querySelector('[data-layout="1"]');
-            console.log(layoutContent)
             if (layoutContent && stubChilds.length) {
                 layoutContent.append(...stubChilds);
             }
