@@ -9,9 +9,10 @@ import './reset.less';
 import RegistrationPage from "./pages/registration";
 import Page404 from "./pages/404";
 import Page500 from "./pages/500";
+import LoginPage from "./pages/login";
 document.addEventListener("DOMContentLoaded", () => {
     // const chatPage = new ChatPage()
-    const page404 = new Page404()
+    const page404 = new LoginPage()
     // const registrationPage = new RegistrationPage();
     renderDOM(page404);
 
