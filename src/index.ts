@@ -6,8 +6,10 @@ import registerComponent from "./core/registerComponent";
 
 import './app.less'
 import './reset.less';
+import RegistrationPage from "./pages/registration";
 document.addEventListener("DOMContentLoaded", () => {
-    const chatPage = new ChatPage()
-    renderDOM(chatPage);
+    // const chatPage = new ChatPage()
+    const registrationPage = new RegistrationPage();
+    renderDOM(registrationPage);
 
 });

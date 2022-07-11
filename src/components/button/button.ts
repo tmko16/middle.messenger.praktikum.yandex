@@ -1,27 +1,23 @@
-import Handlebars from "handlebars";
 import Block from "../../core/Block";
-
+import './btn.less';
 type ButtonProps = {
+    href: string,
     text: string,
-    href?: string
-    onClick2: any,
-    events?: {
-        click?: () => void
-    }
-
+    classes?: string
 }
-
 export class Button extends Block {
     constructor(props: ButtonProps) {
-        super({...props, events: {
-            click: props.onClick2
-            }});
+        super(props);
     }
 
-    render() {
+    protected render(): string {
         //language=hbs
         return `
-            <div> {{text}}</div>
+            <a href="{{ href }}">
+                <button class="btn {{classes}}">
+                    {{ text }}
+                </button>
+            </a>
         `
     }
 }
