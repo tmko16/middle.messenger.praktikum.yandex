@@ -3,20 +3,23 @@ import {Button} from "../../components/button/button";
 
 import './chatPage.less'
 import {SearchBar} from "../../components/searchBar/searchBar";
+import Dialog from "../../components/dialog";
 
 export class ChatPage extends Block {
 //TODO: если передаваться все будет ввиде массива - распрарсить детей.
     constructor() {
 
-
         super({
-            searchBar: new SearchBar()
+            searchBar: new SearchBar(),
+            dialog: new Dialog({
+                avatar: "https://source.unsplash.com/random",
+                name: "Андрей",
+                lastMsg: "Не ну займи а...",
+                lastMsgTime: "10:23",
+                msgCount: 12
+            })
         });
 
-    }
-
-    yolo() {
-        alert('fdsfd')
     }
 
     protected render(): string {
@@ -31,6 +34,7 @@ export class ChatPage extends Block {
                         {{{searchBar}}}
                     </div>
                     <div class="chat__dialogs">
+                        {{{ dialog }}}
                     </div>
                 </div>
                 <div class="chat__main">
