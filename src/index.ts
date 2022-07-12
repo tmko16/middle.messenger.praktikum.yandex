@@ -12,9 +12,14 @@ import Page500 from "./pages/500";
 import LoginPage from "./pages/login";
 import {ProfilePage} from "./pages/profile/profilePage";
 document.addEventListener("DOMContentLoaded", () => {
-    const profilePage = new ProfilePage()
+    const location = document.location.pathname
+    // сделать красивую заглушку как в первом спринте
+    let App: any = new Page404();
+    if (location === '/registration') {
+        App = new RegistrationPage()
+    }
     // const page404 = new LoginPage()
-    // const registrationPage = new RegistrationPage();
-    renderDOM(profilePage);
+    const registrationPage = new RegistrationPage();
+    renderDOM(App);
 
 });

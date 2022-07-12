@@ -16,13 +16,25 @@ export class UserProfile extends Block {
         const avatar = new AvatarProfile();
         const profileForm = new ProfileForm({isEdit: false});
         const links = {
-            changeData: new Link({text: "Изменить данные", to: "#"}),
+            changeData: new Link({text: "Изменить данные", to: "registration"}),
             changePassword: new Link({text: "Изменить пароль", to: "#"}),
             logOut: new Link({text: "Выйти", to: "#"}),
         }
         super({...props, avatar, profileForm, ...links});
     }
+
+    componentDidMount(props: any) {
+
+    }
+
+    /**
+     * При нажатии на ссылку изменить пароль меня должно отправлять
+     * на страницу
+     *
+     * */
+
     protected render(): string {
+        console.log(this)
         //language=hbs
         return `
             <div class="profile">

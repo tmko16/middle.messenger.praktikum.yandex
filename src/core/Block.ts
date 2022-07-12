@@ -40,6 +40,7 @@ export default class Block<P = any> {
 
         this.props = this._makePropsProxy(props || {} as P);
         this.state = this._makePropsProxy(this.state);
+        this.children = this._makePropsProxy(this.children);
 
         this.eventBus = () => eventBus;
 
@@ -104,13 +105,21 @@ export default class Block<P = any> {
         return true;
     }
 
-    setProps = (nextProps: P) => {
+    protected setProps = (nextProps: P) => {
         if (!nextProps) {
             return;
         }
 
         Object.assign(this.props, nextProps);
     };
+
+    protected setChildren = (child: P) => {
+        if (!child) {
+            return;
+        }
+
+        Object.assign(this.children, child);
+    }
 
     setState = (nextState: any) => {
         if (!nextState) {
