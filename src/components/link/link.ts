@@ -4,7 +4,6 @@ type LinkProps = {
     to: string,
     text: string
 }
-//TODO: искать ссылки и заменить на компонент линки
 export class Link extends Block {
 
     constructor(props: LinkProps) {

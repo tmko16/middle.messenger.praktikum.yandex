@@ -4,10 +4,11 @@ import {ProfileForm} from "../../components/profileForm";
 import Link from "../../components/link";
 import './profilePageEdit.less';
 import Button from "../../components/button";
+import AvatarEditable from "../../components/avatarEditable";
 export class ProfilePageEdit extends Block {
 
     constructor() {
-        const avatar = new AvatarProfile();
+        const avatar = new AvatarEditable();
         const saveButton = new Button({classes: "btn_l", href: "#", text: "Сохранить"})
         const profileForm = new ProfileForm();
         const links = {
