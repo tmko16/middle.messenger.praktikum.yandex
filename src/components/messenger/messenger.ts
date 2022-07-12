@@ -1,15 +1,42 @@
 import Block from "../../core/Block";
 import './messenger.less'
+import {Msg} from "../msg";
 //TODO: избавиться от эни где только можно.
 type MessengerProps = {
     name: string,
     wasOnline: string,
     messages: Array<any>
 }
+//[
+//         {
+//             "message": "МОЕ! некое сообщение, вполне себе может быть длинным.",
+//             "isMyMsg": true
+//         },
+//         {
+//             "message": "lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. ",
+//             "isMyMsg": false
+//         },
+//         {
+//             "message": "Еще одно чужое сообщение?",
+//             "isMyMsg": false
+//         },
+//         {
+//             "message": "И как ты будешь imgs обрабатывать скажи на милость?!",
+//             "isMyMsg": false
+//         }
+//     ]
 
 export class Messenger extends Block {
     constructor(props: MessengerProps) {
-        super(props);
+        const messages = {
+            msg1: new Msg({classes: "msg_my", message: "некое сообщение, вполне себе может быть длинным."}),
+            msg2: new Msg({
+                classes: "msg_alien",
+                message: "lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получи"
+            })
+        }
+
+        super({props, ...messages});
     }
 
     protected render(): string {
@@ -29,6 +56,8 @@ export class Messenger extends Block {
 
                 </div>
                 <div class="msg-area__chat">
+                    {{{msg1}}}
+                    {{{msg2}}}
                 </div>
                 <div class="msg-area__msg-sender">
                     <div class="msg-area__attach">
