@@ -36,7 +36,6 @@ export class RegistrationPage extends Block {
                     </div>
                     <div class="registration-form__actions">
                         {{{button}}}
-                        <a href="#">Нет аккаунта?</a>
                     </div>
                 </div>
             </div>
