@@ -4,25 +4,36 @@ import {Button} from "../../components/button/button";
 import './chatPage.less'
 import {SearchBar} from "../../components/searchBar/searchBar";
 import Dialog from "../../components/dialog";
+import Messenger from "../../components/messenger";
 
 export class ChatPage extends Block {
 //TODO: если передаваться все будет ввиде массива - распрарсить детей.
-    constructor() {
+    private chosenDialogId: string = '1';
 
+    constructor() {
+        const messenger = new Messenger({messages: [], name: "Васек", wasOnline: "11:13"})
+        const dialog = new Dialog({
+            id: '1',
+            avatar: "https://source.unsplash.com/random",
+            name: "Андрей",
+            lastMsg: "Не ну займи а...",
+            lastMsgTime: "10:23",
+            msgCount: 12,
+
+        })
+
+        const searchBar = new SearchBar()
         super({
-            searchBar: new SearchBar(),
-            dialog: new Dialog({
-                avatar: "https://source.unsplash.com/random",
-                name: "Андрей",
-                lastMsg: "Не ну займи а...",
-                lastMsgTime: "10:23",
-                msgCount: 12
-            })
+            searchBar,
+            dialog,
+            messenger
         });
+
 
     }
 
     protected render(): string {
+        console.log(this)
         //language=hbs
         return `
             <div class="chat">
@@ -38,7 +49,7 @@ export class ChatPage extends Block {
                     </div>
                 </div>
                 <div class="chat__main">
-                    <span>Выберите чат, что бы отправить сообщение.</span>
+                    {{{messenger}}}
                 </div>
 
             </div>
