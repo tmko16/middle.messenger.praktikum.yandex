@@ -2,16 +2,22 @@ import Block from "../../core/Block";
 import './dialog.less'
 
 type DialogProps = {
+    id: string,
     avatar: string,
     name: string,
     lastMsg: string,
     lastMsgTime: string,
-    msgCount: number
+    msgCount: number,
+    onClick?: () => void
 }
 
 export class Dialog extends Block {
     constructor(props: DialogProps) {
-        super(props);
+        super({
+            ...props, events: {
+                click: props.onClick
+            }
+        });
 
     }
 
