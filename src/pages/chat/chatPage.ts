@@ -5,12 +5,14 @@ import './chatPage.less'
 import {SearchBar} from "../../components/searchBar/searchBar";
 import Dialog from "../../components/dialog";
 import Messenger from "../../components/messenger";
+import Link from "../../components/link";
 
 export class ChatPage extends Block {
 //TODO: если передаваться все будет ввиде массива - распрарсить детей.
     private chosenDialogId: string = '1';
 
     constructor() {
+        const profileLink = new Link({text: "Профиль", to: "profile"})
         const messenger = new Messenger({messages: [], name: "Васек", wasOnline: "11:13"})
         const dialog = new Dialog({
             id: '1',
@@ -26,7 +28,8 @@ export class ChatPage extends Block {
         super({
             searchBar,
             dialog,
-            messenger
+            messenger,
+            profileLink
         });
 
 
@@ -39,7 +42,7 @@ export class ChatPage extends Block {
             <div class="chat">
                 <div class="chat__sidebar">
                     <div class="chat__profile-link-container">
-                        <a class="chat__profile_link" href="#">Профиль</a>
+                        {{{profileLink}}}
                     </div>
                     <div class="chat__search">
                         {{{searchBar}}}
