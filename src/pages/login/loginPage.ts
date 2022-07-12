@@ -4,16 +4,22 @@ import FormInput from "../../components/formInput";
 import './loginPage.less';
 import RegistrationPage from "../registration";
 import Link from "../../components/link";
+
 export class LoginPage extends Block {
     constructor() {
         const button = new Button({text: "Вход", classes: "btn_l", href: "#"})
         const noAccount = new Link({text: "Нет аккаунта?", to: "registration"})
         const fields = {
-            login: new FormInput({label: "Логин", name: "login", type: ""}),
+            login: new FormInput({
+                label: "Логин", name: "login", type: "text", onChange: () => {
+                     return ['Ошибка жопы']
+                }
+            }),
             password: new FormInput({label: "Пароль", name: "password", type: "password"}),
         }
         super({...fields, button, noAccount});
     }
+
 
     protected render(): string {
         //language=hbs
