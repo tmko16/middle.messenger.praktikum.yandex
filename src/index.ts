@@ -13,6 +13,8 @@ import LoginPage from "./pages/login";
 import {ProfilePage} from "./pages/profile/profilePage";
 import {IndexPage} from "./pages/indexPage/indexPage";
 import {ProfilePageEdit} from "./pages/profileEdit/profilePageEdit";
+import {ChangePassword} from "./pages/changePassword/changePassword";
+
 document.addEventListener("DOMContentLoaded", () => {
     const location = document.location.pathname
     // сделать красивую заглушку как в первом спринте
@@ -32,6 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
             break
         case '/profileEdit':
             App = new ProfilePageEdit();
+            break;
+        case '/changePassword':
+            App = new ChangePassword();
             break;
     }
 

@@ -1,28 +1,61 @@
 import Block from "../../core/Block";
+import './changePassword.less';
+import ProfileInput from "../../components/profileInput";
 import AvatarProfile from "../../components/avatarProfile";
-import {ProfileForm} from "../../components/profileForm";
 import Link from "../../components/link";
-import './profilePageEdit.less';
-import Button from "../../components/button";
-export class ProfilePageEdit extends Block {
 
+export class ChangePassword extends Block {
+    // [
+    //         {
+    //             "title": "Старый пароль",
+    //             "type": "text",
+    //             "name": "oldDassword",
+    //             "placeholder": "********"
+    //         },
+    //         {
+    //             "title": "Новый пароль",
+    //             "type": "text",
+    //             "name": "newPassword",
+    //             "placeholder": "********"
+    //         },
+    //         {
+    //             "title": "Повторите новый пароль",
+    //             "type": "text",
+    //             "name": "confirmPassword",
+    //             "placeholder": "********"
+    //         }
+    //     ]
     constructor() {
-        const avatar = new AvatarProfile();
-        const saveButton = new Button({classes: "btn_l", href: "#", text: "Сохранить"})
-        const profileForm = new ProfileForm();
-        const links = {
-            changeData: new Link({text: "Изменить данные", to: "profileEdit"}),
-            changePassword: new Link({text: "Изменить пароль", to: "changePassword"}),
-            logOut: new Link({text: "Выйти", to: "#"}),
-            backLink : new Link({text: "Профиль", to: "profile"})
+        const fields = {
+            oldPassword: new ProfileInput({
+                label: "Старый пароль",
+                name: "oldPassword",
+                type: "password",
+                value: "*******"
+            }),
+            newPassword: new ProfileInput({
+                label: "Новый пароль",
+                name: "newPassword",
+                type: "password",
+                value: "*******"
+            }),
+            confirmPassword: new ProfileInput({
+                label: "Повторите новый пароль",
+                name: "confirmPassword",
+                type: "password",
+                value: "*******"
+            }),
         }
-        super({ avatar, profileForm, ...links, saveButton});
+        const backLink = new Link({text: "Профиль", to: "profile"})
+        super({...fields, backLink});
     }
-// TODO: разобраться почему дизейбл не работает
+
     protected render(): string {
+
+
         //language=hbs
         return `
-            <div class="profile-edit">
+            <div class="change-pass-page">
                 <div class="profile__nav">
                     <a href="index.hbs">
                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,17 +75,14 @@ export class ProfilePageEdit extends Block {
                     {{{backLink}}}
 
                 </div>
-                {{{avatar}}}
-                <div class="profile__fields">
-                    {{{profileForm}}}
-                    <div class="profile__actions">
-                      {{{saveButton}}}
+                <div class="profile-pass-change">
+                    <div class="profile-pass-change__fields">
+                        {{{oldPassword}}}
+                        {{{newPassword}}}
+                        {{{confirmPassword}}}
                     </div>
-
-                    <!--                  here-->
-
+                    
                 </div>
-
             </div>
         `
     }

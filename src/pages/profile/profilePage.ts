@@ -10,8 +10,9 @@ export class ProfilePage extends Block {
         const profileForm = new ProfileForm();
         const links = {
             changeData: new Link({text: "Изменить данные", to: "profileEdit"}),
-            changePassword: new Link({text: "Изменить пароль", to: "#"}),
+            changePassword: new Link({text: "Изменить пароль", to: "changePassword"}),
             logOut: new Link({text: "Выйти", to: "#"}),
+            backLink : new Link({text: "Профиль", to: "profile"})
         }
         super({ avatar, profileForm, ...links});
     }
@@ -36,9 +37,7 @@ export class ProfilePage extends Block {
                             </defs>
                         </svg>
                     </a>
-                    <span href="index.hbs" class="profile__back">
-            Профиль
-        </span>
+                    {{{backLink}}}
 
                 </div>
                 {{{avatar}}}
