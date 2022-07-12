@@ -1,13 +1,20 @@
 import Block from "../../core/Block";
 import './btn.less';
+
 type ButtonProps = {
     href: string,
     text: string,
-    classes?: string
+    classes?: string,
+    onSubmit?: any
 }
+
 export class Button extends Block {
     constructor(props: ButtonProps) {
-        super(props);
+        super({
+            ...props, events: {
+                click: props.onSubmit
+            }
+        });
     }
 
     protected render(): string {
