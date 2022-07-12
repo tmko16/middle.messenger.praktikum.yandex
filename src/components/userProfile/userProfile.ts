@@ -2,16 +2,25 @@ import Block from "../../core/Block";
 import './userProfile.less';
 import AvatarProfile from "../avatarProfile";
 import {ProfileForm} from "../profileForm";
+import Link from "../link";
 
 type UserProfileProps = {
     isProfileEdit?: boolean,
     changePassword?: boolean
 }
+// <a class="profile__action" href="changeProfileData.hbs">Изменить данные</a>
+//                             <a class="profile__action" href="changePassword.hbs">Изменить пароль</a>
+//                             <a class="profile__action" href="#">Изменить выйти</a>
 export class UserProfile extends Block {
     constructor(props: UserProfileProps) {
         const avatar = new AvatarProfile();
         const profileForm = new ProfileForm();
-        super({...props, avatar, profileForm});
+        const links = {
+            changeData: new Link({text: "Изменить данные", to: "#"}),
+            changePassword: new Link({text: "Изменить пароль", to: "#"}),
+            logOut: new Link({text: "Выйти", to: "#"}),
+        }
+        super({...props, avatar, profileForm, ...links});
     }
     protected render(): string {
         //language=hbs
@@ -43,9 +52,9 @@ export class UserProfile extends Block {
 
                         {{{profileForm}}}
                         <div class="profile__actions">
-                            <a class="profile__action" href="changeProfileData.hbs">Изменить данные</a>
-                            <a class="profile__action" href="changePassword.hbs">Изменить пароль</a>
-                            <a class="profile__action" href="#">Изменить выйти</a>
+                            {{{changeData}}}
+                            {{{changePassword}}}
+                            {{{logOut}}}
                         </div>
 
                     {{#if isProfileEdit}}
