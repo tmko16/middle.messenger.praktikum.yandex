@@ -14,7 +14,7 @@ type UserProfileProps = {
 export class UserProfile extends Block {
     constructor(props: UserProfileProps) {
         const avatar = new AvatarProfile();
-        const profileForm = new ProfileForm();
+        const profileForm = new ProfileForm({isEdit: false});
         const links = {
             changeData: new Link({text: "Изменить данные", to: "#"}),
             changePassword: new Link({text: "Изменить пароль", to: "#"}),
@@ -57,15 +57,7 @@ export class UserProfile extends Block {
                             {{{logOut}}}
                         </div>
 
-                    {{#if isProfileEdit}}
-                        {{> profileForm/profileForm }}
-                        {{> button/btn text = "Сохранить" classes = "btn_l"}}
-                    {{/if}}
-
-                    {{#if changePassword}}
-                        {{> profilePasswordChange/profilePasswordChange }}
-                        {{> button/btn text = "Сохранить" classes = "btn_l"}}
-                    {{/if}}
+<!--                  here-->
 
                 </div>
 
@@ -73,3 +65,13 @@ export class UserProfile extends Block {
         `
     }
 }
+
+//  {{#if isProfileEdit}}
+//                         {{> profileForm/profileForm }}
+//                         {{> button/btn text = "Сохранить" classes = "btn_l"}}
+//                     {{/if}}
+//
+//                     {{#if changePassword}}
+//                         {{> profilePasswordChange/profilePasswordChange }}
+//                         {{> button/btn text = "Сохранить" classes = "btn_l"}}
+//                     {{/if}}
