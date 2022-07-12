@@ -12,7 +12,7 @@ export class ProfilePage extends Block {
             changeData: new Link({text: "Изменить данные", to: "profileEdit"}),
             changePassword: new Link({text: "Изменить пароль", to: "changePassword"}),
             logOut: new Link({text: "Выйти", to: "#"}),
-            backLink : new Link({text: "Профиль", to: "profile"})
+            backLink : new Link({text: "К чатам", to: "chat"})
         }
         super({ avatar, profileForm, ...links});
     }
@@ -49,9 +49,6 @@ export class ProfilePage extends Block {
                         {{{changePassword}}}
                         {{{logOut}}}
                     </div>
-
-                    <!--                  here-->
-
                 </div>
 
             </div>

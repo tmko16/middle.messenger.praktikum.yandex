@@ -38,6 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
         case '/changePassword':
             App = new ChangePassword();
             break;
+        case '/page404':
+            App = new Page404();
+            break
+        case '/page500':
+            App = new Page500();
+            break;
     }
 
     renderDOM(App);
