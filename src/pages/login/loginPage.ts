@@ -4,7 +4,6 @@ import FormInput from "../../components/formInput";
 import './loginPage.less';
 import Link from "../../components/link";
 import {formValidators, loginValidation, onSubmitValidation, passwordValidation} from "../../utils/validators";
-import {log} from "handlebars";
 
 export class LoginPage extends Block {
     constructor() {

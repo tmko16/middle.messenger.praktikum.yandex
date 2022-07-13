@@ -59,13 +59,13 @@ export function passwordValidation() {
     }
 }
 
-export function titleValidation() {
-    const value = arguments[0]
-    const isValid = inputValidation(value, validationPatterns.login)
-    if (!isValid) {
-        return 'title некорректный'
-    }
-}
+// export function titleValidation() {
+//     const value = arguments[0]
+//     const isValid = inputValidation(value, validationPatterns.login)
+//     if (!isValid) {
+//         return 'title некорректный'
+//     }
+// }
 
 export function messageValidation() {
     const value = arguments[0]
@@ -77,7 +77,11 @@ export function messageValidation() {
 
 export const formValidators = {
     login: loginValidation,
-    password: passwordValidation
+    password: passwordValidation,
+    phone: phoneValidation,
+    email: emailValidation,
+    message: messageValidation,
+    name: nameValidation
 }
 
 export function onSubmitValidation() {
