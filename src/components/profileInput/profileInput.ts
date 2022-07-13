@@ -19,7 +19,9 @@ export class ProfileInput extends Block {
             ...props, events: {
                 change: (e: Event) => {
                     this.value = (e.target as HTMLInputElement).value
-                    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                    this.setProps({
+                        value: this.value
+                    })
                 },
                 focus: () => {
                 },

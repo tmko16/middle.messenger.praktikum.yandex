@@ -17,6 +17,9 @@ export class FormInput extends Block {
             ...props, events: {
                 change: (e: Event) => {
                     this.value = (e.target as HTMLInputElement).value
+                    this.setProps({
+                        value: this.value
+                    })
                 },
                 focus: () => {
                 },
@@ -41,7 +44,7 @@ export class FormInput extends Block {
                     <div class="form-input__label">
                         {{ label }}
                     </div>
-                    <input type="{{ type }}" name="{{ name }}" value="${this.value ? this.value : ''}"
+                    <input type="{{ type }}" name="{{ name }}" value="{{value}}"
                            class="form-input__input"/>
                 </div>
                 <div class="form-input__error-msg">

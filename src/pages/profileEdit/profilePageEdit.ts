@@ -17,9 +17,7 @@ export class ProfilePageEdit extends Block {
 
     constructor() {
         const avatar = new AvatarEditable();
-
         super({avatar});
-
         this.setChildren({
             saveButton: new Button({
                 classes: "btn_l",
@@ -33,7 +31,7 @@ export class ProfilePageEdit extends Block {
                 type: "text",
                 placeholder: "akira-must-die@yandex.ru",
                 validation: emailValidation,
-                isEdit : true
+                isEdit: true
             }),
             login: new ProfileInput({
                 label: "Логин",
@@ -41,7 +39,7 @@ export class ProfilePageEdit extends Block {
                 type: "text",
                 placeholder: "setCadena",
                 validation: loginValidation,
-                 isEdit : true
+                isEdit: true
             }),
             first_name: new ProfileInput({
                 label: "Имя",
@@ -49,7 +47,7 @@ export class ProfilePageEdit extends Block {
                 type: "text",
                 placeholder: "Сётару",
                 validation: nameValidation,
-                 isEdit : true
+                isEdit: true
             }),
             second_name: new ProfileInput({
                 label: "Фамилия",
@@ -57,14 +55,14 @@ export class ProfilePageEdit extends Block {
                 type: "text",
                 placeholder: "Канеда",
                 validation: nameValidation,
-                 isEdit : true
+                isEdit: true
             }),
             displayName: new ProfileInput({
                 label: "Имя в чате",
                 name: "display_name",
                 type: "text",
                 placeholder: "Канеда С.",
-                 isEdit : true
+                isEdit: true
             }),
             phone: new ProfileInput({
                 label: "Телефон",
@@ -72,13 +70,15 @@ export class ProfilePageEdit extends Block {
                 type: "text",
                 placeholder: "89222229929",
                 validation: phoneValidation,
-                 isEdit : true
+                isEdit: true
             }),
         })
 
     }
+
     onSubmitHandler() {
         getFormValues.apply(this)
+        console.log(this)
         onSubmitValidation(this.formValues, this.children)
     }
 
