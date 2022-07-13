@@ -4,6 +4,7 @@ import {Msg} from "../msg";
 import {FormInput} from "../formInput/formInput";
 import {messageValidation, onSubmitValidation} from "../../utils/validators";
 import SendMsgBtn from "../sendMsgBtn";
+import {getFormValues} from "../../utils/getFormValues";
 //TODO: избавиться от эни где только можно.
 type MessengerProps = {
     name: string,
@@ -30,6 +31,8 @@ type MessengerProps = {
 //     ]
 
 export class Messenger extends Block {
+    protected formValues: any = {};
+
     constructor(props: MessengerProps) {
         const messages = {
             msg1: new Msg({classes: "msg_my", message: "некое сообщение, вполне себе может быть длинным."}),
@@ -43,8 +46,18 @@ export class Messenger extends Block {
 
         super({props, ...messages, message});
         this.setChildren({
-            sendMsg: new SendMsgBtn({onClick: onSubmitValidation.bind(this)})
+            sendMsg: new SendMsgBtn({
+                onSubmit: this.onSubmitHandler.bind(this)
+                // onSubmit: getFormValues.bind(this)
+            })
         })
+    }
+
+    onSubmitHandler () {
+        console.log('попалаи')
+        getFormValues.apply(this)
+        console.log(this);
+        onSubmitValidation(this.formValues, this.children)
     }
 
     protected render(): string {

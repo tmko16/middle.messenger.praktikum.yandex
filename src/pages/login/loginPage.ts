@@ -4,8 +4,11 @@ import FormInput from "../../components/formInput";
 import './loginPage.less';
 import Link from "../../components/link";
 import {formValidators, loginValidation, onSubmitValidation, passwordValidation} from "../../utils/validators";
+import {getFormValues} from "../../utils/getFormValues";
 
 export class LoginPage extends Block {
+    protected formValues: any = {};
+
     constructor() {
 
         const noAccount = new Link({text: "Нет аккаунта?", to: "registration"})
@@ -20,17 +23,15 @@ export class LoginPage extends Block {
                 onChange: passwordValidation
             }),
         }
-        super({...fields, noAccount, onSubmit : () => console.log('fdsdf')});
+        super({...fields, noAccount});
 
 
         this.setChildren({
-             button: new Button({
-                 text: "Вход", classes: "btn_l", href: "#", onSubmit:  onSubmitValidation.bind(this)
-             })
-         })
+            button: new Button({
+                text: "Вход", classes: "btn_l", href: "#", onSubmit: getFormValues.bind(this)
+            })
+        })
     }
-
-
     protected render(): string {
         //language=hbs
         return `

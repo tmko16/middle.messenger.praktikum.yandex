@@ -1,7 +1,7 @@
 import Block from "../../core/Block";
 
 type SendMsgBtnProps = {
-    onClick?: () => void
+    onSubmit?: any
 }
 
 export class SendMsgBtn extends Block {
@@ -9,12 +9,10 @@ export class SendMsgBtn extends Block {
     constructor(props: SendMsgBtnProps) {
         super({
             ...props, events: {
-                click: props.onClick
+                click: props.onSubmit
             }
         });
-
     }
-
 
     protected render(): string {
         //language=hbs
