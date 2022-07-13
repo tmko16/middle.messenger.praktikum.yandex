@@ -3,8 +3,8 @@ import Block from '../core/Block';
 const validationPatterns = {
 	login: /^(?!\d+$)[A-Za-z-_0-9]{3,20}$/,
 	password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,40}$/,
-	phone: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/,
-	email: /^[^\s@]+@[^\s@]+\.[\S]{2,}$/,
+	phone: /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/,
+	email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
 	name: /^[A-ZА-ЯЁ][а-яА-ЯёЁa-zA-Z-]+$/,
 	message: /.+/,
 };
@@ -27,7 +27,7 @@ export function loginValidation() {
 
 export function phoneValidation() {
 	const value = arguments[0];
-	const isValid = inputValidation(value, validationPatterns.login);
+	const isValid = inputValidation(value, validationPatterns.phone);
 	if (!isValid) {
 		return 'Телефон некорректный';
 	}
@@ -35,7 +35,7 @@ export function phoneValidation() {
 
 export function emailValidation() {
 	const value = arguments[0];
-	const isValid = inputValidation(value, validationPatterns.login);
+	const isValid = inputValidation(value, validationPatterns.email);
 	if (!isValid) {
 		return 'Email некорректный';
 	}
@@ -43,7 +43,7 @@ export function emailValidation() {
 
 export function nameValidation() {
 	const value = arguments[0];
-	const isValid = inputValidation(value, validationPatterns.login);
+	const isValid = inputValidation(value, validationPatterns.name);
 	if (!isValid) {
 		return 'Некорректное значение';
 	}
@@ -51,7 +51,7 @@ export function nameValidation() {
 
 export function passwordValidation() {
 	const value = arguments[0];
-	const isValid = inputValidation(value, validationPatterns.login);
+	const isValid = inputValidation(value, validationPatterns.password);
 	if (!isValid) {
 		return 'Пароль некорректный';
 	}
@@ -59,7 +59,7 @@ export function passwordValidation() {
 
 export function messageValidation() {
 	const value = arguments[0];
-	const isValid = inputValidation(value, validationPatterns.login);
+	const isValid = inputValidation(value, validationPatterns.message);
 	if (!isValid) {
 		return 'Сообщение не может быть пустым';
 	}
