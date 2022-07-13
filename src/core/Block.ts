@@ -26,7 +26,7 @@ export default class Block<P = any> {
 
 	protected state: Record<string, unknown> = {};
 	protected refs: { [key: string]: HTMLElement } = {};
-	public errors = '';
+	public errors: string | undefined = '';
 
 	public constructor(propsAndChildren?: P) {
 		propsAndChildren = propsAndChildren ?? {} as P;
@@ -56,10 +56,8 @@ export default class Block<P = any> {
 
 		Object.entries(propsAndChildren as P).forEach(([key, value]) => {
 			if (value instanceof Block) {
-				// @ts-ignore
 				children[key] = value;
 			} else {
-				// @ts-ignore
 				props[key] = value;
 			}
 		});
@@ -91,6 +89,7 @@ export default class Block<P = any> {
 		this.componentDidMount(props);
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	componentDidMount(props: P) {
 	}
 
@@ -199,12 +198,16 @@ export default class Block<P = any> {
 
 
 		Object.entries(events).forEach(([event, listener]) => {
-            this._element!.removeEventListener(event, listener);
+			this._element?.removeEventListener(event, listener);
 		});
 	}
 
 	_addEvents() {
 		const events: Record<string, () => void> = (this.props as any).events;
+
+		// events: {
+		// 	click: alert(,
+		// }
 
 		if (!events) {
 			return;

@@ -6,11 +6,11 @@ type FormInputProps = {
     label: string,
     type: string,
     name: string,
-    validation?: (value: string) => string
+    validation?: (value: string) => string | undefined
 }
 
 export class FormInput extends Block {
-	private value = '';
+	private value: string | undefined = '';
 
 	constructor(props: FormInputProps) {
 		super({

@@ -7,8 +7,6 @@ import Link from '../../components/link';
 import SearchBar from '../../components/searchBar';
 
 export class ChatPage extends Block {
-//TODO: если передаваться все будет ввиде массива - распрарсить детей.
-	private chosenDialogId = '1';
 
 	constructor() {
 		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});

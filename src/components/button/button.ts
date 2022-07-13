@@ -12,7 +12,7 @@ export class Button extends Block {
 	constructor(props: ButtonProps) {
 		super({
 			...props, events: {
-				click: props.onSubmit
+				click: props.onSubmit,
 			}
 		});
 	}
