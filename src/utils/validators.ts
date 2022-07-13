@@ -76,20 +76,15 @@ export const formValidators = {
 
 }
 
-export function onSubmitValidation(this: any) {
-    const fields = document.querySelectorAll('input')
-    fields.forEach(field => {
-        const name = field.name
-        const value = (document.querySelector(`input[name=${name}]`) as HTMLInputElement).value
+export function onSubmitValidation(formData: Record<string, string | number>, children: Record<string, Block>) {
 
+    for (const formDataKey in formData) {
         for (let key in formValidators) {
-            if (key === name) {
-                const errors = (formValidators[key as keyof {}] as Function)(value)
-                console.log('детки',this.children)
-                this.children[key].errors = errors
-                this.children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            if (key === formDataKey) {
+                const errors = (formValidators[key as keyof {}] as Function)(formData[formDataKey])
+                children[key].errors = errors
+                children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
             }
         }
-    })
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    }
 }
