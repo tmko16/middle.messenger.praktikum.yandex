@@ -61,7 +61,7 @@ export function messageValidation() {
     const value = arguments[0]
     const isValid = inputValidation(value, validationPatterns.login)
     if (!isValid) {
-        return 'title некорректный'
+        return 'Сообщение не может быть пустым'
     }
 }
 
@@ -73,6 +73,7 @@ export const formValidators = {
     message: messageValidation,
     first_name: nameValidation,
     second_name: nameValidation,
+
 }
 
 export function onSubmitValidation() {
@@ -80,7 +81,6 @@ export function onSubmitValidation() {
     const that = this
     const fields = document.querySelectorAll('input')
     fields.forEach(field => {
-
         const name = field.name
         const value = (document.querySelector(`input[name=${name}]`) as HTMLInputElement).value
 
