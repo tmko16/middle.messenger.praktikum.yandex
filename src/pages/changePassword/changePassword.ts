@@ -50,6 +50,7 @@ export class ChangePassword extends Block {
     }
     onSubmitHandler() {
         getFormValues.apply(this)
+        console.log(this)
         onSubmitValidation(this.formValues, this.children)
     }
 

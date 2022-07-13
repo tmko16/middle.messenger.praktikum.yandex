@@ -68,6 +68,9 @@ export function messageValidation() {
 export const formValidators = {
     login: loginValidation,
     password: passwordValidation,
+    newPassword: passwordValidation,
+    confirmPassword: passwordValidation,
+    oldPassword: passwordValidation,
     phone: phoneValidation,
     email: emailValidation,
     message: messageValidation,
