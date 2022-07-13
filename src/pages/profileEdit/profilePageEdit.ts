@@ -6,7 +6,6 @@ import {
 	emailValidation, loginValidation,
 	nameValidation,
 	onSubmitValidation,
-	passwordValidation,
 	phoneValidation
 } from '../../utils/validators';
 import ProfileInput from '../../components/profileInput';
