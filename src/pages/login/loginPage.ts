@@ -14,13 +14,13 @@ export class LoginPage extends Block {
         const noAccount = new Link({text: "Нет аккаунта?", to: "registration"})
         const fields = {
             login: new FormInput({
-                label: "Логин", name: "login", type: "text", onChange: loginValidation
+                label: "Логин", name: "login", type: "text", validation: loginValidation
             }),
             password: new FormInput({
                 label: "Пароль",
                 name: "password",
                 type: "password",
-                onChange: passwordValidation
+                validation: passwordValidation
             }),
         }
         super({...fields, noAccount});
@@ -28,9 +28,13 @@ export class LoginPage extends Block {
 
         this.setChildren({
             button: new Button({
-                text: "Вход", classes: "btn_l", href: "#", onSubmit: getFormValues.bind(this)
+                text: "Вход", classes: "btn_l", href: "#", onSubmit: this.onSubmitHandler.bind(this)
             })
         })
+    }
+    onSubmitHandler () {
+        getFormValues.apply(this)
+        onSubmitValidation(this.formValues, this.children)
     }
     protected render(): string {
         //language=hbs

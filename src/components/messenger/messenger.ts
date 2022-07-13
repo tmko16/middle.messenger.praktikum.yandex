@@ -48,7 +48,6 @@ export class Messenger extends Block {
         this.setChildren({
             sendMsg: new SendMsgBtn({
                 onSubmit: this.onSubmitHandler.bind(this)
-                // onSubmit: getFormValues.bind(this)
             })
         })
     }

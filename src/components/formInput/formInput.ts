@@ -6,7 +6,7 @@ type FormInputProps = {
     label: string,
     type: string,
     name: string,
-    onChange?: any
+    validation?: any
 }
 
 export class FormInput extends Block {
@@ -19,17 +19,12 @@ export class FormInput extends Block {
                     this.value = (e.target as HTMLInputElement).value
                 },
                 focus: () => {
-                    // if (props.onChange) {
-                    //     const value = (document.querySelector(`input[name=${props.name}]`) as HTMLInputElement).value
-                    //     this.value = value
-                    //     const errors = props.onChange(value)
-                    //     this.errors = errors
-                    //     if (value) {
-                    //         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-                    //     }
-                    // }
                 },
                 blur: () => {
+                    if (props.validation && this.value) {
+                        this.errors = props.validation(this.value)
+                        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                    }
                 }
             }
         });
@@ -37,7 +32,6 @@ export class FormInput extends Block {
 
     }
 
-    
 
     protected render(): string {
         //language=hbs
@@ -47,7 +41,8 @@ export class FormInput extends Block {
                     <div class="form-input__label">
                         {{ label }}
                     </div>
-                    <input type="{{ type }}" name="{{ name }}" value="${this.value ? this.value : ''}" class="form-input__input"/>
+                    <input type="{{ type }}" name="{{ name }}" value="${this.value ? this.value : ''}"
+                           class="form-input__input"/>
                 </div>
                 <div class="form-input__error-msg">
                     ${this.errors ? this.errors.toString() : ''}
