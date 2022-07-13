@@ -26,7 +26,7 @@ export default class Block<P = any> {
 
     protected state: any = {};
     protected refs: { [key: string]: HTMLElement } = {};
-    errors: string[] = [];
+    protected errors: string[] = [];
 
     public constructor(propsAndChildren?: P) {
         propsAndChildren = propsAndChildren ?? {} as P;

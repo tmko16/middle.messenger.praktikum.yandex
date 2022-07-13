@@ -1,5 +1,4 @@
 import Block from "../core/Block";
-import EventBus from "../core/EventBus";
 
 const validationPatterns = {
     login: /^(?!\d+$)[A-Za-z-_0-9]{3,20}$/,
@@ -7,7 +6,6 @@ const validationPatterns = {
     phone: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/,
     email: /^[^\s@]+@[^\s@]+\.[\S]{2,}$/,
     name: /^[A-ZА-ЯЁ][а-яА-ЯёЁa-zA-Z-]+$/,
-    title: /^.+$/,
     message: /.+/,
 }
 
@@ -47,7 +45,7 @@ export function nameValidation() {
     const value = arguments[0]
     const isValid = inputValidation(value, validationPatterns.login)
     if (!isValid) {
-        return 'name некорректный'
+        return 'Имя некорректный'
     }
 }
 
@@ -58,14 +56,6 @@ export function passwordValidation() {
         return 'Пароль некорректный'
     }
 }
-
-// export function titleValidation() {
-//     const value = arguments[0]
-//     const isValid = inputValidation(value, validationPatterns.login)
-//     if (!isValid) {
-//         return 'title некорректный'
-//     }
-// }
 
 export function messageValidation() {
     const value = arguments[0]
@@ -81,20 +71,23 @@ export const formValidators = {
     phone: phoneValidation,
     email: emailValidation,
     message: messageValidation,
-    name: nameValidation
+    first_name: nameValidation,
+    second_name: nameValidation,
 }
 
 export function onSubmitValidation() {
+    //@ts-ignore
     const that = this
-    console.log(that)
     const fields = document.querySelectorAll('input')
     fields.forEach(field => {
+
         const name = field.name
         const value = (document.querySelector(`input[name=${name}]`) as HTMLInputElement).value
+
         for (let key in formValidators) {
             if (key === name) {
-                const validationResult = (formValidators[key as keyof {}] as Function)(value)
-                that.children[key].errors = validationResult
+                const errors = (formValidators[key as keyof {}] as Function)(value)
+                that.children[key].errors = errors
                 that.children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
             }
         }

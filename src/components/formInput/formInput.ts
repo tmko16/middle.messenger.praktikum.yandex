@@ -10,7 +10,6 @@ type FormInputProps = {
 }
 
 export class FormInput extends Block {
-    private errors: string[] = [];
     private value: string = '';
 
     constructor(props: FormInputProps) {

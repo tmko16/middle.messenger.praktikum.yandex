@@ -2,21 +2,37 @@ import Block from "../../core/Block";
 import './registrationPage.less';
 import FormInput from "../../components/formInput";
 import Button from "../../components/button";
+import {
+    emailValidation,
+    nameValidation,
+    onSubmitValidation,
+    passwordValidation,
+    phoneValidation
+} from "../../utils/validators";
 
 export class RegistrationPage extends Block {
 
     constructor() {
-        const button = new Button({text: "Регистрация", classes: "btn_l", href: "#"})
         const fields = {
-            email: new FormInput({label: "Почта", name: "email", type: ""}),
-            login: new FormInput({label: "Логин", name: "login", type: ""}),
-            firstName: new FormInput({label: "Имя", name: "first_name", type: ""}),
-            secondName: new FormInput({label: "Фамилия", name: "second_name", type: ""}),
-            phone: new FormInput({label: "Телефон", name: "phone", type: ""}),
-            password: new FormInput({label: "Пароль", name: "password", type: "password"}),
-            confirmPassword: new FormInput({label: "Пароль еще раз", name: "confirmPassword", type: "password"}),
+
+
+
+
         }
-        super({...fields, button});
+        super({});
+
+        this.setChildren({
+            button: new Button({
+                text: "Регистрация", classes: "btn_l", href: "#", onSubmit:  onSubmitValidation.bind(this)
+            }),
+            email: new FormInput({label: "Почта", name: "email", type: "text", onChange: emailValidation}),
+            login: new FormInput({label: "Логин", name: "login", type: "text", onChange: passwordValidation}),
+            first_name: new FormInput({label: "Имя", name: "first_name", type: "text", onChange: nameValidation}),
+            second_name: new FormInput({label: "Фамилия", name: "second_name", type: "text", onChange: nameValidation}),
+            phone: new FormInput({label: "Телефон", name: "phone", type: "text", onChange: phoneValidation}),
+            password: new FormInput({label: "Пароль", name: "password", type: "password", onChange: passwordValidation}),
+            confirm_password: new FormInput({label: "Пароль еще раз", name: "confirmPassword", type: "password", onChange: passwordValidation}),
+        })
     }
 
     protected render(): string {
@@ -28,8 +44,8 @@ export class RegistrationPage extends Block {
                     <div class="registration-form__fields">
                         {{{email}}}
                         {{{login}}}
-                        {{{fisrtName}}}
-                        {{{secondName}}}
+                        {{{first_name}}}
+                        {{{second_name}}}
                         {{{phone}}}
                         {{{password}}}
                         {{{confirmPassord}}}
