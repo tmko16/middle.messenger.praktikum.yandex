@@ -5,15 +5,15 @@ import SendMsgBtn from '../sendMsgBtn';
 import {getFormValues} from '../../utils/getFormValues';
 import Msg from '../msg';
 import FormInput from '../formInput';
-//TODO: избавиться от эни где только можно.
+
 type MessengerProps = {
-    name: string,
-    wasOnline: string,
-    messages: Array<any>
+	name: string,
+	wasOnline: string,
+	messages: Array<{ message: string, classes: string }>
 }
 
 export class Messenger extends Block {
-	protected formValues: Record<string, string | number> = {} = {};
+	protected formValues: Record<string, string | number> = {};
 
 	constructor(props: MessengerProps) {
 		const messages = {
@@ -23,9 +23,7 @@ export class Messenger extends Block {
 				message: 'lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получи'
 			})
 		};
-		//TODO: сообщение стирается при валидации
 		const message = new FormInput({label: '', name: 'message', type: 'text'});
-
 		super({props, ...messages, message});
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
@@ -34,9 +32,8 @@ export class Messenger extends Block {
 		});
 	}
 
-	onSubmitHandler () {
+	onSubmitHandler() {
 		getFormValues.apply(this);
-		console.log(this);
 		onSubmitValidation(this.formValues, this.children);
 	}
 
@@ -96,6 +93,6 @@ export class Messenger extends Block {
                     </div>
                 </div>
             </div>
-        `;
+		`;
 	}
 }

@@ -24,9 +24,9 @@ export default class Block<P = any> {
 
 	eventBus: () => EventBus;
 
-	protected state: any = {};
+	protected state: Record<string, unknown> = {};
 	protected refs: { [key: string]: HTMLElement } = {};
-	public errors: string[] = [];
+	public errors = '';
 
 	public constructor(propsAndChildren?: P) {
 		propsAndChildren = propsAndChildren ?? {} as P;
@@ -122,7 +122,7 @@ export default class Block<P = any> {
 		Object.assign(this.children, child);
 	};
 
-	setState = (nextState: any) => {
+	setState = (nextState: P) => {
 		if (!nextState) {
 			return;
 		}
@@ -139,9 +139,7 @@ export default class Block<P = any> {
 
 		this._removeEvents();
 		const newElement = fragment.firstElementChild!;
-
         this._element!.replaceWith(newElement);
-
         this._element = newElement as HTMLElement;
         this._addEvents();
 	}
@@ -166,6 +164,7 @@ export default class Block<P = any> {
 	_makePropsProxy(props: any): any {
 		// Можно и так передать this
 		// Такой способ больше не применяется с приходом ES6+
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
 		const self = this;
 
 		return new Proxy(props as unknown as object, {
@@ -219,8 +218,6 @@ export default class Block<P = any> {
 	_compile(): DocumentFragment {
 		const propsAndStubs: Record<string, any> = {...this.props};
 		Object.entries(this.children).forEach(([key, child]) => {
-			if (Array.isArray(child)) {
-			}
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
 		});
 		const fragment = document.createElement('template');

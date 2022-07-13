@@ -7,7 +7,7 @@ type FormInputProps = {
     type: string,
     name: string,
     placeholder: string
-    validation?: any
+    validation?: (value: string) => string
     isEdit: boolean
 }
 
@@ -23,6 +23,7 @@ export class ProfileInput extends Block {
 						value: this.value
 					});
 				},
+				// eslint-disable-next-line @typescript-eslint/no-empty-function
 				focus: () => {
 				},
 				blur: () => {

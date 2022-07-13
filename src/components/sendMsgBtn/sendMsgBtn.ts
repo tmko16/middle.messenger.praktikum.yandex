@@ -1,7 +1,7 @@
 import Block from '../../core/Block';
 
 type SendMsgBtnProps = {
-    onSubmit?: any
+    onSubmit?: () => void
 }
 
 export class SendMsgBtn extends Block {

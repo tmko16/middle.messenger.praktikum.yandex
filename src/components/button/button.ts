@@ -5,7 +5,7 @@ type ButtonProps = {
     href: string,
     text: string,
     classes?: string,
-    onSubmit?: any
+    onSubmit?: () => void
 }
 
 export class Button extends Block {

@@ -6,7 +6,7 @@ type FormInputProps = {
     label: string,
     type: string,
     name: string,
-    validation?: any
+    validation?: (value: string) => string
 }
 
 export class FormInput extends Block {
@@ -21,6 +21,7 @@ export class FormInput extends Block {
 						value: this.value
 					});
 				},
+				// eslint-disable-next-line @typescript-eslint/no-empty-function
 				focus: () => {
 				},
 				blur: () => {

@@ -12,12 +12,12 @@ import Page404 from './pages/404';
 import Page500 from './pages/500';
 import ProfilePage from './pages/profilePage';
 import ProfilePageEdit from './pages/profileEdit';
+import Block from './core/Block';
 
 
 document.addEventListener('DOMContentLoaded', () => {
 	const location = document.location.pathname;
-	// сделать красивую заглушку как в первом спринте
-	let App: any = new IndexPage();
+	let App: Block;
 	switch (location) {
 	case '/login' :
 		App = new LoginPage();
@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	case '/page500':
 		App = new Page500();
 		break;
+	default:
+		App = new IndexPage();
 	}
 
 	renderDOM(App);
