@@ -1,3 +1,6 @@
+import Block from "../core/Block";
+import EventBus from "../core/EventBus";
+
 const validationPatterns = {
     login: /^(?!\d+$)[A-Za-z-_0-9]{3,20}$/,
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,40}$/,
@@ -75,4 +78,22 @@ export function messageValidation() {
 export const formValidators = {
     login: loginValidation,
     password: passwordValidation
+}
+
+export function onSubmitValidation() {
+    const that = this
+    console.log(that)
+    const fields = document.querySelectorAll('input')
+    fields.forEach(field => {
+        const name = field.name
+        const value = (document.querySelector(`input[name=${name}]`) as HTMLInputElement).value
+        for (let key in formValidators) {
+            if (key === name) {
+                const validationResult = (formValidators[key as keyof {}] as Function)(value)
+                that.children[key].errors = validationResult
+                that.children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            }
+        }
+    })
+    that.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 }

@@ -3,29 +3,12 @@ import Button from "../../components/button";
 import FormInput from "../../components/formInput";
 import './loginPage.less';
 import Link from "../../components/link";
-import {formValidators, loginValidation, passwordValidation} from "../../utils/validators";
+import {formValidators, loginValidation, onSubmitValidation, passwordValidation} from "../../utils/validators";
+import {log} from "handlebars";
 
 export class LoginPage extends Block {
     constructor() {
-        const button = new Button({
-            text: "Вход", classes: "btn_l", href: "#", onSubmit: () => {
-                const fields = document.querySelectorAll('input')
-                fields.forEach(field => {
-                    const name = field.name
-                    const value = (document.querySelector(`input[name=${name}]`) as HTMLInputElement).value
-                    for (let key in formValidators) {
-                        if (key === name) {
-                            console.log(name)
-                            console.log(this.children)
-                            const validationResult = (formValidators[key as keyof {}] as Function)(value)
-                            this.children[key].errors  = validationResult
-                            this.children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
-                        }
-                    }
-                })
-                this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-            }
-        })
+
         const noAccount = new Link({text: "Нет аккаунта?", to: "registration"})
         const fields = {
             login: new FormInput({
@@ -38,7 +21,14 @@ export class LoginPage extends Block {
                 onChange: passwordValidation
             }),
         }
-        super({...fields, button, noAccount});
+        super({...fields, noAccount, onSubmit : () => console.log('fdsdf')});
+
+
+        this.setChildren({
+             button: new Button({
+                 text: "Вход", classes: "btn_l", href: "#", onSubmit:  onSubmitValidation.bind(this)
+             })
+         })
     }
 
 
