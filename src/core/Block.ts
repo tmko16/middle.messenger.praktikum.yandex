@@ -3,7 +3,7 @@ import {nanoid} from 'nanoid';
 import Handlebars from 'handlebars';
 
 interface BlockMeta<P = any> {
-    props: P;
+	props: P;
 }
 
 
@@ -51,8 +51,8 @@ export default class Block<P = any> {
 	}
 
 	_getChildren(propsAndChildren?: P) {
-		const children = {};
-		const props = {};
+		const children: Record<string, any> = {};
+		const props: Record<string, any> = {};
 
 		Object.entries(propsAndChildren as P).forEach(([key, value]) => {
 			if (value instanceof Block) {
@@ -138,9 +138,9 @@ export default class Block<P = any> {
 
 		this._removeEvents();
 		const newElement = fragment.firstElementChild!;
-        this._element!.replaceWith(newElement);
-        this._element = newElement as HTMLElement;
-        this._addEvents();
+		this._element!.replaceWith(newElement);
+		this._element = newElement as HTMLElement;
+		this._addEvents();
 	}
 
 	protected render(): string {
@@ -214,7 +214,7 @@ export default class Block<P = any> {
 		}
 
 		Object.entries(events).forEach(([event, listener]) => {
-            this._element!.addEventListener(event, listener, true);
+			this._element!.addEventListener(event, listener, true);
 		});
 	}
 
@@ -225,19 +225,23 @@ export default class Block<P = any> {
 		});
 		const fragment = document.createElement('template');
 		/**
-         * Рендерим шаблон
-         */
+		 * Рендерим шаблон
+		 */
 		const template = Handlebars.compile(this.render());
-		fragment.innerHTML = template({...this.state, ...this.props, children: this.children, refs: this.refs, ...propsAndStubs});
+		fragment.innerHTML = template({
+			...this.state, ...this.props,
+			children: this.children,
+			refs: this.refs, ...propsAndStubs
+		});
 		/**
-         * Заменяем заглушки на компоненты
-         */
+		 * Заменяем заглушки на компоненты
+		 */
 
 		// Object.entries(this.children).forEach(([id, component]) => {
 		Object.entries(this.children).forEach(([id, component]) => {
 			/**
-             * Ищем заглушку по id
-             */
+			 * Ищем заглушку по id
+			 */
 			const stub = fragment.content.querySelector(`[data-id="${component.id}"]`);
 
 			if (!stub) {
@@ -247,14 +251,14 @@ export default class Block<P = any> {
 			const stubChilds = stub.childNodes.length ? stub.childNodes : [];
 
 			/**
-             * Заменяем заглушку на component._element
-             */
+			 * Заменяем заглушку на component._element
+			 */
 			const content = component.getContent();
 			stub.replaceWith(content);
 
 			/**
-             * Ищем элемент layout-а, куда вставлять детей
-             */
+			 * Ищем элемент layout-а, куда вставлять детей
+			 */
 			const layoutContent = content.querySelector('[data-layout="1"]');
 			if (layoutContent && stubChilds.length) {
 				layoutContent.append(...stubChilds);
@@ -262,8 +266,8 @@ export default class Block<P = any> {
 		});
 
 		/**
-         * Возвращаем фрагмент
-         */
+		 * Возвращаем фрагмент
+		 */
 		return fragment.content;
 	}
 
