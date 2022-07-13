@@ -76,9 +76,7 @@ export const formValidators = {
 
 }
 
-export function onSubmitValidation() {
-    //@ts-ignore
-    const that = this
+export function onSubmitValidation(this: any) {
     const fields = document.querySelectorAll('input')
     fields.forEach(field => {
         const name = field.name
@@ -87,10 +85,11 @@ export function onSubmitValidation() {
         for (let key in formValidators) {
             if (key === name) {
                 const errors = (formValidators[key as keyof {}] as Function)(value)
-                that.children[key].errors = errors
-                that.children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                console.log('детки',this.children)
+                this.children[key].errors = errors
+                this.children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
             }
         }
     })
-    that.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 }

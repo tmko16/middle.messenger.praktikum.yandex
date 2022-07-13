@@ -13,7 +13,6 @@ export class FormInput extends Block {
     private value: string = '';
 
     constructor(props: FormInputProps) {
-        
         super({
             ...props, events: {
                 change: () => {

@@ -1,26 +1,78 @@
 import Block from "../../core/Block";
-import AvatarProfile from "../../components/avatarProfile";
-import {ProfileForm} from "../../components/profileForm";
-import Link from "../../components/link";
 import './profilePageEdit.less';
 import Button from "../../components/button";
 import AvatarEditable from "../../components/avatarEditable";
+import {
+    emailValidation,
+    nameValidation,
+    onSubmitValidation,
+    passwordValidation,
+    phoneValidation
+} from "../../utils/validators";
+import ProfileInput from "../../components/profileInput";
+
 export class ProfilePageEdit extends Block {
 
     constructor() {
         const avatar = new AvatarEditable();
-        const saveButton = new Button({classes: "btn_l", href: "#", text: "Сохранить"})
-        const profileForm = new ProfileForm();
-        const links = {
-            changeData: new Link({text: "Изменить данные", to: "profileEdit"}),
-            changePassword: new Link({text: "Изменить пароль", to: "changePassword"}),
-            logOut: new Link({text: "Выйти", to: "#"}),
-            backLink : new Link({text: "Профиль", to: "profile"})
-        }
-        super({ avatar, profileForm, ...links, saveButton});
+
+        super({avatar});
+
+        this.setChildren({
+            saveButton: new Button({
+                classes: "btn_l",
+                href: "#",
+                text: "Сохранить",
+                onSubmit: onSubmitValidation.bind(this)
+            }),
+            email: new ProfileInput({
+                label: "Почта",
+                name: "email",
+                type: "text",
+                value: "akira-must-die@yandex.ru",
+                onChange: emailValidation
+            }),
+            login: new ProfileInput({
+                label: "Логин",
+                name: "login",
+                type: "text",
+                value: "setCadena",
+                onChange: passwordValidation
+            }),
+            first_name: new ProfileInput({
+                label: "Имя",
+                name: "first_name",
+                type: "text",
+                value: "Сётару",
+                onChange: nameValidation
+            }),
+            second_name: new ProfileInput({
+                label: "Фамилия",
+                name: "second_name",
+                type: "text",
+                value: "Канеда",
+                onChange: nameValidation
+            }),
+            displayName: new ProfileInput({
+                label: "Имя в чате",
+                name: "display_name",
+                type: "text",
+                value: "Канеда С."
+            }),
+            phone: new ProfileInput({
+                label: "Телефон",
+                name: "phone",
+                type: "text",
+                value: "89222229929",
+                onChange: phoneValidation
+            }),
+        })
+
     }
+
 // TODO: разобраться почему дизейбл не работает
     protected render(): string {
+        console.log(this, 'edit page this')
         //language=hbs
         return `
             <div class="profile-edit">
@@ -45,9 +97,16 @@ export class ProfilePageEdit extends Block {
                 </div>
                 {{{avatar}}}
                 <div class="profile__fields">
-                    {{{profileForm}}}
+                    <div class="profile-form">
+                        {{{email}}}
+                        {{{login}}}
+                        {{{first_name}}}
+                        {{{second_name}}}
+                        {{{displayName}}}
+                        {{{phone}}}
+                    </div>
                     <div class="profile__actions">
-                      {{{saveButton}}}
+                        {{{saveButton}}}
                     </div>
 
                     <!--                  here-->

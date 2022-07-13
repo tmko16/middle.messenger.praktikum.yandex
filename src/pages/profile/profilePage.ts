@@ -1,20 +1,41 @@
 import Block from "../../core/Block";
 import AvatarProfile from "../../components/avatarProfile";
-import {ProfileForm} from "../../components/profileForm";
 import Link from "../../components/link";
 import './profilePage.less';
+import Button from "../../components/button";
+import {
+    emailValidation,
+    nameValidation,
+    onSubmitValidation,
+    passwordValidation,
+    phoneValidation
+} from "../../utils/validators";
+import ProfileInput from "../../components/profileInput";
 export class ProfilePage extends Block {
 
     constructor() {
         const avatar = new AvatarProfile();
-        const profileForm = new ProfileForm();
         const links = {
             changeData: new Link({text: "Изменить данные", to: "profileEdit"}),
             changePassword: new Link({text: "Изменить пароль", to: "changePassword"}),
             logOut: new Link({text: "Выйти", to: "#"}),
             backLink : new Link({text: "К чатам", to: "chat"})
         }
-        super({ avatar, profileForm, ...links});
+        super({ avatar, ...links});
+
+        this.setChildren({
+            email: new ProfileInput({label: "Почта", name: "email", type: "text", value: "akira-must-die@yandex.ru", onChange: emailValidation}),
+            login: new ProfileInput({label: "Логин", name: "login", type: "text", value: "setCadena", onChange: passwordValidation}),
+            first_name: new ProfileInput({label: "Имя", name: "first_name", type: "text", value: "Сётару" , onChange: nameValidation}),
+            second_name: new ProfileInput({label: "Фамилия", name: "second_name", type: "text", value: "Канеда", onChange: nameValidation}),
+            displayName: new ProfileInput({
+                label: "Имя в чате",
+                name: "display_name",
+                type: "text",
+                value: "Канеда С."
+            }),
+            phone: new ProfileInput({label: "Телефон", name: "phone", type: "text", value: "89222229929", onChange: phoneValidation}),
+        })
     }
 
     protected render(): string {
@@ -42,8 +63,14 @@ export class ProfilePage extends Block {
                 </div>
                 {{{avatar}}}
                 <div class="profile__fields">
-
-                    {{{profileForm}}}
+                    <div class="profile-form">
+                        {{{email}}}
+                        {{{login}}}
+                        {{{first_name}}}
+                        {{{second_name}}}
+                        {{{displayName}}}
+                        {{{phone}}}
+                    </div>
                     <div class="profile__actions">
                         {{{changeData}}}
                         {{{changePassword}}}

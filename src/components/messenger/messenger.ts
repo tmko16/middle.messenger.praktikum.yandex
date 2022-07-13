@@ -38,11 +38,12 @@ export class Messenger extends Block {
                 message: "lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получи"
             })
         }
+        //TODO: сообщение стирается при валидации
+        const message = new FormInput({label: "", name: "message", type: "text"})
 
-        super({props, ...messages});
+        super({props, ...messages, message});
         this.setChildren({
-            message : new FormInput({label: "", name: "message",  type: "text"}),
-            sendMsg: new SendMsgBtn({onClick:  onSubmitValidation.bind(this)})
+            sendMsg: new SendMsgBtn({onClick: onSubmitValidation.bind(this)})
         })
     }
 

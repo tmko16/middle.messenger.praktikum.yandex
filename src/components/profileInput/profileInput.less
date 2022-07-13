@@ -1,8 +1,15 @@
 .input-field {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: .5px solid var(--accent-color);
+    //display: flex;
+    //justify-content: space-between;
+    //align-items: center;
+
+    &__wrapper {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: .5px solid var(--accent-color);
+    }
     &__field {
         display: flex;
         justify-content: space-between;
@@ -20,5 +27,9 @@
         color: var(--accent-color);
         text-align: end;
 
+    }
+    &__error-msg {
+        color: red;
+        text-align: center;
     }
 }
