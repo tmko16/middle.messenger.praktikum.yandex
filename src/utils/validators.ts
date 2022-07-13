@@ -10,13 +10,15 @@ const validationPatterns = {
 
 function inputValidation(value: string | number, pattern: RegExp) {
     const regexp = new RegExp(pattern)
+    if (!value) {
+        return false
+    }
     return regexp.test(String(value))
 }
 
 export function loginValidation() {
     const value = arguments[0]
     const isValid = inputValidation(value, validationPatterns.login)
-    console.log('valid', isValid)
     if (!isValid) {
         return 'Некорректные данные'
     }
@@ -68,4 +70,9 @@ export function messageValidation() {
     if (!isValid) {
         return 'title некорректный'
     }
+}
+
+export const formValidators = {
+    login: loginValidation,
+    password: passwordValidation
 }

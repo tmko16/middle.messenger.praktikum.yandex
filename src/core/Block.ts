@@ -26,6 +26,7 @@ export default class Block<P = any> {
 
     protected state: any = {};
     protected refs: { [key: string]: HTMLElement } = {};
+    errors: string[] = [];
 
     public constructor(propsAndChildren?: P) {
         propsAndChildren = propsAndChildren ?? {} as P;
@@ -219,7 +220,6 @@ export default class Block<P = any> {
         const propsAndStubs: Record<string, any> = {...this.props}
         Object.entries(this.children).forEach(([key, child]) => {
             if (Array.isArray(child)) {
-                console.log('YUY', child)
             }
             propsAndStubs[key] = `<div data-id="${child.id}"></div>`
         });

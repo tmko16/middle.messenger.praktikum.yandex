@@ -36,7 +36,6 @@ export class ChatPage extends Block {
     }
 
     protected render(): string {
-        console.log(this)
         //language=hbs
         return `
             <div class="chat">

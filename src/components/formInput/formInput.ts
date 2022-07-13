@@ -11,9 +11,10 @@ type FormInputProps = {
 
 export class FormInput extends Block {
     private errors: string[] = [];
-    private value: string = ' ';
+    private value: string = '';
 
     constructor(props: FormInputProps) {
+        
         super({
             ...props, events: {
                 change: () => {
@@ -29,10 +30,13 @@ export class FormInput extends Block {
                 }
             }
         });
+
+
     }
 
+    
+
     protected render(): string {
-        console.log(this)
         //language=hbs
         return `
             <div class="form-input">

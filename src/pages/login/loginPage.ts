@@ -3,17 +3,40 @@ import Button from "../../components/button";
 import FormInput from "../../components/formInput";
 import './loginPage.less';
 import Link from "../../components/link";
-import {loginValidation, passwordValidation} from "../../utils/validators";
+import {formValidators, loginValidation, passwordValidation} from "../../utils/validators";
 
 export class LoginPage extends Block {
     constructor() {
-        const button = new Button({text: "Вход", classes: "btn_l", href: "#", onSubmit: () => alert('fds')})
+        const button = new Button({
+            text: "Вход", classes: "btn_l", href: "#", onSubmit: () => {
+                const fields = document.querySelectorAll('input')
+                fields.forEach(field => {
+                    const name = field.name
+                    const value = (document.querySelector(`input[name=${name}]`) as HTMLInputElement).value
+                    for (let key in formValidators) {
+                        if (key === name) {
+                            console.log(name)
+                            console.log(this.children)
+                            const validationResult = (formValidators[key as keyof {}] as Function)(value)
+                            this.children[key].errors  = validationResult
+                            this.children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                        }
+                    }
+                })
+                this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            }
+        })
         const noAccount = new Link({text: "Нет аккаунта?", to: "registration"})
         const fields = {
             login: new FormInput({
-                label: "Логин", name: "login", type: "text", onChange:  loginValidation
+                label: "Логин", name: "login", type: "text", onChange: loginValidation
             }),
-            password: new FormInput({label: "Пароль", name: "password", type: "password", onChange: passwordValidation}),
+            password: new FormInput({
+                label: "Пароль",
+                name: "password",
+                type: "password",
+                onChange: passwordValidation
+            }),
         }
         super({...fields, button, noAccount});
     }
@@ -29,7 +52,7 @@ export class LoginPage extends Block {
                         {{{login}}}
                         {{{password}}}
                     </div>
-                    <div class="login-form__actions">
+                    <div class="login-form__actions ">
                         {{{button}}}
                         {{{noAccount}}}
                     </div>
