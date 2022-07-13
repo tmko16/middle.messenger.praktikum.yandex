@@ -11,6 +11,7 @@ import {
     phoneValidation
 } from "../../utils/validators";
 import ProfileInput from "../../components/profileInput";
+
 export class ProfilePage extends Block {
 
     constructor() {
@@ -19,22 +20,47 @@ export class ProfilePage extends Block {
             changeData: new Link({text: "Изменить данные", to: "profileEdit"}),
             changePassword: new Link({text: "Изменить пароль", to: "changePassword"}),
             logOut: new Link({text: "Выйти", to: "#"}),
-            backLink : new Link({text: "К чатам", to: "chat"})
+            backLink: new Link({text: "К чатам", to: "chat"})
         }
-        super({ avatar, ...links});
+        super({avatar, ...links});
 
         this.setChildren({
-            email: new ProfileInput({label: "Почта", name: "email", type: "text", value: "akira-must-die@yandex.ru", onChange: emailValidation}),
-            login: new ProfileInput({label: "Логин", name: "login", type: "text", value: "setCadena", onChange: passwordValidation}),
-            first_name: new ProfileInput({label: "Имя", name: "first_name", type: "text", value: "Сётару" , onChange: nameValidation}),
-            second_name: new ProfileInput({label: "Фамилия", name: "second_name", type: "text", value: "Канеда", onChange: nameValidation}),
+            email: new ProfileInput({
+                label: "Почта",
+                name: "email",
+                type: "text",
+                placeholder: "akira-must-die@yandex.ru",
+                isEdit: false
+            }),
+            login: new ProfileInput({label: "Логин", name: "login", type: "text", placeholder: "setCadena", isEdit: false}),
+            first_name: new ProfileInput({
+                label: "Имя",
+                name: "first_name",
+                type: "text",
+                placeholder: "Сётару",
+                isEdit: false
+            }),
+            second_name: new ProfileInput({
+                label: "Фамилия",
+                name: "second_name",
+                type: "text",
+                placeholder: "Канеда",
+                isEdit: false
+            }),
             displayName: new ProfileInput({
                 label: "Имя в чате",
                 name: "display_name",
                 type: "text",
-                value: "Канеда С."
+                placeholder: "Канеда С.",
+                isEdit: false
             }),
-            phone: new ProfileInput({label: "Телефон", name: "phone", type: "text", value: "89222229929", onChange: phoneValidation}),
+            phone: new ProfileInput({
+                label: "Телефон",
+                name: "phone",
+                type: "text",
+                placeholder: "89222229929",
+                isEdit: false
+            }),
         })
     }
 

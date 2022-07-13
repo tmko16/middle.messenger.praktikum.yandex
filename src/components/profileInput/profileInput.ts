@@ -6,8 +6,9 @@ type FormInputProps = {
     label: string,
     type: string,
     name: string,
-    value: string
+    placeholder: string
     validation?: any
+    isEdit: boolean
 }
 
 export class ProfileInput extends Block {
@@ -35,12 +36,12 @@ export class ProfileInput extends Block {
     protected render(): string {
         //language=hbs
         return `
-            <div class="input-field">
+            <div class="input-field ${this.props.isEdit ? '' : 'input-field_disabled'}">
                 <div class="input-field__wrapper">
                     <div class="input-field__label">
                         {{label }}
                     </div>
-                    <input class="input-field__input" type="{{type}}" value="{{value}}" name="{{ name }}"
+                    <input class="input-field__input" type="{{type}}" placeholder="{{placeholder}}" value="{{value}}" name="{{ name }}"
                     />
                 </div>
                 <div class="input-field__error-msg">

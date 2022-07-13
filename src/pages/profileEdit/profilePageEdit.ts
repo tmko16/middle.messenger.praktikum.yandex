@@ -31,42 +31,48 @@ export class ProfilePageEdit extends Block {
                 label: "Почта",
                 name: "email",
                 type: "text",
-                value: "akira-must-die@yandex.ru",
-                validation: emailValidation
+                placeholder: "akira-must-die@yandex.ru",
+                validation: emailValidation,
+                isEdit : true
             }),
             login: new ProfileInput({
                 label: "Логин",
                 name: "login",
                 type: "text",
-                value: "setCadena",
-                validation: loginValidation
+                placeholder: "setCadena",
+                validation: loginValidation,
+                 isEdit : true
             }),
             first_name: new ProfileInput({
                 label: "Имя",
                 name: "first_name",
                 type: "text",
-                value: "Сётару",
-                validation: nameValidation
+                placeholder: "Сётару",
+                validation: nameValidation,
+                 isEdit : true
             }),
             second_name: new ProfileInput({
                 label: "Фамилия",
                 name: "second_name",
                 type: "text",
-                value: "Канеда",
-                validation: nameValidation
+                placeholder: "Канеда",
+                validation: nameValidation,
+                 isEdit : true
             }),
             displayName: new ProfileInput({
                 label: "Имя в чате",
                 name: "display_name",
                 type: "text",
-                value: "Канеда С."
+                placeholder: "Канеда С.",
+                 isEdit : true
             }),
             phone: new ProfileInput({
                 label: "Телефон",
                 name: "phone",
                 type: "text",
-                value: "89222229929",
-                validation: phoneValidation
+                placeholder: "89222229929",
+                validation: phoneValidation,
+                 isEdit : true
             }),
         })
 
