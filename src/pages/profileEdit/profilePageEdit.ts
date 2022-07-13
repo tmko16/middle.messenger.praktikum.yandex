@@ -72,7 +72,6 @@ export class ProfilePageEdit extends Block {
 
 // TODO: разобраться почему дизейбл не работает
     protected render(): string {
-        console.log(this, 'edit page this')
         //language=hbs
         return `
             <div class="profile-edit">

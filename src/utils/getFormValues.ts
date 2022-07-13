@@ -3,7 +3,6 @@ import EventBus from "../core/EventBus";
 import {onSubmitValidation} from "./validators";
 
 export function getFormValues(this: any) {
-    console.log('getFormVal');
     const fields = document.querySelectorAll('input')
     fields.forEach(field => {
         this.formValues[field.name] = field.value

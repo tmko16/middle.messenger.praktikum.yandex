@@ -54,7 +54,6 @@ export class Messenger extends Block {
     }
 
     onSubmitHandler () {
-        console.log('попалаи')
         getFormValues.apply(this)
         console.log(this);
         onSubmitValidation(this.formValues, this.children)

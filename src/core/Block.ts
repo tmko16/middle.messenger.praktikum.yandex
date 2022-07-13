@@ -212,7 +212,7 @@ export default class Block<P = any> {
         }
 
         Object.entries(events).forEach(([event, listener]) => {
-            this._element!.addEventListener(event, listener);
+            this._element!.addEventListener(event, listener, true);
         });
     }
 

@@ -15,16 +15,21 @@ export class FormInput extends Block {
     constructor(props: FormInputProps) {
         super({
             ...props, events: {
-                change: () => {
-                    if (props.onChange) {
-                        const value = (document.querySelector(`input[name=${props.name}]`) as HTMLInputElement).value
-                        this.value = value
-                        const errors = props.onChange(value)
-                        this.errors = errors
-                        if (value) {
-                            this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-                        }
-                    }
+                change: (e: Event) => {
+                    this.value = (e.target as HTMLInputElement).value
+                },
+                focus: () => {
+                    // if (props.onChange) {
+                    //     const value = (document.querySelector(`input[name=${props.name}]`) as HTMLInputElement).value
+                    //     this.value = value
+                    //     const errors = props.onChange(value)
+                    //     this.errors = errors
+                    //     if (value) {
+                    //         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                    //     }
+                    // }
+                },
+                blur: () => {
                 }
             }
         });
