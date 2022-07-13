@@ -2,14 +2,7 @@ import Block from "../../core/Block";
 import AvatarProfile from "../../components/avatarProfile";
 import Link from "../../components/link";
 import './profilePage.less';
-import Button from "../../components/button";
-import {
-    emailValidation,
-    nameValidation,
-    onSubmitValidation,
-    passwordValidation,
-    phoneValidation
-} from "../../utils/validators";
+
 import ProfileInput from "../../components/profileInput";
 
 export class ProfilePage extends Block {

@@ -1,1 +1,1 @@
-export {Msg} from './msg'
+export {Msg as default} from './msg'

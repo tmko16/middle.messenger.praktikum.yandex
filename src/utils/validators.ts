@@ -21,7 +21,7 @@ export function loginValidation() {
     const value = arguments[0]
     const isValid = inputValidation(value, validationPatterns.login)
     if (!isValid) {
-        return 'Некорректные данные'
+        return 'Некорректный логин'
     }
 }
 
@@ -29,7 +29,7 @@ export function phoneValidation() {
     const value = arguments[0]
     const isValid = inputValidation(value, validationPatterns.login)
     if (!isValid) {
-        return 'phone некорректный'
+        return 'Телефон некорректный'
     }
 }
 
@@ -37,7 +37,7 @@ export function emailValidation() {
     const value = arguments[0]
     const isValid = inputValidation(value, validationPatterns.login)
     if (!isValid) {
-        return 'email некорректный'
+        return 'Email некорректный'
     }
 }
 
@@ -45,7 +45,7 @@ export function nameValidation() {
     const value = arguments[0]
     const isValid = inputValidation(value, validationPatterns.login)
     if (!isValid) {
-        return 'Имя некорректный'
+        return 'Некорректное значение'
     }
 }
 
@@ -76,7 +76,6 @@ export const formValidators = {
     message: messageValidation,
     first_name: nameValidation,
     second_name: nameValidation,
-
 }
 
 export function onSubmitValidation(formData: Record<string, string | number>, children: Record<string, Block>) {

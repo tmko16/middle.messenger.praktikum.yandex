@@ -1,18 +1,17 @@
 import Block from "../../core/Block";
-import {Button} from "../../components/button/button";
 
 import './chatPage.less'
-import {SearchBar} from "../../components/searchBar/searchBar";
 import Dialog from "../../components/dialog";
 import Messenger from "../../components/messenger";
 import Link from "../../components/link";
+import SearchBar from "../../components/searchBar";
 
 export class ChatPage extends Block {
 //TODO: если передаваться все будет ввиде массива - распрарсить детей.
     private chosenDialogId: string = '1';
 
     constructor() {
-        const profileLink = new Link({text: "Профиль", to: "profile"})
+        const profileLink = new Link({text: "Профиль", to: "profilePage"})
         const messenger = new Messenger({messages: [], name: "Васек", wasOnline: "11:13"})
         const dialog = new Dialog({
             id: '1',

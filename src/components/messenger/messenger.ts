@@ -1,10 +1,10 @@
 import Block from "../../core/Block";
 import './messenger.less'
-import {Msg} from "../msg";
-import {FormInput} from "../formInput/formInput";
 import {messageValidation, onSubmitValidation} from "../../utils/validators";
 import SendMsgBtn from "../sendMsgBtn";
 import {getFormValues} from "../../utils/getFormValues";
+import Msg from "../msg";
+import FormInput from "../formInput";
 //TODO: избавиться от эни где только можно.
 type MessengerProps = {
     name: string,
