@@ -1,1 +1,1 @@
-export {AvatarProfile as default} from './avatarProfile'
+export {AvatarProfile as default} from './avatarProfile';

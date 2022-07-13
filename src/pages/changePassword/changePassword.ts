@@ -1,64 +1,64 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 import './changePassword.less';
-import ProfileInput from "../../components/profileInput";
-import AvatarProfile from "../../components/avatarProfile";
-import Link from "../../components/link";
-import {onSubmitValidation, passwordValidation} from "../../utils/validators";
-import Button from "../../components/button";
-import {getFormValues} from "../../utils/getFormValues";
+import ProfileInput from '../../components/profileInput';
+import AvatarProfile from '../../components/avatarProfile';
+import Link from '../../components/link';
+import {onSubmitValidation, passwordValidation} from '../../utils/validators';
+import Button from '../../components/button';
+import {getFormValues} from '../../utils/getFormValues';
 
 export class ChangePassword extends Block {
-    private formValues: Record<string, string | number> = {};
+	private formValues: Record<string, string | number> = {};
 
-    constructor() {
-        const fields = {
-            oldPassword: new ProfileInput({
-                isEdit: true,
-                validation: passwordValidation,
-                label: "Старый пароль",
-                name: "oldPassword",
-                type: "password",
-                placeholder: "*******"
-            }),
-            newPassword: new ProfileInput({
-                isEdit: true,
-                validation: passwordValidation,
-                label: "Новый пароль",
-                name: "newPassword",
-                type: "password",
-                placeholder: "*******"
-            }),
-            confirmPassword: new ProfileInput({
-                isEdit: true,
-                validation: passwordValidation,
-                label: "Повторите новый пароль",
-                name: "confirmPassword",
-                type: "password",
-                placeholder: "*******"
-            }),
-        }
-        const backLink = new Link({text: "Профиль", to: "profilePage"})
-        super({...fields, backLink});
-        this.setChildren({
-            saveButton: new Button({
-                classes: "btn_l",
-                href: "#",
-                text: "Сохранить",
-                onSubmit: this.onSubmitHandler.bind(this)
-            }),
-        })
-    }
-    onSubmitHandler() {
-        getFormValues.apply(this)
-        console.log(this)
-        onSubmitValidation(this.formValues, this.children)
-    }
+	constructor() {
+		const fields = {
+			oldPassword: new ProfileInput({
+				isEdit: true,
+				validation: passwordValidation,
+				label: 'Старый пароль',
+				name: 'oldPassword',
+				type: 'password',
+				placeholder: '*******'
+			}),
+			newPassword: new ProfileInput({
+				isEdit: true,
+				validation: passwordValidation,
+				label: 'Новый пароль',
+				name: 'newPassword',
+				type: 'password',
+				placeholder: '*******'
+			}),
+			confirmPassword: new ProfileInput({
+				isEdit: true,
+				validation: passwordValidation,
+				label: 'Повторите новый пароль',
+				name: 'confirmPassword',
+				type: 'password',
+				placeholder: '*******'
+			}),
+		};
+		const backLink = new Link({text: 'Профиль', to: 'profilePage'});
+		super({...fields, backLink});
+		this.setChildren({
+			saveButton: new Button({
+				classes: 'btn_l',
+				href: '#',
+				text: 'Сохранить',
+				onSubmit: this.onSubmitHandler.bind(this)
+			}),
+		});
+	}
+	onSubmitHandler() {
+		getFormValues.apply(this);
+		console.log(this);
+		onSubmitValidation(this.formValues, this.children);
+	}
 
-    protected render(): string {
+	protected render(): string {
 
 
-        //language=hbs
-        return `
+		//language=hbs
+		return `
             <div class="change-pass-page">
                 <div class="profile__nav">
                     <a href="index.hbs">
@@ -90,6 +90,6 @@ export class ChangePassword extends Block {
                     </div>
                 </div>
             </div>
-        `
-    }
+        `;
+	}
 }

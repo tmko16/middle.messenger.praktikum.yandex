@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 import './msg.less';
 
 type MsgProps = {
@@ -7,16 +7,16 @@ type MsgProps = {
 }
 
 export class Msg extends Block {
-    constructor(props: MsgProps) {
-        super(props);
-    }
+	constructor(props: MsgProps) {
+		super(props);
+	}
 
-    protected render(): string {
-        //language=hbs
-        return `
+	protected render(): string {
+		//language=hbs
+		return `
             <div class="msg {{ classes }}">
                 {{ message }}
             </div>
-        `
-    }
+        `;
+	}
 }

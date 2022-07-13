@@ -1,1 +1,1 @@
-export {ProfilePageEdit as default} from './profilePageEdit'
+export {ProfilePageEdit as default} from './profilePageEdit';

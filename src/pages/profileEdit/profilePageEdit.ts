@@ -1,90 +1,90 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 import './profilePageEdit.less';
-import Button from "../../components/button";
-import AvatarEditable from "../../components/avatarEditable";
+import Button from '../../components/button';
+import AvatarEditable from '../../components/avatarEditable';
 import {
-    emailValidation, loginValidation,
-    nameValidation,
-    onSubmitValidation,
-    passwordValidation,
-    phoneValidation
-} from "../../utils/validators";
-import ProfileInput from "../../components/profileInput";
-import {getFormValues} from "../../utils/getFormValues";
+	emailValidation, loginValidation,
+	nameValidation,
+	onSubmitValidation,
+	passwordValidation,
+	phoneValidation
+} from '../../utils/validators';
+import ProfileInput from '../../components/profileInput';
+import {getFormValues} from '../../utils/getFormValues';
 
 export class ProfilePageEdit extends Block {
-    private formValues: Record<string, string | number> = {};
+	private formValues: Record<string, string | number> = {};
 
-    constructor() {
-        const avatar = new AvatarEditable();
-        super({avatar});
-        this.setChildren({
-            saveButton: new Button({
-                classes: "btn_l",
-                href: "#",
-                text: "Сохранить",
-                onSubmit: this.onSubmitHandler.bind(this)
-            }),
-            email: new ProfileInput({
-                label: "Почта",
-                name: "email",
-                type: "text",
-                placeholder: "akira-must-die@yandex.ru",
-                validation: emailValidation,
-                isEdit: true
-            }),
-            login: new ProfileInput({
-                label: "Логин",
-                name: "login",
-                type: "text",
-                placeholder: "setCadena",
-                validation: loginValidation,
-                isEdit: true
-            }),
-            first_name: new ProfileInput({
-                label: "Имя",
-                name: "first_name",
-                type: "text",
-                placeholder: "Сётару",
-                validation: nameValidation,
-                isEdit: true
-            }),
-            second_name: new ProfileInput({
-                label: "Фамилия",
-                name: "second_name",
-                type: "text",
-                placeholder: "Канеда",
-                validation: nameValidation,
-                isEdit: true
-            }),
-            displayName: new ProfileInput({
-                label: "Имя в чате",
-                name: "display_name",
-                type: "text",
-                placeholder: "Канеда С.",
-                isEdit: true
-            }),
-            phone: new ProfileInput({
-                label: "Телефон",
-                name: "phone",
-                type: "text",
-                placeholder: "89222229929",
-                validation: phoneValidation,
-                isEdit: true
-            }),
-        })
+	constructor() {
+		const avatar = new AvatarEditable();
+		super({avatar});
+		this.setChildren({
+			saveButton: new Button({
+				classes: 'btn_l',
+				href: '#',
+				text: 'Сохранить',
+				onSubmit: this.onSubmitHandler.bind(this)
+			}),
+			email: new ProfileInput({
+				label: 'Почта',
+				name: 'email',
+				type: 'text',
+				placeholder: 'akira-must-die@yandex.ru',
+				validation: emailValidation,
+				isEdit: true
+			}),
+			login: new ProfileInput({
+				label: 'Логин',
+				name: 'login',
+				type: 'text',
+				placeholder: 'setCadena',
+				validation: loginValidation,
+				isEdit: true
+			}),
+			first_name: new ProfileInput({
+				label: 'Имя',
+				name: 'first_name',
+				type: 'text',
+				placeholder: 'Сётару',
+				validation: nameValidation,
+				isEdit: true
+			}),
+			second_name: new ProfileInput({
+				label: 'Фамилия',
+				name: 'second_name',
+				type: 'text',
+				placeholder: 'Канеда',
+				validation: nameValidation,
+				isEdit: true
+			}),
+			displayName: new ProfileInput({
+				label: 'Имя в чате',
+				name: 'display_name',
+				type: 'text',
+				placeholder: 'Канеда С.',
+				isEdit: true
+			}),
+			phone: new ProfileInput({
+				label: 'Телефон',
+				name: 'phone',
+				type: 'text',
+				placeholder: '89222229929',
+				validation: phoneValidation,
+				isEdit: true
+			}),
+		});
 
-    }
+	}
 
-    onSubmitHandler() {
-        getFormValues.apply(this)
-        console.log(this)
-        onSubmitValidation(this.formValues, this.children)
-    }
+	onSubmitHandler() {
+		getFormValues.apply(this);
+		console.log(this);
+		onSubmitValidation(this.formValues, this.children);
+	}
 
-    protected render(): string {
-        //language=hbs
-        return `
+	protected render(): string {
+		//language=hbs
+		return `
             <div class="profile-edit">
                 <div class="profile__nav">
                     <a href="index.hbs">
@@ -124,6 +124,6 @@ export class ProfilePageEdit extends Block {
                 </div>
 
             </div>
-        `
-    }
+        `;
+	}
 }

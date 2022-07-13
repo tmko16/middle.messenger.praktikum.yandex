@@ -1,65 +1,65 @@
-import Block from "../../core/Block";
-import AvatarProfile from "../../components/avatarProfile";
-import Link from "../../components/link";
+import Block from '../../core/Block';
+import AvatarProfile from '../../components/avatarProfile';
+import Link from '../../components/link';
 import './profilePage.less';
 
-import ProfileInput from "../../components/profileInput";
+import ProfileInput from '../../components/profileInput';
 
 export class ProfilePage extends Block {
 
-    constructor() {
-        const avatar = new AvatarProfile();
-        const links = {
-            changeData: new Link({text: "Изменить данные", to: "profileEdit"}),
-            changePassword: new Link({text: "Изменить пароль", to: "changePassword"}),
-            logOut: new Link({text: "Выйти", to: "#"}),
-            backLink: new Link({text: "К чатам", to: "chat"})
-        }
-        super({avatar, ...links});
+	constructor() {
+		const avatar = new AvatarProfile();
+		const links = {
+			changeData: new Link({text: 'Изменить данные', to: 'profileEdit'}),
+			changePassword: new Link({text: 'Изменить пароль', to: 'changePassword'}),
+			logOut: new Link({text: 'Выйти', to: '#'}),
+			backLink: new Link({text: 'К чатам', to: 'chat'})
+		};
+		super({avatar, ...links});
 
-        this.setChildren({
-            email: new ProfileInput({
-                label: "Почта",
-                name: "email",
-                type: "text",
-                placeholder: "akira-must-die@yandex.ru",
-                isEdit: false
-            }),
-            login: new ProfileInput({label: "Логин", name: "login", type: "text", placeholder: "setCadena", isEdit: false}),
-            first_name: new ProfileInput({
-                label: "Имя",
-                name: "first_name",
-                type: "text",
-                placeholder: "Сётару",
-                isEdit: false
-            }),
-            second_name: new ProfileInput({
-                label: "Фамилия",
-                name: "second_name",
-                type: "text",
-                placeholder: "Канеда",
-                isEdit: false
-            }),
-            displayName: new ProfileInput({
-                label: "Имя в чате",
-                name: "display_name",
-                type: "text",
-                placeholder: "Канеда С.",
-                isEdit: false
-            }),
-            phone: new ProfileInput({
-                label: "Телефон",
-                name: "phone",
-                type: "text",
-                placeholder: "89222229929",
-                isEdit: false
-            }),
-        })
-    }
+		this.setChildren({
+			email: new ProfileInput({
+				label: 'Почта',
+				name: 'email',
+				type: 'text',
+				placeholder: 'akira-must-die@yandex.ru',
+				isEdit: false
+			}),
+			login: new ProfileInput({label: 'Логин', name: 'login', type: 'text', placeholder: 'setCadena', isEdit: false}),
+			first_name: new ProfileInput({
+				label: 'Имя',
+				name: 'first_name',
+				type: 'text',
+				placeholder: 'Сётару',
+				isEdit: false
+			}),
+			second_name: new ProfileInput({
+				label: 'Фамилия',
+				name: 'second_name',
+				type: 'text',
+				placeholder: 'Канеда',
+				isEdit: false
+			}),
+			displayName: new ProfileInput({
+				label: 'Имя в чате',
+				name: 'display_name',
+				type: 'text',
+				placeholder: 'Канеда С.',
+				isEdit: false
+			}),
+			phone: new ProfileInput({
+				label: 'Телефон',
+				name: 'phone',
+				type: 'text',
+				placeholder: '89222229929',
+				isEdit: false
+			}),
+		});
+	}
 
-    protected render(): string {
-        //language=hbs
-        return `
+	protected render(): string {
+		//language=hbs
+		return `
             <div class="profile">
                 <div class="profile__nav">
                     <a href="index.hbs">
@@ -98,6 +98,6 @@ export class ProfilePage extends Block {
                 </div>
 
             </div>
-        `
-    }
+        `;
+	}
 }

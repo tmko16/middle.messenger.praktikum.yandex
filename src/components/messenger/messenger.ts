@@ -1,10 +1,10 @@
-import Block from "../../core/Block";
-import './messenger.less'
-import {messageValidation, onSubmitValidation} from "../../utils/validators";
-import SendMsgBtn from "../sendMsgBtn";
-import {getFormValues} from "../../utils/getFormValues";
-import Msg from "../msg";
-import FormInput from "../formInput";
+import Block from '../../core/Block';
+import './messenger.less';
+import {messageValidation, onSubmitValidation} from '../../utils/validators';
+import SendMsgBtn from '../sendMsgBtn';
+import {getFormValues} from '../../utils/getFormValues';
+import Msg from '../msg';
+import FormInput from '../formInput';
 //TODO: избавиться от эни где только можно.
 type MessengerProps = {
     name: string,
@@ -13,36 +13,36 @@ type MessengerProps = {
 }
 
 export class Messenger extends Block {
-    protected formValues: Record<string, string | number> = {} = {};
+	protected formValues: Record<string, string | number> = {} = {};
 
-    constructor(props: MessengerProps) {
-        const messages = {
-            msg1: new Msg({classes: "msg_my", message: "некое сообщение, вполне себе может быть длинным."}),
-            msg2: new Msg({
-                classes: "msg_alien",
-                message: "lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получи"
-            })
-        }
-        //TODO: сообщение стирается при валидации
-        const message = new FormInput({label: "", name: "message", type: "text"})
+	constructor(props: MessengerProps) {
+		const messages = {
+			msg1: new Msg({classes: 'msg_my', message: 'некое сообщение, вполне себе может быть длинным.'}),
+			msg2: new Msg({
+				classes: 'msg_alien',
+				message: 'lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получи'
+			})
+		};
+		//TODO: сообщение стирается при валидации
+		const message = new FormInput({label: '', name: 'message', type: 'text'});
 
-        super({props, ...messages, message});
-        this.setChildren({
-            sendMsg: new SendMsgBtn({
-                onSubmit: this.onSubmitHandler.bind(this)
-            })
-        })
-    }
+		super({props, ...messages, message});
+		this.setChildren({
+			sendMsg: new SendMsgBtn({
+				onSubmit: this.onSubmitHandler.bind(this)
+			})
+		});
+	}
 
-    onSubmitHandler () {
-        getFormValues.apply(this)
-        console.log(this);
-        onSubmitValidation(this.formValues, this.children)
-    }
+	onSubmitHandler () {
+		getFormValues.apply(this);
+		console.log(this);
+		onSubmitValidation(this.formValues, this.children);
+	}
 
-    protected render(): string {
-        //language=hbs
-        return `
+	protected render(): string {
+		//language=hbs
+		return `
             <div class="msg-area">
                 <div class="msg-area__chat-info">
                     <div class="msg-area__left-block-wrapper">
@@ -96,6 +96,6 @@ export class Messenger extends Block {
                     </div>
                 </div>
             </div>
-        `
-    }
+        `;
+	}
 }

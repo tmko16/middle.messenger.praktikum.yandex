@@ -1,13 +1,13 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 export class AvatarEditable extends Block {
-    constructor() {
-        super();
-    }
+	constructor() {
+		super();
+	}
 
-    protected render(): string {
-        //language=hbs
-        return `
+	protected render(): string {
+		//language=hbs
+		return `
             <div class="profile__avatar">
                 <div class="profile__avatar-img_editable">
                     <label class="profile__change-avatar" role="button" tabindex="0"
@@ -32,6 +32,6 @@ export class AvatarEditable extends Block {
         online
     </span>
             </div>
-        `
-    }
+        `;
+	}
 }

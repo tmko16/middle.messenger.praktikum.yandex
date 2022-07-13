@@ -1,5 +1,5 @@
-import Block from "../../core/Block";
-import './dialog.less'
+import Block from '../../core/Block';
+import './dialog.less';
 
 type DialogProps = {
     id: string,
@@ -12,18 +12,18 @@ type DialogProps = {
 }
 
 export class Dialog extends Block {
-    constructor(props: DialogProps) {
-        super({
-            ...props, events: {
-                click: props.onClick
-            }
-        });
+	constructor(props: DialogProps) {
+		super({
+			...props, events: {
+				click: props.onClick
+			}
+		});
 
-    }
+	}
 
-    protected render(): string {
-        //language=hbs
-        return `
+	protected render(): string {
+		//language=hbs
+		return `
             <div class="dialog">
                 <div class="dialog__avatar">
                     <img src="{{ avatar }}" alt="">
@@ -45,6 +45,6 @@ export class Dialog extends Block {
                     </div>
                 </div>
             </div>
-        `
-    }
+        `;
+	}
 }

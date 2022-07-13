@@ -1,6 +1,6 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
-import './formInput.less'
+import './formInput.less';
 
 type FormInputProps = {
     label: string,
@@ -10,35 +10,35 @@ type FormInputProps = {
 }
 
 export class FormInput extends Block {
-    private value: string = '';
+	private value = '';
 
-    constructor(props: FormInputProps) {
-        super({
-            ...props, events: {
-                change: (e: Event) => {
-                    this.value = (e.target as HTMLInputElement).value
-                    this.setProps({
-                        value: this.value
-                    })
-                },
-                focus: () => {
-                },
-                blur: () => {
-                    if (props.validation && this.value) {
-                        this.errors = props.validation(this.value)
-                        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-                    }
-                }
-            }
-        });
-
-
-    }
+	constructor(props: FormInputProps) {
+		super({
+			...props, events: {
+				change: (e: Event) => {
+					this.value = (e.target as HTMLInputElement).value;
+					this.setProps({
+						value: this.value
+					});
+				},
+				focus: () => {
+				},
+				blur: () => {
+					if (props.validation && this.value) {
+						this.errors = props.validation(this.value);
+						this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+					}
+				}
+			}
+		});
 
 
-    protected render(): string {
-        //language=hbs
-        return `
+	}
+
+
+	protected render(): string {
+		//language=hbs
+		return `
             <div class="form-input">
                 <div class="form-input__wrapper">
                     <div class="form-input__label">
@@ -52,6 +52,6 @@ export class FormInput extends Block {
                 </div>
             </div>
 
-        `
-    }
+        `;
+	}
 }

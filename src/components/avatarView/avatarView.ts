@@ -1,11 +1,11 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
 export class AvatarView extends Block {
 
 
-    protected render() {
-        //language=hbs
-        return `
+	protected render() {
+		//language=hbs
+		return `
             <div class="profile__avatar">
                 <div class="profile__avatar-img">
                     <img src="https://cdn-s-static.arzamas.academy/storage/picture/7196/gallery_picture-673c9ad6-f79e-4890-a291-3e70ebc4f9b3.jpg"
@@ -18,6 +18,6 @@ export class AvatarView extends Block {
                                      online
                     </span>
             </div>
-        `
-    }
+        `;
+	}
 }

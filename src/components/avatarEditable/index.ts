@@ -1,1 +1,1 @@
-export {AvatarEditable as default} from './avatarEditable'
+export {AvatarEditable as default} from './avatarEditable';
