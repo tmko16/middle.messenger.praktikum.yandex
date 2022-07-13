@@ -11,27 +11,9 @@ type MessengerProps = {
     wasOnline: string,
     messages: Array<any>
 }
-//[
-//         {
-//             "message": "МОЕ! некое сообщение, вполне себе может быть длинным.",
-//             "isMyMsg": true
-//         },
-//         {
-//             "message": "lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. ",
-//             "isMyMsg": false
-//         },
-//         {
-//             "message": "Еще одно чужое сообщение?",
-//             "isMyMsg": false
-//         },
-//         {
-//             "message": "И как ты будешь imgs обрабатывать скажи на милость?!",
-//             "isMyMsg": false
-//         }
-//     ]
 
 export class Messenger extends Block {
-    protected formValues: any = {};
+    protected formValues: Record<string, string | number> = {} = {};
 
     constructor(props: MessengerProps) {
         const messages = {

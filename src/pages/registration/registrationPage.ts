@@ -12,11 +12,10 @@ import {
 import {getFormValues} from "../../utils/getFormValues";
 
 export class RegistrationPage extends Block {
-    protected formValues: any = {};
+    protected formValues: Record<string, string | number> = {};
 
     constructor() {
         super({});
-
         this.setChildren({
             button: new Button({
                 text: "Регистрация", classes: "btn_l", href: "#",  onSubmit: this.onSubmitHandler.bind(this)

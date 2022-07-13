@@ -3,15 +3,17 @@ import './profilePageEdit.less';
 import Button from "../../components/button";
 import AvatarEditable from "../../components/avatarEditable";
 import {
-    emailValidation,
+    emailValidation, loginValidation,
     nameValidation,
     onSubmitValidation,
     passwordValidation,
     phoneValidation
 } from "../../utils/validators";
 import ProfileInput from "../../components/profileInput";
+import {getFormValues} from "../../utils/getFormValues";
 
 export class ProfilePageEdit extends Block {
+    private formValues: Record<string, string | number> = {};
 
     constructor() {
         const avatar = new AvatarEditable();
@@ -23,35 +25,35 @@ export class ProfilePageEdit extends Block {
                 classes: "btn_l",
                 href: "#",
                 text: "Сохранить",
-                onSubmit: onSubmitValidation.bind(this)
+                onSubmit: this.onSubmitHandler.bind(this)
             }),
             email: new ProfileInput({
                 label: "Почта",
                 name: "email",
                 type: "text",
                 value: "akira-must-die@yandex.ru",
-                onChange: emailValidation
+                validation: emailValidation
             }),
             login: new ProfileInput({
                 label: "Логин",
                 name: "login",
                 type: "text",
                 value: "setCadena",
-                onChange: passwordValidation
+                validation: loginValidation
             }),
             first_name: new ProfileInput({
                 label: "Имя",
                 name: "first_name",
                 type: "text",
                 value: "Сётару",
-                onChange: nameValidation
+                validation: nameValidation
             }),
             second_name: new ProfileInput({
                 label: "Фамилия",
                 name: "second_name",
                 type: "text",
                 value: "Канеда",
-                onChange: nameValidation
+                validation: nameValidation
             }),
             displayName: new ProfileInput({
                 label: "Имя в чате",
@@ -64,13 +66,16 @@ export class ProfilePageEdit extends Block {
                 name: "phone",
                 type: "text",
                 value: "89222229929",
-                onChange: phoneValidation
+                validation: phoneValidation
             }),
         })
 
     }
+    onSubmitHandler() {
+        getFormValues.apply(this)
+        onSubmitValidation(this.formValues, this.children)
+    }
 
-// TODO: разобраться почему дизейбл не работает
     protected render(): string {
         //language=hbs
         return `

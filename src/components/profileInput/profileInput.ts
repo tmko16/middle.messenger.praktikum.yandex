@@ -7,7 +7,7 @@ type FormInputProps = {
     type: string,
     name: string,
     value: string
-    onChange?: any
+    validation?: any
 }
 
 export class ProfileInput extends Block {
@@ -20,18 +20,12 @@ export class ProfileInput extends Block {
                     this.value = (e.target as HTMLInputElement).value
                 },
                 focus: () => {
-                    // if (props.onChange) {
-                    //     const value = (document.querySelector(`input[name=${props.name}]`) as HTMLInputElement).value
-                    //     console.log(value)
-                    //     this.value = value
-                    //     this.errors = props.onChange(value)
-                    //     if (value) {
-                    //         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-                    //     }
-                    // }
                 },
                 blur: () => {
-
+                    if (props.validation && this.value) {
+                        this.errors = props.validation(this.value)
+                        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+                    }
                 }
             }
         });

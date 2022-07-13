@@ -7,7 +7,7 @@ import {formValidators, loginValidation, onSubmitValidation, passwordValidation}
 import {getFormValues} from "../../utils/getFormValues";
 
 export class LoginPage extends Block {
-    protected formValues: any = {};
+    protected formValues: Record<string, string | number> = {};
 
     constructor() {
 
