@@ -37,7 +37,7 @@ export class ChangePassword extends Block {
 				placeholder: '*******'
 			}),
 		};
-		const backLink = new Link({text: 'Профиль', to: 'profilePage'});
+		const backLink = new Link({text: 'Профиль', to: 'profilePage.html'});
 		super({...fields, backLink});
 		this.setChildren({
 			saveButton: new Button({

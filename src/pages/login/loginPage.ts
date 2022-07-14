@@ -11,7 +11,7 @@ export class LoginPage extends Block {
 
 	constructor() {
 
-		const noAccount = new Link({text: 'Нет аккаунта?', to: 'registration'});
+		const noAccount = new Link({text: 'Нет аккаунта?', to: 'registration.html'});
 		const fields = {
 			login: new FormInput({
 				label: 'Логин', name: 'login', type: 'text', validation: loginValidation

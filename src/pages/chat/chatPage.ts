@@ -9,7 +9,7 @@ import SearchBar from '../../components/searchBar';
 export class ChatPage extends Block {
 
 	constructor() {
-		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});
+		const profileLink = new Link({text: 'Профиль', to: 'profilePage.html'});
 		const messenger = new Messenger({messages: [], name: 'Васек', wasOnline: '11:13'});
 		const dialog = new Dialog({
 			id: '1',

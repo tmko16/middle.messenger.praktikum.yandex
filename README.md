@@ -1,5 +1,5 @@
 ## Описание проекта 
-Спринт 1 из 4 проект чат от Яндекс.Практикум. 
+Спринт 2 из 4 проект чат от Яндекс.Практикум. 
 
 - ссылка на макет Figma https://www.figma.com/file/Exu4fts3w1J5YaYObt5Udr/module_1_chat?node-id=0%3A1 
 - ссылка на приложение Netlify https://steady-swan-db6500.netlify.app/

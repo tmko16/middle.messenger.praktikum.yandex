@@ -10,10 +10,10 @@ export class ProfilePage extends Block {
 	constructor() {
 		const avatar = new AvatarProfile();
 		const links = {
-			changeData: new Link({text: 'Изменить данные', to: 'profileEdit'}),
-			changePassword: new Link({text: 'Изменить пароль', to: 'changePassword'}),
+			changeData: new Link({text: 'Изменить данные', to: 'profileEdit.html'}),
+			changePassword: new Link({text: 'Изменить пароль', to: 'changePassword.html'}),
 			logOut: new Link({text: 'Выйти', to: '#'}),
-			backLink: new Link({text: 'К чатам', to: 'chat'})
+			backLink: new Link({text: 'К чатам', to: 'chat.html'})
 		};
 		super({avatar, ...links});
 

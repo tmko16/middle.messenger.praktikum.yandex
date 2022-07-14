@@ -6,7 +6,7 @@ export class Page404 extends Block {
 	constructor() {
 		super();
 		this.setChildren({
-			backLink: new Link({text: 'Назад к чатам', to: 'index'})
+			backLink: new Link({text: 'Назад к чатам', to: 'index.html'})
 		});
 	}
 
@@ -18,7 +18,7 @@ export class Page404 extends Block {
                     <span class="page-404__title">404</span>
                     <span class="page-404__subtitle">Не туда попали</span>
                     <div class="page-404__msg">
-                        {{backLink}}
+                        {{{backLink}}}
                     </div>
                 </div>
             </div>

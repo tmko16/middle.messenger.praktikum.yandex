@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const location = document.location.pathname;
 	let App: Block;
 	switch (location) {
-	case '/login' :
+	case '/login.html' :
 		App = new LoginPage();
 		break;
 	case '/registration' :
