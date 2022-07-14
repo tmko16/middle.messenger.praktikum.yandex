@@ -30,6 +30,8 @@ export function phoneValidation() {
 	const isValid = inputValidation(value, validationPatterns.phone);
 	if (!isValid) {
 		return 'Телефон некорректный';
+	} else {
+		return undefined;
 	}
 }
 

@@ -77,8 +77,8 @@ export class ProfilePageEdit extends Block {
 
 	onSubmitHandler() {
 		getFormValues.apply(this);
-		console.log(this);
 		onSubmitValidation(this.formValues, this.children);
+		console.log(this.formValues);
 	}
 
 	protected render(): string {

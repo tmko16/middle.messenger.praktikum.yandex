@@ -7,7 +7,7 @@ type FormInputProps = {
     type: string,
     name: string,
     placeholder: string
-    validation?: (value: string) => string
+    validation?: (value: string) => string | undefined
     isEdit: boolean
 }
 
