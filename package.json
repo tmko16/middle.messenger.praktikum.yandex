@@ -7,9 +7,6 @@
     "build": "parcel build ./src/index.html",
     "start": "npm run build && node ./server.js "
   },
-  "engines": {
-    "node": "^16.15.0"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
