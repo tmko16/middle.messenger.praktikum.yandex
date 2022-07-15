@@ -22,6 +22,7 @@
   "dependencies": {
     "handlebars": "^4.7.7",
     "nanoid": "^4.0.0",
+    "process": "^0.11.10",
     "stylelint-scss": "^4.3.0"
   }
 }

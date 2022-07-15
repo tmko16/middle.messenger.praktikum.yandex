@@ -5,8 +5,8 @@ import '../reset.less';
 import Block from '../core/Block';
 import RegistrationPage from '../pages/registration';
 import ChatPage from '../pages/chat';
-import ProfilePage from '../pages/profilePage';
-import ProfilePageEdit from '../pages/profileEdit';
+// import ProfilePage from '../pages/profilePage';
+// import ProfilePageEdit from '../pages/profileEdit';
 import ChangePassword from '../pages/changePassword';
 import Page404 from '../pages/404';
 import Page500 from '../pages/500';
@@ -24,12 +24,12 @@ case '/registration.html' :
 case '/chat.html':
 	App = new ChatPage();
 	break;
-case '/profilePage.html':
-	App = new ProfilePage();
-	break;
-case '/profileEdit.html':
-	App = new ProfilePageEdit();
-	break;
+// case '/profilePage.html':
+// 	App = new ProfilePage();
+// 	break;
+// case '/profileEdit.html':
+// 	App = new ProfilePageEdit();
+// 	break;
 case '/changePassword.html':
 	App = new ChangePassword();
 	break;
