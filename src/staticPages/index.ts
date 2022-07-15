@@ -11,6 +11,7 @@ import ChangePassword from '../pages/changePassword';
 import Page404 from '../pages/404';
 import Page500 from '../pages/500';
 import IndexPage from '../pages/indexPage';
+import ProfilePage from '../pages/profilePage';
 
 const location = document.location.pathname;
 let App: Block;
@@ -24,9 +25,9 @@ case '/registration.html' :
 case '/chat.html':
 	App = new ChatPage();
 	break;
-// case '/profilePage.html':
-// 	App = new ProfilePage();
-// 	break;
+case '/profilePage.html':
+	App = new ProfilePage();
+	break;
 // case '/profileEdit.html':
 // 	App = new ProfilePageEdit();
 // 	break;
