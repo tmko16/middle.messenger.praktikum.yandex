@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "parcel  ./src/index.html   --open --no-cache",
-    "build": "parcel build ./src/staticPages/*.html",
+    "build": "parcel ./src/index.html",
     "start": "npm run build && node ./server.js "
   },
   "author": "",
