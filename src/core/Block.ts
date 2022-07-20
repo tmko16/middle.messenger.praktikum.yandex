@@ -147,7 +147,7 @@ export default class Block<P = any> {
 		return '';
 	}
 
-	getContent(): HTMLElement {
+	getContent(): HTMLElement  {
 		// Хак, чтобы вызвать CDM только после добавления в DOM
 		if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
 			setTimeout(() => {
@@ -259,7 +259,7 @@ export default class Block<P = any> {
 			/**
 			 * Ищем элемент layout-а, куда вставлять детей
 			 */
-			const layoutContent = content.querySelector('[data-layout="1"]');
+			const layoutContent = (content as HTMLElement).querySelector('[data-layout="1"]');
 			if (layoutContent && stubChilds.length) {
 				layoutContent.append(...stubChilds);
 			}
