@@ -37,7 +37,7 @@ export class ChangePassword extends Block {
 				placeholder: '*******'
 			}),
 		};
-		const backLink = new Link({text: 'Профиль', to: 'profilePage.html'});
+		const backLink = new Link({text: 'Профиль', to: 'profilePage'});
 		super({...fields, backLink});
 		this.setChildren({
 			saveButton: new Button({
@@ -61,7 +61,7 @@ export class ChangePassword extends Block {
 		return `
             <div class="change-pass-page">
                 <div class="profile__nav">
-                    <a href="index.hbs">
+                    <a href="/">
                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_7_787)">
                                 <path

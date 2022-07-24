@@ -10,7 +10,8 @@ import {
 	phoneValidation
 } from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
-
+import {Router} from '../../utils/Router';
+const router = new Router();
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
 
@@ -18,7 +19,7 @@ export class RegistrationPage extends Block {
 		super({});
 		this.setChildren({
 			button: new Button({
-				text: 'Регистрация', classes: 'btn_l', href: '#',  onSubmit: this.onSubmitHandler.bind(this)
+				text: 'Регистрация', classes: 'btn_l', href: '#',  onSubmit: () => router.back()
 			}),
 			email: new FormInput({label: 'Почта', name: 'email', type: 'text', validation: emailValidation}),
 			login: new FormInput({label: 'Логин', name: 'login', type: 'text', validation: loginValidation}),

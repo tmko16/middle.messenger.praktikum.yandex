@@ -5,13 +5,16 @@ import './loginPage.less';
 import Link from '../../components/link';
 import {formValidators, loginValidation, onSubmitValidation, passwordValidation} from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
+import {Router} from '../../utils/Router';
 
 export class LoginPage extends Block {
 	protected formValues: Record<string, string | number> = {};
+	router: Router;
 
 	constructor() {
+		const router = new Router();
 
-		const noAccount = new Link({text: 'Нет аккаунта?', to: 'registration.html'});
+		const noAccount = new Link({text: 'Нет аккаунта?', to: 'registration'});
 		const fields = {
 			login: new FormInput({
 				label: 'Логин', name: 'login', type: 'text', validation: loginValidation
@@ -25,17 +28,18 @@ export class LoginPage extends Block {
 		};
 		super({...fields, noAccount});
 
-
+		this.router = router;
 		this.setChildren({
 			button: new Button({
-				text: 'Вход', classes: 'btn_l', href: '#', onSubmit: this.onSubmitHandler.bind(this)
+				text: 'Вход', classes: 'btn_l', href: '', onSubmit: () => this.router.go('test')
 			})
 		});
 	}
 	onSubmitHandler () {
-		getFormValues.apply(this);
-		onSubmitValidation(this.formValues, this.children);
-		console.log(this.formValues);
+
+		// getFormValues.apply(this);
+		// onSubmitValidation(this.formValues, this.children);
+		// console.log(this.formValues);
 
 	}
 	protected render(): string {

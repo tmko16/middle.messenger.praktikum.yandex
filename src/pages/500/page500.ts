@@ -9,7 +9,7 @@ export class Page500 extends Block {
                 <div class="page-500__content">
                     <span class="page-500__title"><h1>500</h1></span>
                     <span class="page-500__subtitle">Мы уже фиксим</span>
-                    <a class="page-500__msg" href="index.hbs"> <span>Назад к чатам</span></a>
+                    <a class="page-500__msg" href="/"> <span>Назад к чатам</span></a>
                 </div>
             </div>
         `;

@@ -6,7 +6,7 @@ function isEqual(lhs: string, rhs: string) {
 
 function render(query: string, block: Block) {
 	const root = document.querySelector(query);
-	root!.append(block.getContent());
+	root?.append(block.getContent());
 	return root;
 }
 
@@ -31,6 +31,9 @@ class Route<P = any> {
 	}
 
 	leave() {
+		console.log(this);
+		console.log('=>(Router.ts:35) this._block', this._block);
+
 		if (this._block) {
 			this._block.hide();
 		}
@@ -48,6 +51,8 @@ class Route<P = any> {
 			render(this._props.rootQuery, this._block);
 			return;
 		}
+
+		console.log('=>(Router.ts:55) this._block', this._block);
 		this._block.show();
 	}
 }
@@ -59,7 +64,7 @@ export class Router {
 	private static _instance: Router;
 	private _rootQuery: string | undefined;
 
-	constructor() {
+	constructor(root = '#app') {
 		if (Router._instance) {
 			return Router._instance;
 		}
@@ -67,7 +72,7 @@ export class Router {
 		this.routes = [];
 		this.history = window.history;
 		this._currentRoute = null;
-		this._rootQuery = '#app';
+		this._rootQuery = root;
 
 		Router._instance = this;
 	}
@@ -82,7 +87,6 @@ export class Router {
 
 	start() {
 		window.onpopstate = event => {
-			alert('eikb ');
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			this._onRoute(event.currentTarget.location.pathname);
@@ -93,19 +97,33 @@ export class Router {
 
 	_onRoute(pathName: string) {
 		const route = this.getRoute(pathName);
+
 		if (!route) {
 			return;
 		}
 		if (this._currentRoute) {
+			console.log(this);
 			this._currentRoute.leave();
 		}
-
 		route.render(route, pathName);
+		this._currentRoute = route;
+
 	}
 
 	go(pathName: string) {
-		this.history!.pushState({}, '', pathName);
+		this.history?.pushState({}, '', pathName);
 		this._onRoute(pathName);
+	}
+	back() {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		this.history.go(-1);
+	}
+
+	forward() {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		this.history.go(+1);
 	}
 
 	getRoute(pathName: string) {

@@ -10,10 +10,10 @@ export class ProfilePage extends Block {
 	constructor() {
 		const avatar = new AvatarProfile();
 		const links = {
-			changeData: new Link({text: 'Изменить данные', to: 'profileEdit.html'}),
-			changePassword: new Link({text: 'Изменить пароль', to: 'changePassword.html'}),
+			changeData: new Link({text: 'Изменить данные', to: 'profileEdit'}),
+			changePassword: new Link({text: 'Изменить пароль', to: 'changePassword'}),
 			logOut: new Link({text: 'Выйти', to: '#'}),
-			backLink: new Link({text: 'К чатам', to: 'chat.html'})
+			backLink: new Link({text: 'К чатам', to: 'chat'})
 		};
 		super({avatar, ...links});
 
@@ -62,7 +62,7 @@ export class ProfilePage extends Block {
 		return `
             <div class="profile">
                 <div class="profile__nav">
-                    <a href="index.hbs">
+                    <a href="/">
                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_7_787)">
                                 <path

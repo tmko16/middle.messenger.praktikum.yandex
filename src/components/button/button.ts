@@ -5,11 +5,11 @@ type ButtonProps = {
     href: string,
     text: string,
     classes?: string,
-    onSubmit?: () => void
+    onSubmit?: () => void | undefined
 }
 
 export class Button extends Block {
-	constructor(props: ButtonProps) {
+	constructor(props: { onSubmit: () => void; classes: string; text: string; href: string }) {
 		super({
 			...props, events: {
 				click: props.onSubmit,
