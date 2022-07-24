@@ -5,7 +5,7 @@ import './loginPage.less';
 import Link from '../../components/link';
 import {formValidators, loginValidation, onSubmitValidation, passwordValidation} from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
-import {Router} from '../../utils/Router';
+import {Router} from '../../core/Router';
 
 export class LoginPage extends Block {
 	protected formValues: Record<string, string | number> = {};

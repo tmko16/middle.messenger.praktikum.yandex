@@ -1,4 +1,4 @@
-import Block from '../core/Block';
+import Block from './Block';
 
 function isEqual(lhs: string, rhs: string) {
 	return lhs === rhs;

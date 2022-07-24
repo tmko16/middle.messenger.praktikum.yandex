@@ -10,7 +10,7 @@ import {
 	phoneValidation
 } from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
-import {Router} from '../../utils/Router';
+import {Router} from '../../core/Router';
 const router = new Router();
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
