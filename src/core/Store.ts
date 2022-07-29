@@ -15,6 +15,8 @@ export class Store extends  EventBus{
 		set(this.state, path, value);
 		this.emit(StoreEvents.Updated);
 	}
+
+
 }
 
 export default new Store();

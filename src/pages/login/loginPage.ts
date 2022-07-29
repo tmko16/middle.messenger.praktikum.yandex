@@ -3,9 +3,9 @@ import Button from '../../components/button';
 import FormInput from '../../components/formInput';
 import './loginPage.less';
 import Link from '../../components/link';
-import {formValidators, loginValidation, onSubmitValidation, passwordValidation} from '../../utils/validators';
-import {getFormValues} from '../../utils/getFormValues';
+import { loginValidation, passwordValidation} from '../../utils/validators';
 import {Router} from '../../core/Router';
+import store, {StoreEvents} from '../../core/Store';
 
 export class LoginPage extends Block {
 	protected formValues: Record<string, string | number> = {};
@@ -13,6 +13,10 @@ export class LoginPage extends Block {
 
 	constructor() {
 		const router = new Router();
+		store.set('user.name', 'Joag');
+		store.on(StoreEvents.Updated, () => {
+			this.setProps(store.getState());
+		});
 
 		const noAccount = new Link({text: 'Нет аккаунта?', to: 'registration'});
 		const fields = {

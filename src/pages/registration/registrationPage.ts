@@ -11,11 +11,15 @@ import {
 } from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
 import {Router} from '../../core/Router';
+
+import store from '../../core/Store';
 const router = new Router();
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
 
 	constructor() {
+
+		console.log('=>(registrationPage.ts:22) store.getState', store.getState());
 		super({});
 		this.setChildren({
 			button: new Button({
