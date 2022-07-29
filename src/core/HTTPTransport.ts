@@ -14,19 +14,24 @@ type Options = {
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 class HTTPTransport {
+	private baseUrl: string;
+	constructor(url: string) {
+		this.baseUrl = url;
+	}
+
 	get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
 		return this.request(url, {...options, method: METHOD.GET});
 	}
 
-	post(url: string, options: Options): Promise<XMLHttpRequest> {
+	post(url: string, options: OptionsWithoutMethod): Promise<XMLHttpRequest> {
 		return this.request(url, {...options, method: METHOD.POST});
 	}
 
-	put(url: string, options: Options): Promise<XMLHttpRequest> {
+	put(url: string, options: OptionsWithoutMethod): Promise<XMLHttpRequest> {
 		return this.request(url, {...options, method: METHOD.PUT});
 	}
 
-	delete(url: string, options: Options): Promise<XMLHttpRequest> {
+	delete(url: string, options: OptionsWithoutMethod): Promise<XMLHttpRequest> {
 		return this.request(url, {...options, method: METHOD.DELETE});
 	}
 
@@ -38,6 +43,7 @@ class HTTPTransport {
 	}
 
 	request(url: string, options: Options = {method: METHOD.GET}): Promise<XMLHttpRequest> {
+		const fullUrl = this.baseUrl + url;
 		const {headers = {}, method, data} = options;
 
 		return new Promise((resolve, reject) => {
@@ -46,8 +52,8 @@ class HTTPTransport {
 			xhr.open(
 				method,
 				method === METHOD.GET && data
-					? `${url}${this.queryStringify(data)}`
-					: url,
+					? `${fullUrl}${this.queryStringify(data)}`
+					: fullUrl,
 			);
 
 			Object.keys(headers).forEach((key) => {

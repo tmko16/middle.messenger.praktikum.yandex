@@ -3,7 +3,7 @@ const chatAPIInstance = new HTTPTransport('api/v1/chats');
 class ChatAPI extends BaseAPI {
 	create() {
 		// Здесь уже не нужно писать полный путь /api/v1/chats/
-		return chatAPIInstance.post('/', {title: 'string'});
+		return chatAPIInstance.post('/', {data: {title: 'string'}});
 	}
 
 	request() {
