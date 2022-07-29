@@ -22,14 +22,6 @@ import IndexPage from './pages/indexPage';
  *
  */
 
-// login">Страница Логин</a></li>
-// <li><a href="registration">Страница Регистрации</a></li>
-// <li><a href="profilePage">Страница пользовательского профиля</a></li>
-// <li><a href="profileEdit">Страница изменения пользовательского профиля</a></li>
-// <li><a href="changePassword">Страница изменения пароля пользователя</a></li>
-// <li><a href="page404">Страница 404</a></li>
-// <li><a href="page500">Страница 500</a></li>
-// <li><a href="chat">Д
 document.addEventListener('DOMContentLoaded',
 	() => {
 		const router = new Router();
