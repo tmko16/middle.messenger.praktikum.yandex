@@ -13,17 +13,28 @@ import {getFormValues} from '../../utils/getFormValues';
 import {Router} from '../../core/Router';
 
 import store from '../../core/Store';
+import userController from '../../controllers/userController';
+
 const router = new Router();
+
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
 
 	constructor() {
+		// userController.signUp({
+		// 	email: 'string',
+		// 	first_name: 'string',
+		// 	login: 'string',
+		// 	password: 'string',
+		// 	phone: 'string',
+		// 	second_name: 'string'
+		// });
 
-		console.log('=>(registrationPage.ts:22) store.getState', store.getState());
+		console.log('=>(registrationPage.ts:33)  userController',  userController);
 		super({});
 		this.setChildren({
 			button: new Button({
-				text: 'Регистрация', classes: 'btn_l', href: '#',  onSubmit: () => router.back()
+				text: 'Регистрация', classes: 'btn_l', href: '#', onSubmit: () => router.back()
 			}),
 			email: new FormInput({label: 'Почта', name: 'email', type: 'text', validation: emailValidation}),
 			login: new FormInput({label: 'Логин', name: 'login', type: 'text', validation: loginValidation}),
@@ -70,6 +81,6 @@ export class RegistrationPage extends Block {
                 </div>
             </div>
 
-        `;
+		`;
 	}
 }

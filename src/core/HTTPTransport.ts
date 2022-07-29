@@ -13,7 +13,7 @@ type Options = {
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-class HTTPTransport {
+export default class HTTPTransport {
 	private baseUrl: string;
 	constructor(url: string) {
 		this.baseUrl = url;
