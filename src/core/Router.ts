@@ -51,8 +51,6 @@ class Route<P = any> {
 			render(this._props.rootQuery, this._block);
 			return;
 		}
-
-		console.log('=>(Router.ts:55) this._block', this._block);
 		this._block.show();
 	}
 }

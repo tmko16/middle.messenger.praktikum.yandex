@@ -1,1 +1,1 @@
-export const BASE_URL = 'api/v1/chats';
+export const BASE_URL = 'https://ya-praktikum.tech/api/v2';
