@@ -20,11 +20,9 @@ export class Button extends Block {
 	protected render(): string {
 		//language=hbs
 		return `
-            <a href="{{ href }}">
                 <button class="btn {{classes}}">
                     {{ text }}
                 </button>
-            </a>
         `;
 	}
 }
