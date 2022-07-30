@@ -81,15 +81,19 @@ export const formValidators = {
 };
 
 export function onSubmitValidation(formData: Record<string, string | number>, children: Record<string, Block>) {
-
+	let isValid = true;
 	for (const formDataKey in formData) {
 		for (const key in formValidators) {
 			if (key === formDataKey) {
 				// eslint-disable-next-line @typescript-eslint/ban-types
 				const errors = (formValidators[key as keyof {}] as Function)(formData[formDataKey]);
+				if (errors) {
+					isValid = false;
+				}
 				children[key].errors = errors;
 				children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
 			}
 		}
 	}
+	return isValid;
 }

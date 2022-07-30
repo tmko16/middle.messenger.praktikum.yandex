@@ -8,7 +8,9 @@ const regApiInstance = new HTTPTransport(BASE_URL);
 
 class RegistrationAPI extends BaseAPI {
 	signUp(data: SignUpProps) {
-		return regApiInstance.post('/auth/signup', {data: data});
+		const res =  regApiInstance.post('/auth/signup', {data: data});
+		console.log('=>(registrationAPI.ts:13) res', res);
+		return res;
 	}
 }
 

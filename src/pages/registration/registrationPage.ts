@@ -15,7 +15,7 @@ import {Router} from '../../core/Router';
 import store, {StoreEvents} from '../../core/Store';
 import userController from '../../controllers/userController';
 
-const router = new Router();
+// const router = new Router();
 
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
@@ -23,25 +23,16 @@ export class RegistrationPage extends Block {
 	constructor() {
 		super({});
 
-		userController.signUp({
-			email: 'string',
-			first_name: 'string',
-			login: 'string',
-			password: 'string',
-			phone: 'string',
-			second_name: 'string'
-		});
+		console.log('=>(registrationPage.ts:26) store.getState', store.getState());
+
 
 		store.on(StoreEvents.Updated, () => {
-			console.log('=>(registrationPage.ts:37)  stor');
-			this.setState({someVal: 'test'});
+			this.setState(store.getState());
 		});
 
 		this.setChildren({
 			button: new Button({
-				text: 'Регистрация', classes: 'btn_l', href: '', onSubmit: () => {
-					console.log();
-				}
+				text: 'Регистрация', classes: 'btn_l', href: '', onSubmit: () => this.onSubmitHandler.call(this)
 			}),
 			email: new FormInput({label: 'Почта', name: 'email', type: 'text', validation: emailValidation}),
 			login: new FormInput({label: 'Логин', name: 'login', type: 'text', validation: loginValidation}),
@@ -64,10 +55,19 @@ export class RegistrationPage extends Block {
 
 	onSubmitHandler() {
 		getFormValues.apply(this);
-		onSubmitValidation(this.formValues, this.children);
-		console.log(this.formValues);
+		const validationRes = onSubmitValidation(this.formValues, this.children);
+		if (validationRes) {
 
-		console.log('=>(registrationPage.ts:68) this', this);
+			console.log('=>(registrationPage.ts:61) this.state', this.formValues);
+			userController.signUp({
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				//@ts-ignore
+				data: {...this.formValues}
+			});
+		} else {
+			console.log('not valid');
+		}
+
 	}
 
 	protected render(): string {

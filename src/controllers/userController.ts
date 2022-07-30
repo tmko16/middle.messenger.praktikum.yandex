@@ -9,8 +9,11 @@ class UserController {
 	}
 
 	public signUp(data: SignUpProps) {
-		RegistrationAPI.signUp(data).then(data => {
+
+		console.log('=>(userController.ts:13) data', data);
+		RegistrationAPI.signUp(data).then(response => {
 			this.store.set('test', 213);
+			this.store.set('user.signup' , response);
 		});
 	}
 
