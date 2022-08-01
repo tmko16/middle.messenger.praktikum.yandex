@@ -31,6 +31,10 @@ export default class HTTPTransport {
 	}
 
 	post(url: string, options: OptionsWithoutMethod): Promise<XMLHttpRequest> {
+
+		console.log('=>(HTTPTransport.ts:35) url', url);
+
+		console.log('=>(HTTPTransport.ts:37) options', options);
 		return this.request(url, {...options, method: METHOD.POST});
 	}
 
@@ -53,6 +57,7 @@ export default class HTTPTransport {
 		const fullUrl = this.baseUrl + url;
 		const {headers = {}, method, data} = options;
 
+		console.log('=>(HTTPTransport.ts:60) data', data);
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 

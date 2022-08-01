@@ -10,25 +10,22 @@ import {
 	phoneValidation
 } from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
-import {Router} from '../../core/Router';
-
 import store, {StoreEvents} from '../../core/Store';
-import userController from '../../controllers/userController';
+import UserController from '../../controllers/userController';
+import {SignUpProps} from '../../types';
 
 // const router = new Router();
 
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
+	private controller: UserController;
 
 	constructor() {
 		super({});
-
-		console.log('=>(registrationPage.ts:26) store.getState', store.getState());
-
-
 		store.on(StoreEvents.Updated, () => {
 			this.setState(store.getState());
 		});
+		this.controller = new UserController();
 
 		this.setChildren({
 			button: new Button({
@@ -57,13 +54,7 @@ export class RegistrationPage extends Block {
 		getFormValues.apply(this);
 		const validationRes = onSubmitValidation(this.formValues, this.children);
 		if (validationRes) {
-
-			console.log('=>(registrationPage.ts:61) this.state', this.formValues);
-			userController.signUp({
-				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-				//@ts-ignore
-				data: {...this.formValues}
-			});
+			this.controller.signUp(this.formValues as unknown as SignUpProps);
 		} else {
 			console.log('not valid');
 		}

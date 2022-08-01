@@ -25,18 +25,15 @@ import HTTPTransport from './core/HTTPTransport';
 
 document.addEventListener('DOMContentLoaded',
 	() => {
-		const urltest = 'https://jsonplaceholder.typicode.com/';
-		const api = new HTTPTransport(urltest);
-		const a = api.get('todos/1').then(res => console.log(res.response));
 
-		// const router = new Router();
-		// router.use('/', IndexPage as unknown  as  Block);
-		// router.use('/login', LoginPage as unknown as Block);
-		// router.use('/registration', RegistrationPage as unknown as Block);
+		const router = new Router();
+		router.use('/', IndexPage as unknown  as  Block);
+		router.use('/login', LoginPage as unknown as Block);
+		router.use('/registration', RegistrationPage as unknown as Block);
 		// router.use('/profilePage', ProfilePage as unknown as Block);
 		// router.use('/profileEdit', ProfilePageEdit as unknown as Block);
 		// router.use('/changePassword', ChangePassword as unknown as Block);
 		// router.use('/chat', ChatPage as unknown as Block);
 		//
-		// router.start();
+		router.start();
 	});
