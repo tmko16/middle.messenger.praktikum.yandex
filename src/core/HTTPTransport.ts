@@ -14,10 +14,17 @@ type Options = {
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 export default class HTTPTransport {
+	private static _instance: HTTPTransport | null = null;
 	private baseUrl: string;
+
 	constructor(url: string) {
 		this.baseUrl = url;
+		if (HTTPTransport._instance) {
+			return HTTPTransport._instance;
+		}
+		HTTPTransport._instance = this;
 	}
+
 
 	get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
 		return this.request(url, {...options, method: METHOD.GET});
@@ -61,6 +68,7 @@ export default class HTTPTransport {
 			});
 
 			xhr.onload = function () {
+				console.log('произошел онлоад');
 				resolve(xhr);
 			};
 

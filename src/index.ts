@@ -13,6 +13,7 @@ import {Router} from './core/Router';
 import Button from './components/button';
 import Block from './core/Block';
 import IndexPage from './pages/indexPage';
+import HTTPTransport from './core/HTTPTransport';
 
 /**
  * Заметка для проверяющего.
@@ -24,14 +25,18 @@ import IndexPage from './pages/indexPage';
 
 document.addEventListener('DOMContentLoaded',
 	() => {
-		const router = new Router();
-		router.use('/', IndexPage as unknown  as  Block);
-		router.use('/login', LoginPage as unknown as Block);
-		router.use('/registration', RegistrationPage as unknown as Block);
-		router.use('/profilePage', ProfilePage as unknown as Block);
-		router.use('/profileEdit', ProfilePageEdit as unknown as Block);
-		router.use('/changePassword', ChangePassword as unknown as Block);
-		router.use('/chat', ChatPage as unknown as Block);
+		const urltest = 'https://jsonplaceholder.typicode.com/';
+		const api = new HTTPTransport(urltest);
+		const a = api.get('todos/1').then(res => console.log(res.response));
 
-		router.start();
+		// const router = new Router();
+		// router.use('/', IndexPage as unknown  as  Block);
+		// router.use('/login', LoginPage as unknown as Block);
+		// router.use('/registration', RegistrationPage as unknown as Block);
+		// router.use('/profilePage', ProfilePage as unknown as Block);
+		// router.use('/profileEdit', ProfilePageEdit as unknown as Block);
+		// router.use('/changePassword', ChangePassword as unknown as Block);
+		// router.use('/chat', ChatPage as unknown as Block);
+		//
+		// router.start();
 	});
