@@ -8,6 +8,7 @@ import HTTPTransport from '../core/HTTPTransport';
 
 class RegistrationAPI extends BaseAPI {
 	private _regApiInstance: HTTPTransport;
+
 	constructor() {
 		super();
 		this._regApiInstance = new HTTPTransport(BASE_URL);
@@ -16,7 +17,11 @@ class RegistrationAPI extends BaseAPI {
 	signUp(data: SignUpProps) {
 
 		console.log('=>(registrationAPI.ts:18) data', data);
-		return this._regApiInstance.post('/auth/signup', {data: data});
+		return this._regApiInstance.post('/auth/signup', {
+			data: data, headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		});
 	}
 }
 

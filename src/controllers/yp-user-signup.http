@@ -1,0 +1,13 @@
+POST https://ya-praktikum.tech/api/v2/auth/signup
+Content-Type: application/json
+
+{
+  email: "simontis1991@gmail.com"
+  first_name: "Tishchenko"
+  login: "sdfsdf"
+  password: "Fazidi123321"
+  phone: "89166147190"
+  second_name: "Semyon"
+}
+
+###

@@ -57,10 +57,13 @@ export default class HTTPTransport {
 		const fullUrl = this.baseUrl + url;
 		const {headers = {}, method, data} = options;
 
-		console.log('=>(HTTPTransport.ts:60) data', data);
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 
+			console.log('=>(HTTPTransport.ts:63) data', data);
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			console.log('=>(HTTPTransport.ts:63) this.queryStringify(data)', this.queryStringify(data));
 			xhr.open(
 				method,
 				method === METHOD.GET && data
@@ -73,7 +76,6 @@ export default class HTTPTransport {
 			});
 
 			xhr.onload = function () {
-				console.log('произошел онлоад');
 				resolve(xhr);
 			};
 
@@ -84,7 +86,7 @@ export default class HTTPTransport {
 			if (method === METHOD.GET || !data) {
 				xhr.send();
 			} else {
-				xhr.send(data as XMLHttpRequestBodyInit);
+				xhr.send(this.queryStringify(data).substring(1) as XMLHttpRequestBodyInit);
 			}
 		});
 	}

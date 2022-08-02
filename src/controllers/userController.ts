@@ -14,7 +14,6 @@ class UserController {
 
 	public signUp(data: SignUpProps) {
 
-		console.log('=>(userController.ts:17) data', data);
 		this._apiCaller.signUp(data).then(response => {
 			console.log(response.response);
 			this._globalStore.set('user.auth', response.response);
