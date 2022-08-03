@@ -3,17 +3,21 @@ import Button from '../../components/button';
 import FormInput from '../../components/formInput';
 import './loginPage.less';
 import Link from '../../components/link';
-import { loginValidation, passwordValidation} from '../../utils/validators';
+import {loginValidation, onSubmitValidation, passwordValidation} from '../../utils/validators';
 import {Router} from '../../core/Router';
 import store, {StoreEvents} from '../../core/Store';
+import UserController from '../../controllers/userController';
+import {getFormValues} from '../../utils/getFormValues';
+import {SignUpProps} from '../../types';
 
 export class LoginPage extends Block {
 	protected formValues: Record<string, string | number> = {};
 	router: Router;
+	private controller: UserController;
 
 	constructor() {
 		const router = new Router();
-		store.set('user.name', 'Joag');
+
 		store.on(StoreEvents.Updated, () => {
 			this.setProps(store.getState());
 		});
@@ -31,21 +35,27 @@ export class LoginPage extends Block {
 			}),
 		};
 		super({...fields, noAccount});
-
+		this.controller = new UserController();
 		this.router = router;
 		this.setChildren({
 			button: new Button({
-				text: 'Вход', classes: 'btn_l', href: '', onSubmit: () => this.router.go('test')
+				text: 'Вход', classes: 'btn_l', href: '', onSubmit: () => this.onSubmitHandler.call(this)
 			})
 		});
 	}
-	onSubmitHandler () {
 
-		// getFormValues.apply(this);
-		// onSubmitValidation(this.formValues, this.children);
-		// console.log(this.formValues);
+	onSubmitHandler() {
+
+		getFormValues.apply(this);
+		const validationRes = onSubmitValidation(this.formValues, this.children);
+		if (validationRes) {
+			this.controller.signIn(this.formValues as unknown as SignUpProps);
+		} else {
+			console.log('not valid');
+		}
 
 	}
+
 	protected render(): string {
 		//language=hbs
 		return `
@@ -63,6 +73,6 @@ export class LoginPage extends Block {
                 </div>
             </div>
 
-        `;
+		`;
 	}
 }

@@ -1,0 +1,6 @@
+email: simon.tis@yandex.ru
+login: simontisMan
+first_name: Семен
+second_name: Тищенко
+phone: 79166147190
+password: Fazidi12341
