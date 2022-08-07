@@ -5,23 +5,19 @@ import './loginPage.less';
 import Link from '../../components/link';
 import {loginValidation, onSubmitValidation, passwordValidation} from '../../utils/validators';
 import {Router} from '../../core/Router';
-import store, {StoreEvents} from '../../core/Store';
-import UserController from '../../controllers/userController';
+import store, {Store, StoreEvents} from '../../core/Store';
 import {getFormValues} from '../../utils/getFormValues';
 import {SignUpProps} from '../../types';
+import AuthController from '../../controllers/authController';
 
 export class LoginPage extends Block {
 	protected formValues: Record<string, string | number> = {};
 	router: Router;
-	private controller: UserController;
+	private store: Store;
+	private authController: AuthController;
 
 	constructor() {
 		const router = new Router();
-
-		store.on(StoreEvents.Updated, () => {
-			this.setProps(store.getState());
-		});
-
 		const noAccount = new Link({text: 'Нет аккаунта?', to: 'registration'});
 		const fields = {
 			login: new FormInput({
@@ -35,7 +31,12 @@ export class LoginPage extends Block {
 			}),
 		};
 		super({...fields, noAccount});
-		this.controller = new UserController();
+
+		this.store = new Store();
+		this.authController = new AuthController();
+		this.store.on(StoreEvents.Updated, () => {
+			this.setState(this.store.getState());
+		});
 		this.router = router;
 		this.setChildren({
 			button: new Button({
@@ -49,9 +50,7 @@ export class LoginPage extends Block {
 		getFormValues.apply(this);
 		const validationRes = onSubmitValidation(this.formValues, this.children);
 		if (validationRes) {
-			this.controller.signIn(this.formValues as unknown as SignUpProps);
-		} else {
-			console.log('not valid');
+			this.authController.signIn(this.formValues);
 		}
 
 	}

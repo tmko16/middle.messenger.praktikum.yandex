@@ -6,6 +6,15 @@ export enum StoreEvents {
 }
 export class Store extends  EventBus{
 	private state: Indexed = {};
+	private static _instance: Store;
+
+	constructor() {
+		super();
+		if (Store._instance) {
+			return Store._instance;
+		}
+		Store._instance = this;
+	}
 
 	public getState() {
 		return this.state;
@@ -19,4 +28,4 @@ export class Store extends  EventBus{
 
 }
 
-export default new Store();
+export default Store;

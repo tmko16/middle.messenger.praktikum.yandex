@@ -11,21 +11,17 @@ import {
 } from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
 import store, {StoreEvents} from '../../core/Store';
-import UserController from '../../controllers/userController';
-import {SignUpProps} from '../../types';
 
 // const router = new Router();
 
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
-	private controller: UserController;
 
 	constructor() {
 		super({});
 		store.on(StoreEvents.Updated, () => {
 			this.setState(store.getState());
 		});
-		this.controller = new UserController();
 
 		this.setChildren({
 			button: new Button({
@@ -54,7 +50,6 @@ export class RegistrationPage extends Block {
 		getFormValues.apply(this);
 		const validationRes = onSubmitValidation(this.formValues, this.children);
 		if (validationRes) {
-			this.controller.signUp(this.formValues as unknown as SignUpProps);
 		} else {
 			console.log('not valid');
 		}

@@ -31,10 +31,6 @@ export default class HTTPTransport {
 	}
 
 	post(url: string, options: OptionsWithoutMethod): Promise<XMLHttpRequest> {
-
-		console.log('=>(HTTPTransport.ts:35) url', url);
-
-		console.log('=>(HTTPTransport.ts:37) options', options);
 		return this.request(url, {...options, method: METHOD.POST});
 	}
 
@@ -59,11 +55,6 @@ export default class HTTPTransport {
 
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
-
-			console.log('=>(HTTPTransport.ts:63) data', data);
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			console.log('=>(HTTPTransport.ts:63) this.queryStringify(data)', this.queryStringify(data));
 			xhr.open(
 				method,
 				method === METHOD.GET && data
@@ -74,6 +65,7 @@ export default class HTTPTransport {
 			Object.keys(headers).forEach((key) => {
 				xhr.setRequestHeader(key, headers[key]);
 			});
+
 
 			xhr.onload = function () {
 				resolve(xhr);
@@ -86,7 +78,7 @@ export default class HTTPTransport {
 			if (method === METHOD.GET || !data) {
 				xhr.send();
 			} else {
-				xhr.send(this.queryStringify(data).substring(1) as XMLHttpRequestBodyInit);
+				xhr.send( JSON.stringify(data) as XMLHttpRequestBodyInit);
 			}
 		});
 	}
