@@ -16,3 +16,8 @@ export interface SignUpProps {
 	password: 'string',
 	phone: 'string'
 }
+
+export enum AuthStatus {
+	Ok = 'OK',
+	NotOk =  'NOT OK'
+}

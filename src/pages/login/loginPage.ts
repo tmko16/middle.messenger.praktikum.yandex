@@ -10,7 +10,7 @@ import {getFormValues} from '../../utils/getFormValues';
 import AuthController from '../../controllers/authController';
 
 export class LoginPage extends Block {
-	protected formValues: Record<string, string | number> = {};
+	formValues: Record<string, string | number> = {};
 	router: Router;
 	private store: Store;
 	private authController: AuthController;
@@ -46,12 +46,12 @@ export class LoginPage extends Block {
 
 	async onSubmitHandler() {
 		getFormValues.apply(this);
-		const res = await this.authController.signIn(this.formValues);
-		console.log(res, 'res');
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		if (res.auth === 'OK') {
-			console.log('попали в условие ');
+		const loginPageData = {
+			formValues: this.formValues,
+			children: this.children
+		};
+		const signedIn = await this.authController.signIn(loginPageData);
+		if (signedIn) {
 			this.router.go('/chat');
 		}
 	}

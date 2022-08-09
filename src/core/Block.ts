@@ -20,7 +20,7 @@ export default class Block<P = any> {
 
 	protected _element: HTMLElement | null = null;
 	protected readonly props: P;
-	protected children: { [id: string]: Block } = {};
+	 children: { [id: string]: Block } = {};
 
 	eventBus: () => EventBus;
 
