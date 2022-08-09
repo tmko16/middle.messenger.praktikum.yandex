@@ -5,30 +5,41 @@ import Dialog from '../../components/dialog';
 import Messenger from '../../components/messenger';
 import Link from '../../components/link';
 import SearchBar from '../../components/searchBar';
+import {Router} from '../../core/Router';
+import AuthController from '../../controllers/authController';
+import Store, {StoreEvents} from '../../core/Store';
+import ChatController from '../../controllers/chatController';
+import {DialogProps} from '../../components/dialog/dialog';
 
 export class ChatPage extends Block {
-
+	router: Router;
+	private store: Store;
+	private chatController: ChatController;
 	constructor() {
 		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});
-		const messenger = new Messenger({messages: [], name: 'Васек', wasOnline: '11:13'});
-		const dialog = new Dialog({
-			id: '1',
-			avatar: 'https://source.unsplash.com/random',
-			name: 'Андрей',
-			lastMsg: 'Не ну займи а...',
-			lastMsgTime: '10:23',
-			msgCount: 12,
-
-		});
-
 		const searchBar = new SearchBar();
 		super({
 			searchBar,
-			dialog,
-			messenger,
+			// dialog,
+			// messenger,
 			profileLink
 		});
+		this.store = new Store();
+		this.chatController = new ChatController();
+		this.router = new Router();
+		this.store.on(StoreEvents.Updated, () => {
+			console.log('=>(chatPage.ts:43) this.store.getState', this.store.getState());
+			this.setProps(this.store.getState());
+		});
+	}
+	async componentDidMount() {
+		console.log('Компонент манта');
+		await this.chatController.getChats();
 
+		console.log('=>(chatPage.ts:38) this.props', this.props);
+		this.props.user.chats.forEach((chat: DialogProps) => {
+			const dialog = new Dialog(chat);
+		});
 
 	}
 
@@ -44,11 +55,11 @@ export class ChatPage extends Block {
                         {{{searchBar}}}
                     </div>
                     <div class="chat__dialogs">
-                        {{{ dialog }}}
+<!--                        {{{ dialog }}}-->
                     </div>
                 </div>
                 <div class="chat__main">
-                    {{{messenger}}}
+<!--                    {{{messenger}}}-->
                 </div>
 
             </div>

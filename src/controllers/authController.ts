@@ -35,6 +35,7 @@ class AuthController {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			if (state.registrationData.id) {
+				await this.authApi.getUser();
 				return true;
 			} else {
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -46,6 +47,8 @@ class AuthController {
 			return false;
 		}
 	}
+
+
 
 }
 

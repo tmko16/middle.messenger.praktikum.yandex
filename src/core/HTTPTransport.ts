@@ -62,6 +62,8 @@ export default class HTTPTransport {
 					: fullUrl,
 			);
 
+			xhr.withCredentials = true;
+
 			Object.keys(headers).forEach((key) => {
 				xhr.setRequestHeader(key, headers[key]);
 			});

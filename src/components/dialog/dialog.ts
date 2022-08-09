@@ -1,13 +1,12 @@
 import Block from '../../core/Block';
 import './dialog.less';
 
-type DialogProps = {
+export type DialogProps = {
     id: string,
+    title: string,
     avatar: string,
-    name: string,
-    lastMsg: string,
-    lastMsgTime: string,
-    msgCount: number,
+	last_message: string,
+	unread_count: number,
     onClick?: () => void
 }
 

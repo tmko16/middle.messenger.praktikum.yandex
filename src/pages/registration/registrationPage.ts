@@ -57,14 +57,13 @@ export class RegistrationPage extends Block {
 	}
 
 	async onSubmitHandler() {
-		debugger;
 		getFormValues.apply(this);
 		const loginPageData = {
 			formValues: this.formValues,
 			children: this.children
 		};
-		const signedIn = await this.authController.signUp(loginPageData);
-		if (signedIn) {
+		const signedUp = await this.authController.signUp(loginPageData);
+		if (signedUp) {
 			this.router.go('/chat');
 		}
 	}
