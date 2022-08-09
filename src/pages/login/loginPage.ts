@@ -7,7 +7,6 @@ import {loginValidation, onSubmitValidation, passwordValidation} from '../../uti
 import {Router} from '../../core/Router';
 import store, {Store, StoreEvents} from '../../core/Store';
 import {getFormValues} from '../../utils/getFormValues';
-import {SignUpProps} from '../../types';
 import AuthController from '../../controllers/authController';
 
 export class LoginPage extends Block {
@@ -45,14 +44,16 @@ export class LoginPage extends Block {
 		});
 	}
 
-	onSubmitHandler() {
-
+	async onSubmitHandler() {
 		getFormValues.apply(this);
-		const validationRes = onSubmitValidation(this.formValues, this.children);
-		if (validationRes) {
-			this.authController.signIn(this.formValues);
+		const res = await this.authController.signIn(this.formValues);
+		console.log(res, 'res');
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		if (res.auth === 'OK') {
+			console.log('попали в условие ');
+			this.router.go('/chat');
 		}
-
 	}
 
 	protected render(): string {

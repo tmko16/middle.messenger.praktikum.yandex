@@ -8,7 +8,7 @@ export default class EventBus<E extends string = string, M extends { [K in E]: u
 			this.listeners[event] = [];
 		}
 
-        this.listeners[event]!.push(callback);
+		this.listeners[event]!.push(callback);
 	}
 
 	off(event: E, callback: Listener<M[E]>) {
@@ -26,9 +26,8 @@ export default class EventBus<E extends string = string, M extends { [K in E]: u
 			return;
 			// throw new Error(`Нет события: ${event}`);
 		}
-
-        this.listeners[event]!.forEach(function (listener) {
-        	listener(...args);
-        });
+		this.listeners[event]!.forEach(function (listener) {
+			listener(...args);
+		});
 	}
 }

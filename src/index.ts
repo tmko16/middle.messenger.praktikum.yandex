@@ -33,6 +33,6 @@ document.addEventListener('DOMContentLoaded',
 		// // router.use('/profilePage', ProfilePage as unknown as Block);
 		// // router.use('/profileEdit', ProfilePageEdit as unknown as Block);
 		// // router.use('/changePassword', ChangePassword as unknown as Block);
-		// router.use('/chat', ChatPage as unknown as Block);
+		router.use('/chat', ChatPage as unknown as Block);
 		router.start();
 	});
