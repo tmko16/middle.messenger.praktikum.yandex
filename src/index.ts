@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded',
 
 		const router = new Router();
 		router.use('/', LoginPage as unknown as Block);
-		// router.use('/registration', RegistrationPage as unknown as Block);
+		router.use('/registration', RegistrationPage as unknown as Block);
 		// // router.use('/profilePage', ProfilePage as unknown as Block);
 		// // router.use('/profileEdit', ProfilePageEdit as unknown as Block);
 		// // router.use('/changePassword', ChangePassword as unknown as Block);

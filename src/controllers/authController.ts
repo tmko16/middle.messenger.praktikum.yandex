@@ -15,13 +15,30 @@ class AuthController {
 	}
 
 	async signIn(loginPageData: any) {
-
 		if (onSubmitValidation(loginPageData.formValues, loginPageData.children)) {
 			await this.authApi.signIn(loginPageData.formValues);
 			const state = this.store.getState();
 			if (state.auth === AuthStatus.Ok) {
 				return true;
 			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	async signUp(RegistrationPageData: any) {
+		if (onSubmitValidation(RegistrationPageData.formValues, RegistrationPageData.children)) {
+			await this.authApi.signUp(RegistrationPageData.formValues);
+			const state = this.store.getState();
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			if (state.registrationData.id) {
+				return true;
+			} else {
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
+				alert('Не удалось авторизоваться ' + state.registrationData.reason );
 				return false;
 			}
 		} else {

@@ -10,19 +10,25 @@ import {
 	phoneValidation
 } from '../../utils/validators';
 import {getFormValues} from '../../utils/getFormValues';
-import store, {StoreEvents} from '../../core/Store';
+import store, {Store, StoreEvents} from '../../core/Store';
+import AuthController from '../../controllers/authController';
+import {Router} from '../../core/Router';
 
 // const router = new Router();
 
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};
-
+	router: Router;
+	private store: Store;
+	private authController: AuthController;
 	constructor() {
 		super({});
-		store.on(StoreEvents.Updated, () => {
-			this.setState(store.getState());
-		});
 
+		this.store = new Store();
+		this.authController = new AuthController();
+		this.store.on(StoreEvents.Updated, () => {
+			this.setState(this.store.getState());
+		});
 		this.setChildren({
 			button: new Button({
 				text: 'Регистрация', classes: 'btn_l', href: '', onSubmit: () => this.onSubmitHandler.call(this)
@@ -44,16 +50,23 @@ export class RegistrationPage extends Block {
 				validation: passwordValidation
 			}),
 		});
+		this.router = new Router();
+		this.store.on(StoreEvents.Updated, () => {
+			this.setState(this.store.getState());
+		});
 	}
 
-	onSubmitHandler() {
+	async onSubmitHandler() {
+		debugger;
 		getFormValues.apply(this);
-		const validationRes = onSubmitValidation(this.formValues, this.children);
-		if (validationRes) {
-		} else {
-			console.log('not valid');
+		const loginPageData = {
+			formValues: this.formValues,
+			children: this.children
+		};
+		const signedIn = await this.authController.signUp(loginPageData);
+		if (signedIn) {
+			this.router.go('/chat');
 		}
-
 	}
 
 	protected render(): string {
