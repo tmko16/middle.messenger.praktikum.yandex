@@ -121,7 +121,10 @@ export default class Block<P = any> {
 		if (!child) {
 			return;
 		}
-
+		/**
+		 * Мне нужно каким то образом сделать так, что бы если я передал детей именно массивом
+		 * я смог контент этого массива запихнуть в родительский тег
+		 */
 
 		Object.assign(this.children, child);
 	};
@@ -210,10 +213,6 @@ export default class Block<P = any> {
 	_addEvents() {
 		const events: Record<string, () => void> = (this.props as any).events;
 
-		// events: {
-		// 	click: alert(,
-		// }
-
 		if (!events) {
 			return;
 		}
@@ -224,10 +223,8 @@ export default class Block<P = any> {
 	}
 
 	_compile(): DocumentFragment {
+
 		const propsAndStubs: Record<string, any> = {...this.props};
-		if (Array.isArray(this.children)) {
-			console.log(this.children, 'это дети');
-		}
 		Object.entries(this.children).forEach(([key, child]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
 		});
