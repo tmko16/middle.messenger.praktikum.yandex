@@ -10,13 +10,19 @@ import {
 } from '../../utils/validators';
 import ProfileInput from '../../components/profileInput';
 import {getFormValues} from '../../utils/getFormValues';
-
+import AuthController from '../../controllers/authController';
+import {UserController} from '../../controllers/userController';
+import {Router} from '../../core/Router';
+const router = new Router();
 export class ProfilePageEdit extends Block {
 	private formValues: Record<string, string | number> = {};
+	private userController: UserController;
+
 
 	constructor() {
 		const avatar = new AvatarEditable();
 		super({avatar});
+		this.userController = new UserController();
 		this.setChildren({
 			saveButton: new Button({
 				classes: 'btn_l',
@@ -75,10 +81,16 @@ export class ProfilePageEdit extends Block {
 
 	}
 
-	onSubmitHandler() {
+	async onSubmitHandler() {
 		getFormValues.apply(this);
-		onSubmitValidation(this.formValues, this.children);
-		console.log(this.formValues);
+		const profilePageData = {
+			formValues: this.formValues,
+			children: this.children
+		};
+		const changedData = await this.userController.changeProfileData(profilePageData);
+		if (changedData) {
+			router.go('/profilePage');
+		}
 	}
 
 	protected render(): string {

@@ -34,10 +34,6 @@ export class ChatPage extends Block {
 	}
 	async componentDidMount() {
 		await this.chatController.getChats();
-		const chats = this.props.user.chats.map((chat: DialogProps) => {
-			return new Dialog(chat);
-		});
-		this.setChildren({dialogList: new DialogList(chats)});
 	}
 
 	protected render(): string {
