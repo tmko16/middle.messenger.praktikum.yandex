@@ -64,7 +64,7 @@ export class RegistrationPage extends Block {
 		};
 		const signedUp = await this.authController.signUp(loginPageData);
 		if (signedUp) {
-			this.router.go('/chat');
+			this.router.go('/messenger');
 		}
 	}
 

@@ -52,7 +52,7 @@ export class LoginPage extends Block {
 		};
 		const signedIn = await this.authController.signIn(loginPageData);
 		if (signedIn) {
-			this.router.go('/chat');
+			this.router.go('/messenger');
 		}
 	}
 

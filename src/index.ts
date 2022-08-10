@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded',
 		router.use('/', LoginPage as unknown as Block);
 		router.use('/registration', RegistrationPage as unknown as Block);
 		router.use('/profilePage', ProfilePage as unknown as Block);
-		router.use('/profileEdit', ProfilePageEdit as unknown as Block);
+		router.use('/settings', ProfilePageEdit as unknown as Block);
 		router.use('/changePassword', ChangePassword as unknown as Block);
-		router.use('/chat', ChatPage as unknown as Block);
+		router.use('/messenger', ChatPage as unknown as Block);
 		router.start();
 	});
