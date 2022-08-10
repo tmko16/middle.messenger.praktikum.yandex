@@ -1,0 +1,1 @@
+export {DialogList as default} from './dialogList';

@@ -10,6 +10,7 @@ import AuthController from '../../controllers/authController';
 import Store, {StoreEvents} from '../../core/Store';
 import ChatController from '../../controllers/chatController';
 import {DialogProps} from '../../components/dialog/dialog';
+import DialogList from '../../components/dialogList';
 
 export class ChatPage extends Block {
 	router: Router;
@@ -28,19 +29,15 @@ export class ChatPage extends Block {
 		this.chatController = new ChatController();
 		this.router = new Router();
 		this.store.on(StoreEvents.Updated, () => {
-			console.log('=>(chatPage.ts:43) this.store.getState', this.store.getState());
 			this.setProps(this.store.getState());
 		});
 	}
 	async componentDidMount() {
-		console.log('Компонент манта');
 		await this.chatController.getChats();
-
-		console.log('=>(chatPage.ts:38) this.props', this.props);
-		this.props.user.chats.forEach((chat: DialogProps) => {
-			const dialog = new Dialog(chat);
+		const chats = this.props.user.chats.map((chat: DialogProps) => {
+			return new Dialog(chat);
 		});
-
+		this.setChildren({dialogList: new DialogList(chats)});
 	}
 
 	protected render(): string {
@@ -55,7 +52,7 @@ export class ChatPage extends Block {
                         {{{searchBar}}}
                     </div>
                     <div class="chat__dialogs">
-<!--                        {{{ dialog }}}-->
+						{{{dialogList}}}
                     </div>
                 </div>
                 <div class="chat__main">

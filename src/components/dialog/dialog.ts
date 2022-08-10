@@ -23,7 +23,7 @@ export class Dialog extends Block {
 	protected render(): string {
 		//language=hbs
 		return `
-            <div class="dialog">
+            <li class="dialog">
                 <div class="dialog__avatar">
                     <img src="{{ avatar }}" alt="">
                 </div>
@@ -43,7 +43,7 @@ export class Dialog extends Block {
                         <span> {{ msgCount }}</span>
                     </div>
                 </div>
-            </div>
+            </li>
         `;
 	}
 }

@@ -20,7 +20,7 @@ export default class Block<P = any> {
 
 	protected _element: HTMLElement | null = null;
 	protected readonly props: P;
-	 children: { [id: string]: Block } = {};
+	children: { [id: string]: Block } = {};
 
 	eventBus: () => EventBus;
 
@@ -109,6 +109,10 @@ export default class Block<P = any> {
 		if (!nextProps) {
 			return;
 		}
+		if (Array.isArray(nextProps)) {
+			console.log('=>(Block.ts:122)  - Тут чисто дети массив', nextProps);
+			console.log('=>(Block.ts:124) this', this);
+		}
 
 		Object.assign(this.props, nextProps);
 	};
@@ -117,6 +121,7 @@ export default class Block<P = any> {
 		if (!child) {
 			return;
 		}
+
 
 		Object.assign(this.children, child);
 	};
@@ -135,7 +140,7 @@ export default class Block<P = any> {
 
 	_render() {
 		const fragment = this._compile();
-
+		// Может тут сделать кучу аппендов?
 		this._removeEvents();
 		const newElement = fragment.firstElementChild!;
 		this._element!.replaceWith(newElement);
@@ -147,7 +152,7 @@ export default class Block<P = any> {
 		return '';
 	}
 
-	getContent(): HTMLElement  {
+	getContent(): HTMLElement {
 		// Хак, чтобы вызвать CDM только после добавления в DOM
 		if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
 			setTimeout(() => {
@@ -220,6 +225,9 @@ export default class Block<P = any> {
 
 	_compile(): DocumentFragment {
 		const propsAndStubs: Record<string, any> = {...this.props};
+		if (Array.isArray(this.children)) {
+			console.log(this.children, 'это дети');
+		}
 		Object.entries(this.children).forEach(([key, child]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
 		});
