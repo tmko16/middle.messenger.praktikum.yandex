@@ -27,4 +27,19 @@ export class UserController {
 			return false;
 		}
 	}
+	async changePassword(credentials:any) {
+		if (onSubmitValidation(credentials.formValues, credentials.children)) {
+			await this.userApi.changePassword(credentials.formValues);
+			const state = this.store.getState();
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			if (state.user.profile.changed) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 }

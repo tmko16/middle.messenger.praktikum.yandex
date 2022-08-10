@@ -6,11 +6,17 @@ import Link from '../../components/link';
 import {onSubmitValidation, passwordValidation} from '../../utils/validators';
 import Button from '../../components/button';
 import {getFormValues} from '../../utils/getFormValues';
+import {UserController} from '../../controllers/userController';
+import {Router} from '../../core/Router';
+
+const router = new Router();
 
 export class ChangePassword extends Block {
 	private formValues: Record<string, string | number> = {};
+	private userController: UserController;
 
 	constructor() {
+
 		const fields = {
 			oldPassword: new ProfileInput({
 				isEdit: true,
@@ -39,6 +45,7 @@ export class ChangePassword extends Block {
 		};
 		const backLink = new Link({text: 'Профиль', to: 'profilePage'});
 		super({...fields, backLink});
+		this.userController = new UserController();
 		this.setChildren({
 			saveButton: new Button({
 				classes: 'btn_l',
@@ -48,10 +55,17 @@ export class ChangePassword extends Block {
 			}),
 		});
 	}
-	onSubmitHandler() {
+
+	async onSubmitHandler() {
 		getFormValues.apply(this);
-		console.log(this);
-		onSubmitValidation(this.formValues, this.children);
+		const credentials = {
+			formValues: this.formValues,
+			children: this.children
+		};
+		const changedData = await this.userController.changePassword(credentials);
+		if (changedData) {
+			router.go('/profilePage');
+		}
 	}
 
 	protected render(): string {
@@ -90,6 +104,6 @@ export class ChangePassword extends Block {
                     </div>
                 </div>
             </div>
-        `;
+		`;
 	}
 }

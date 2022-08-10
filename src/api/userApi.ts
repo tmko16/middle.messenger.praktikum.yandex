@@ -15,6 +15,11 @@ class UserApi {
 		this.store.set('user.profile.changed', response.response);
 		this.store.emit(StoreEvents.Updated);
 	}
+	async changePassword(credentials: any) {
+		const response = await this.api.put('/user/password', {data: credentials, headers: {'Content-Type': 'application/json'}});
+		this.store.set('user.profile.changed', response.response);
+		this.store.emit(StoreEvents.Updated);
+	}
 }
 
 export default UserApi;
