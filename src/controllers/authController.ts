@@ -48,6 +48,12 @@ class AuthController {
 		}
 	}
 
+	logOut() {
+		this.authApi.logOut().then(r => {
+			console.log('вот и вышли');
+		});
+	}
+
 
 
 }

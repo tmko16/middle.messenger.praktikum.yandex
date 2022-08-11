@@ -4,19 +4,23 @@ import Link from '../../components/link';
 import './profilePage.less';
 
 import ProfileInput from '../../components/profileInput';
+import authController from '../../controllers/authController';
+import AuthController from '../../controllers/authController';
 
 export class ProfilePage extends Block {
+	private authController: AuthController;
 
 	constructor() {
 		const avatar = new AvatarProfile();
 		const links = {
 			changeData: new Link({text: 'Изменить данные', to: 'settings'}),
 			changePassword: new Link({text: 'Изменить пароль', to: 'changePassword'}),
-			logOut: new Link({text: 'Выйти', to: '#'}),
+			logOut: new Link({text: 'Выйти', to: '#', onClick: () => this.logOutHandler.call(this)}),
 			backLink: new Link({text: 'К чатам', to: 'messenger'})
 		};
-		super({avatar, ...links});
 
+		super({avatar, ...links});
+		this.authController = new authController();
 		this.setChildren({
 			email: new ProfileInput({
 				label: 'Почта',
@@ -56,7 +60,9 @@ export class ProfilePage extends Block {
 			}),
 		});
 	}
-
+	logOutHandler() {
+		this.authController.logOut();
+	}
 	protected render(): string {
 		//language=hbs
 		return `
