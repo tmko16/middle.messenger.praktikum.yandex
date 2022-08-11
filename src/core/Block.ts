@@ -218,22 +218,29 @@ export default class Block<P = any> {
 	}
 
 	_compile(): DocumentFragment {
-
+		/**
+		 * есть компонент диалог лист - он главный.
+		 * мне надо сделать так - дать ему через детей массив дочек которые нужно склеить
+		 * пройтись по этим детям и нафигачить для каждого свою заглушку.
+		 */
 		const propsAndStubs: Record<string, any> = {...this.props};
 		Object.entries(this.children).forEach(([key, child]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+
 			if (Array.isArray(child)) {
 				const multiValues: string[] = [];
 				Object.values(child).forEach((c) => {
 					propsAndStubs[c.id] = c;
-					multiValues.push(`<div id="id-${c.id}"></div>`);
+					multiValues.push(`<div data-id="${c.id}"></div>`);
 				});
 				if (multiValues.length) {
 					propsAndStubs[key] = multiValues.join('');
 				}
 			}
 		});
+		console.log(propsAndStubs, 'propsAndStubs');
 		const fragment = document.createElement('template');
+		console.log(fragment);
 		/**
 		 * Рендерим шаблон
 		 */
@@ -243,22 +250,41 @@ export default class Block<P = any> {
 			children: this.children,
 			refs: this.refs, ...propsAndStubs
 		});
+		console.log(fragment.innerHTML, 'fragment.innerHTML');
+		console.log(this);
 		/**
 		 * Заменяем заглушки на компоненты
 		 */
 
 		Object.entries(this.children).forEach(([id, component]) => {
+			console.log(id, component, 'Замена заглушек');
+			// TODO: переписать корректным образом.
+			if(Array.isArray(component)) {
+				component.forEach(c => {
+					const stub = fragment.content.querySelector(`[data-id="${c.id}"]`);
+					if (!stub) {
+						return;
+					}
+					/**
+					 * Заменяем заглушку на component._element
+					 */
+					const content = c.getContent();
+					stub.replaceWith(content);
+				});
+			}
+			/**
+			 * Нужно сделать проверку - если компонент является массивом - то пройтись по каждому элементу
+			 * массива и сделать все то что ниже.
+			 */
 			/**
 			 * Ищем заглушку по id
 			 */
-			console.log(id, component, propsAndStubs);
 			const stub = fragment.content.querySelector(`[data-id="${component.id}"]`);
-
 			if (!stub) {
 				return;
 			}
 
-			const stubChilds = stub.childNodes.length ? stub.childNodes : [];
+			// const stubChilds = stub.childNodes.length ? stub.childNodes : [];
 
 			/**
 			 * Заменяем заглушку на component._element
@@ -269,10 +295,10 @@ export default class Block<P = any> {
 			/**
 			 * Ищем элемент layout-а, куда вставлять детей
 			 */
-			const layoutContent = (content as HTMLElement).querySelector('[data-layout="1"]');
-			if (layoutContent && stubChilds.length) {
-				layoutContent.append(...stubChilds);
-			}
+			// const layoutContent = (content as HTMLElement).querySelector('[data-layout="1"]');
+			// if (layoutContent && stubChilds.length) {
+			// 	layoutContent.append(...stubChilds);
+			// }
 		});
 
 		/**
