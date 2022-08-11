@@ -19,12 +19,14 @@ export class ChatPage extends Block {
 	constructor() {
 		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});
 		const searchBar = new SearchBar();
+		const messenger = new Messenger();
+		const dialogList = new DialogList();
 
 		super({
 			searchBar,
-			// dialog,
-			// messenger,
-			profileLink
+			messenger,
+			profileLink,
+			dialogList
 		});
 		this.store = new Store();
 		this.chatController = new ChatController();
@@ -32,14 +34,6 @@ export class ChatPage extends Block {
 		this.store.on(StoreEvents.Updated, () => {
 			this.setProps(this.store.getState());
 		});
-	}
-	async componentDidMount() {
-		const res = await this.chatController.getChats();
-		const dialogs = res.map((dialog: any) => {
-			return new Dialog(dialog);
-		});
-		const dialogList = new DialogList({dialogs: dialogs});
-		this.setChildren({dialogList});
 	}
 
 	protected render(): string {
@@ -58,7 +52,7 @@ export class ChatPage extends Block {
                     </div>
                 </div>
                 <div class="chat__main">
-<!--                    {{{messenger}}}-->
+                    {{{messenger}}}
                 </div>
 
             </div>

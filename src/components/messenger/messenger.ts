@@ -15,16 +15,10 @@ type MessengerProps = {
 export class Messenger extends Block {
 	protected formValues: Record<string, string | number> = {};
 
-	constructor(props: MessengerProps) {
-		const messages = {
-			msg1: new Msg({classes: 'msg_my', message: 'некое сообщение, вполне себе может быть длинным.'}),
-			msg2: new Msg({
-				classes: 'msg_alien',
-				message: 'lorem200 должно было получиться но нет.  lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получиться но нет. lorem200 должно было получи'
-			})
-		};
+	constructor() {
+
 		const message = new FormInput({label: '', name: 'message', type: 'text'});
-		super({props, ...messages, message});
+		super({message});
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
 				onSubmit: this.onSubmitHandler.bind(this)
