@@ -19,6 +19,7 @@ export class ChatPage extends Block {
 	constructor() {
 		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});
 		const searchBar = new SearchBar();
+
 		super({
 			searchBar,
 			// dialog,
@@ -33,7 +34,13 @@ export class ChatPage extends Block {
 		});
 	}
 	async componentDidMount() {
-		await this.chatController.getChats();
+		const res = await this.chatController.getChats();
+		const dialogs = res.map((dialog: any) => {
+			return new Dialog(dialog);
+		});
+		console.log(dialogs);
+		this.setChildren({dialogs: dialogs});
+		console.log(this.children);
 	}
 
 	protected render(): string {

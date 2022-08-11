@@ -1,4 +1,3 @@
-import AuthApi from '../api/authApi';
 import Store from '../core/Store';
 import chatApi from '../api/chatApi';
 import ChatApi from '../api/chatApi';
@@ -13,11 +12,11 @@ class ChatController {
 	}
 
 	async getChats() {
-		const chats = await this.chatApi.getChats();
-		return chats;
-
+		const res = await this.chatApi.getChats();
+		return JSON.parse(res.response);
 	}
 
 
 }
+
 export default ChatController;
