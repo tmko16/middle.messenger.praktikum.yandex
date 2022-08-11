@@ -2,15 +2,17 @@ import Block from '../../core/Block';
 
 export class DialogList extends Block {
 
-	constructor(chats: any) {
+	constructor(dialogs: any) {
 		super();
-		this.setChildren(chats);
+		this.setChildren(dialogs);
+		console.log(dialogs);
 	}
 
 	protected render(): string {
 		//language=hbs
 		return `
             <div class="dialog-list">
+				{{{dialogs}}}
             </div>
 		`;
 	}

@@ -38,9 +38,8 @@ export class ChatPage extends Block {
 		const dialogs = res.map((dialog: any) => {
 			return new Dialog(dialog);
 		});
-		console.log(dialogs);
-		this.setChildren({dialogs: dialogs});
-		console.log(this.children);
+		const dialogList = new DialogList({dialogs: dialogs});
+		this.setChildren({dialogList});
 	}
 
 	protected render(): string {

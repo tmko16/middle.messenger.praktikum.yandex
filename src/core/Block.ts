@@ -109,11 +109,6 @@ export default class Block<P = any> {
 		if (!nextProps) {
 			return;
 		}
-		if (Array.isArray(nextProps)) {
-			console.log('=>(Block.ts:122)  - Тут чисто дети массив', nextProps);
-			console.log('=>(Block.ts:124) this', this);
-		}
-
 		Object.assign(this.props, nextProps);
 	};
 
@@ -227,6 +222,16 @@ export default class Block<P = any> {
 		const propsAndStubs: Record<string, any> = {...this.props};
 		Object.entries(this.children).forEach(([key, child]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+			if (Array.isArray(child)) {
+				const multiValues: string[] = [];
+				Object.values(child).forEach((c) => {
+					propsAndStubs[c.id] = c;
+					multiValues.push(`<div id="id-${c.id}"></div>`);
+				});
+				if (multiValues.length) {
+					propsAndStubs[key] = multiValues.join('');
+				}
+			}
 		});
 		const fragment = document.createElement('template');
 		/**
@@ -242,11 +247,11 @@ export default class Block<P = any> {
 		 * Заменяем заглушки на компоненты
 		 */
 
-		// Object.entries(this.children).forEach(([id, component]) => {
 		Object.entries(this.children).forEach(([id, component]) => {
 			/**
 			 * Ищем заглушку по id
 			 */
+			console.log(id, component, propsAndStubs);
 			const stub = fragment.content.querySelector(`[data-id="${component.id}"]`);
 
 			if (!stub) {
