@@ -15,6 +15,7 @@ import Block from './core/Block';
 import IndexPage from './pages/indexPage';
 import HTTPTransport from './core/HTTPTransport';
 import Store from './core/Store';
+import DialogList from './components/dialogList';
 
 /**
  * Заметка для проверяющего.

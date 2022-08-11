@@ -238,9 +238,7 @@ export default class Block<P = any> {
 				}
 			}
 		});
-		console.log(propsAndStubs, 'propsAndStubs');
 		const fragment = document.createElement('template');
-		console.log(fragment);
 		/**
 		 * Рендерим шаблон
 		 */
@@ -250,14 +248,11 @@ export default class Block<P = any> {
 			children: this.children,
 			refs: this.refs, ...propsAndStubs
 		});
-		console.log(fragment.innerHTML, 'fragment.innerHTML');
-		console.log(this);
 		/**
 		 * Заменяем заглушки на компоненты
 		 */
 
 		Object.entries(this.children).forEach(([id, component]) => {
-			console.log(id, component, 'Замена заглушек');
 			// TODO: переписать корректным образом.
 			if(Array.isArray(component)) {
 				component.forEach(c => {

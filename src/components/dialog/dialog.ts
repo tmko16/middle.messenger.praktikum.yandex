@@ -12,12 +12,13 @@ export type DialogProps = {
 
 export class Dialog extends Block {
 	constructor(props: DialogProps) {
+		console.log(props);
 		super({
 			...props, events: {
+				// click: props.onClick
 				click: props.onClick
 			}
 		});
-
 	}
 
 	protected render(): string {
@@ -29,10 +30,10 @@ export class Dialog extends Block {
                 </div>
                 <div class="dialog__main">
                     <div class="dialog__name">
-                        {{ name }}
+                        {{ title }}
                     </div>
                     <div class="dialog__last-msg">
-                        {{ lastMsg }}
+                        {{ last_message }}
                     </div>
                 </div>
                 <div class="dialog__info">
@@ -40,7 +41,7 @@ export class Dialog extends Block {
                         {{ lastMsgTime }}
                     </div>
                     <div class="dialog__msg-count">
-                        <span> {{ msgCount }}</span>
+                        <span> {{ unread_count }}</span>
                     </div>
                 </div>
             </div>
