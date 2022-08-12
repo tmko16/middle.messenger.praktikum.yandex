@@ -21,3 +21,8 @@ export enum AuthStatus {
 	Ok = 'OK',
 	NotOk =  'NOT OK'
 }
+
+export enum Authorised {
+	Y='1',
+	N='0'
+}

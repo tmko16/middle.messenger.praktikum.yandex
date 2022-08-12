@@ -16,6 +16,7 @@ import IndexPage from './pages/indexPage';
 import HTTPTransport from './core/HTTPTransport';
 import Store from './core/Store';
 import DialogList from './components/dialogList';
+import {Authorised} from './types';
 
 /**
  * Заметка для проверяющего.
@@ -29,6 +30,11 @@ document.addEventListener('DOMContentLoaded',
 	() => {
 
 		const router = new Router();
+		const store = new Store();
+		console.log(localStorage);
+		if (localStorage.getItem('authorised') === Authorised.Y) {
+			router.go('messenger');
+		}
 		router.use('/', LoginPage as unknown as Block);
 		router.use('/registration', RegistrationPage as unknown as Block);
 		router.use('/profilePage', ProfilePage as unknown as Block);

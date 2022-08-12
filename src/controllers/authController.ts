@@ -3,7 +3,7 @@ import Store from '../core/Store';
 import Block from '../core/Block';
 import LoginPage from '../pages/login';
 import {formValidators, onSubmitValidation} from '../utils/validators';
-import {AuthStatus} from '../types';
+import {Authorised, AuthStatus} from '../types';
 
 class AuthController {
 	private authApi: AuthApi;
@@ -19,8 +19,10 @@ class AuthController {
 			await this.authApi.signIn(loginPageData.formValues);
 			const state = this.store.getState();
 			if (state.auth === AuthStatus.Ok) {
+				localStorage.setItem('authorised', Authorised.Y);
 				return true;
 			} else {
+				localStorage.setItem('authorised', Authorised.N);
 				return false;
 			}
 		} else {
@@ -50,7 +52,7 @@ class AuthController {
 
 	logOut() {
 		this.authApi.logOut().then(r => {
-			console.log('вот и вышли');
+			localStorage.setItem('authorised', Authorised.N);
 		});
 	}
 
