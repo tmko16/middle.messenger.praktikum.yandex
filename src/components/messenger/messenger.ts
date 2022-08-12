@@ -16,7 +16,6 @@ export class Messenger extends Block {
 	protected formValues: Record<string, string | number> = {};
 
 	constructor() {
-
 		const message = new FormInput({label: '', name: 'message', type: 'text'});
 		super({message});
 		this.setChildren({
@@ -29,7 +28,6 @@ export class Messenger extends Block {
 	onSubmitHandler() {
 		getFormValues.apply(this);
 		onSubmitValidation(this.formValues, this.children);
-		console.log(this.formValues);
 	}
 
 	protected render(): string {
@@ -49,8 +47,6 @@ export class Messenger extends Block {
 
                 </div>
                 <div class="msg-area__chat">
-                    {{{msg1}}}
-                    {{{msg2}}}
                 </div>
                 <div class="msg-area__msg-sender">
                     <div class="msg-area__attach">

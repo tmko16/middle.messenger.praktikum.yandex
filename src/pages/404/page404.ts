@@ -6,7 +6,7 @@ export class Page404 extends Block {
 	constructor() {
 		super();
 		this.setChildren({
-			backLink: new Link({text: 'Назад к чатам', to: 'index'})
+			backLink: new Link({text: 'Назад к чатам', to: '/'})
 		});
 	}
 
