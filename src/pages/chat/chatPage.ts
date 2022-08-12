@@ -34,6 +34,7 @@ export class ChatPage extends Block {
 		this.store.on(StoreEvents.Updated, () => {
 			this.setProps(this.store.getState());
 		});
+		console.log(this.store.getState());
 	}
 
 	protected render(): string {

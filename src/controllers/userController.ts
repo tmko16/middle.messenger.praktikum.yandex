@@ -27,7 +27,8 @@ export class UserController {
 			return false;
 		}
 	}
-	async changePassword(credentials:any) {
+
+	async changePassword(credentials: any) {
 		if (onSubmitValidation(credentials.formValues, credentials.children)) {
 			await this.userApi.changePassword(credentials.formValues);
 			const state = this.store.getState();
@@ -41,5 +42,9 @@ export class UserController {
 		} else {
 			return false;
 		}
+	}
+
+	searchUser(login: string) {
+		this.userApi.searchUser(login);
 	}
 }
