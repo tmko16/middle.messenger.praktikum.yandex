@@ -2,7 +2,7 @@ import Block from '../../core/Block';
 import './btn.less';
 
 type ButtonProps = {
-    href: string,
+    href?: string,
     text: string,
     classes?: string,
     onSubmit?: () => void | undefined
