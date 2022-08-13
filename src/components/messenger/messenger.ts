@@ -18,7 +18,6 @@ export class Messenger extends Block {
 	private store: Store;
 
 	constructor() {
-
 		const message = new FormInput({label: '', name: 'message', type: 'text'});
 		super({message});
 		this.store = new Store();

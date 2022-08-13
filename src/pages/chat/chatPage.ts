@@ -11,22 +11,26 @@ import Store, {StoreEvents} from '../../core/Store';
 import ChatController from '../../controllers/chatController';
 import {DialogProps} from '../../components/dialog/dialog';
 import DialogList from '../../components/dialogList';
+import Modal from '../../components/modal/modal';
 
 export class ChatPage extends Block {
 	router: Router;
 	private store: Store;
 	private chatController: ChatController;
+
 	constructor() {
 		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});
 		const searchBar = new SearchBar();
 		const messenger = new Messenger();
 		const dialogList = new DialogList();
+		const modal = new Modal();
 
 		super({
 			searchBar,
 			messenger,
 			profileLink,
-			dialogList
+			dialogList,
+			modal
 		});
 		this.store = new Store();
 		this.chatController = new ChatController();
@@ -48,14 +52,14 @@ export class ChatPage extends Block {
                         {{{searchBar}}}
                     </div>
                     <div class="chat__dialogs">
-						{{{dialogList}}}
+                        {{{dialogList}}}
                     </div>
                 </div>
                 <div class="chat__main">
                     {{{messenger}}}
                 </div>
-
+                {{{modal}}}
             </div>
-        `;
+		`;
 	}
 }
