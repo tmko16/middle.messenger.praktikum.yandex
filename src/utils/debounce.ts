@@ -1,12 +1,13 @@
 export function debounce(func:any, timeout = 3000){
-	let timer:any;
+	let timer:any = undefined;
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	return (...args) => {
+		console.log(...args);
 		if (!timer) {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
-			func.apply(this, args);
+			func.apply(args[0]);
 		}
 		clearTimeout(timer);
 		timer = setTimeout(() => {
@@ -14,3 +15,4 @@ export function debounce(func:any, timeout = 3000){
 		}, timeout);
 	};
 }
+

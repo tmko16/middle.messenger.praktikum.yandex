@@ -2,6 +2,8 @@ import AuthApi from '../api/authApi';
 import Store from '../core/Store';
 import {onSubmitValidation} from '../utils/validators';
 import UserApi from '../api/userApi';
+import {debounce} from '../utils/debounce';
+import throttle from '../utils/throttle';
 
 export class UserController {
 	private userApi: UserApi;
@@ -44,7 +46,13 @@ export class UserController {
 		}
 	}
 
-	searchUser(login: string) {
-		this.userApi.searchUser(login);
+	public searchUser(login: string) {
+		// eslint-disable-next-line @typescript-eslint/no-this-alias
+		const that = this;
+		setTimeout(function () {
+			that.userApi.searchUser(login);
+		}, 1000);
+
+
 	}
 }

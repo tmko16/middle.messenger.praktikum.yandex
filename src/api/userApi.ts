@@ -30,12 +30,11 @@ class UserApi {
 		this.store.emit(StoreEvents.Updated);
 	}
 	searchUser(login: string) {
-		this.api.post('/user/search', {data: {login}, headers: {'Content-Type': 'application/json'}}).then(response => {
-			debounce(() => {
-				this.store.set('user.searchUserResult', JSON.parse(response.response));
-				this.store.emit(StoreEvents.Updated);
-			});
+		this.api.post('/user/search', {data: {login}, headers: {'Content-Type': 'application/json'}}).then((response: any) => {
+			this.store.set('user.searchUserResult', JSON.parse(response.response));
+			this.store.emit(StoreEvents.Updated);
 		});
+
 
 	}
 }

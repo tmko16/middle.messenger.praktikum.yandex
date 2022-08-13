@@ -5,6 +5,7 @@ import SendMsgBtn from '../sendMsgBtn';
 import {getFormValues} from '../../utils/getFormValues';
 import Msg from '../msg';
 import FormInput from '../formInput';
+import Store, {StoreEvents} from '../../core/Store';
 
 type MessengerProps = {
 	name: string,
@@ -14,16 +15,23 @@ type MessengerProps = {
 
 export class Messenger extends Block {
 	protected formValues: Record<string, string | number> = {};
+	private store: Store;
 
 	constructor() {
+
 		const message = new FormInput({label: '', name: 'message', type: 'text'});
 		super({message});
+		this.store = new Store();
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
 				onSubmit: this.onSubmitHandler.bind(this)
 			})
 		});
+		this.store.on(StoreEvents.Updated, () => {
+			console.log(this.store.getState(), 'я внутри мессенджера ');
+		});
 	}
+
 
 	onSubmitHandler() {
 		getFormValues.apply(this);
