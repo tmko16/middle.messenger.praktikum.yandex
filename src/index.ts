@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded',
 		if (localStorage.getItem('authorised') === Authorised.Y) {
 			router.go('messenger');
 		}
+		if (localStorage.getItem('authorised') === Authorised.N) {
+			router.go('/');
+		}
 		router.use('/', LoginPage as unknown as Block);
 		router.use('/registration', RegistrationPage as unknown as Block);
 		router.use('/profilePage', ProfilePage as unknown as Block);
