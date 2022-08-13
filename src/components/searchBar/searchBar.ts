@@ -15,7 +15,7 @@ export class SearchBar extends Block {
 		this.controller = new UserController();
 		this.setProps({
 			events: {
-				keyup: (e: any) => debounce(this.onKeyUp(e))
+				keyup: (e: any) => this.onKeyUp(e)
 			}
 		});
 	}
