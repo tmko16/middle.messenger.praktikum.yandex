@@ -12,7 +12,6 @@ export type DialogProps = {
 
 export class Dialog extends Block {
 	constructor(props: DialogProps) {
-		console.log(props);
 		super({
 			...props, events: {
 				// click: props.onClick
