@@ -9,7 +9,7 @@ type ButtonProps = {
 }
 
 export class Button extends Block {
-	constructor(props: { onSubmit: () => void; classes: string; text: string; href: string }) {
+	constructor(props: { onSubmit?: () => void; classes?: string; text?: string; href?: string }) {
 		super({
 			...props, events: {
 				click: props.onSubmit,
