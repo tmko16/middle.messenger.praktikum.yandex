@@ -54,4 +54,5 @@ export class UserController {
 		// }, 1000);
 		return this.userApi.searchUser(login);
 	}
+
 }

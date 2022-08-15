@@ -39,6 +39,17 @@ class ChatApi {
 			return JSON.parse(res.response);
 		}
 	}
+
+	async getChatToken(chatId: string) {
+		const res = await this.api.post(`/chats/token/${chatId}`, {
+			headers: {'Content-Type': 'application/json'}
+		});
+		if (res.status === 200) {
+			return JSON.parse(res.response);
+		}
+	}
+
+
 }
 
 export default ChatApi;
