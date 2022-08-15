@@ -19,7 +19,9 @@ export class ChatPage extends Block {
 	private chatController: ChatController;
 
 	constructor() {
-		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});
+		const profileLink = new Link({text: 'Профиль', to: 'profilePage', onClick: () => {
+			modal.openModal();
+		}});
 		const searchBar = new SearchBar();
 		const messenger = new Messenger();
 		const dialogList = new DialogList();

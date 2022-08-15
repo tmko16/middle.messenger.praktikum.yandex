@@ -1,21 +1,22 @@
 class ModalController {
-	private modalElement: Element | null;
+	public modalElement: HTMLElement | Element;
 
 	constructor() {
 		this.modalElement = document.getElementsByClassName('modal')[0];
 	}
 
-	openModal() {
+	public openModal() {
 		if (this.modalElement) {
-			(this.modalElement as HTMLLIElement).style.display = 'block';
+			(this.modalElement as HTMLElement).style.display = 'block';
 		}
 	}
 
-	closeModal() {
+	public closeModal() {
 		if (this.modalElement) {
-			(this.modalElement as HTMLLIElement).style.display = 'none';
+			(this.modalElement as HTMLElement).style.display = 'none';
 		}
 	}
+
 }
 
-export default new ModalController();
+export default ModalController;
