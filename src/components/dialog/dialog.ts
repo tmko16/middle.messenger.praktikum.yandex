@@ -2,12 +2,12 @@ import Block from '../../core/Block';
 import './dialog.less';
 
 export type DialogProps = {
-    id: string,
-    title: string,
-    avatar: string,
+	id: string,
+	title: string,
+	avatar: string,
 	last_message: string,
 	unread_count: number,
-    onClick?: () => void
+	onClick?: () => void
 }
 
 export class Dialog extends Block {
@@ -23,7 +23,7 @@ export class Dialog extends Block {
 	protected render(): string {
 		//language=hbs
 		return `
-            <div class="dialog">
+            <div class="dialog " data-chat-id={{{id}}}>
                 <div class="dialog__avatar">
                     <img src="{{ avatar }}" alt="">
                 </div>
@@ -44,6 +44,6 @@ export class Dialog extends Block {
                     </div>
                 </div>
             </div>
-        `;
+		`;
 	}
 }

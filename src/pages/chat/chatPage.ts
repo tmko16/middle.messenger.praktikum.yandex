@@ -25,6 +25,7 @@ export class ChatPage extends Block {
 		const dialogList = new DialogList();
 
 
+
 		super({
 			searchBar,
 			messenger,
