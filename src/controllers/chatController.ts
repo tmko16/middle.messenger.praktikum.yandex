@@ -1,4 +1,4 @@
-import Store from '../core/Store';
+import Store, {StoreEvents} from '../core/Store';
 import chatApi from '../api/chatApi';
 import ChatApi from '../api/chatApi';
 import {UserController} from './userController';
@@ -29,6 +29,12 @@ class ChatController {
 		const user = similarUsers.filter((user: any) => user.login === userName)[0];
 		const addUserToChat = await this.chatApi.addUserToChat(user.id, createdChat.id);
 		console.log(addUserToChat);
+	}
+
+	async  getChatToken(chatId: string) {
+		const token = await this.chatApi.getChatToken(chatId);
+		this.store.set('chatToken', token.token);
+		return token;
 	}
 
 

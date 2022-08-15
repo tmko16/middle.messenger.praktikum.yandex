@@ -16,7 +16,8 @@ class AuthController {
 
 	async signIn(loginPageData: any) {
 		if (onSubmitValidation(loginPageData.formValues, loginPageData.children)) {
-			await this.authApi.signIn(loginPageData.formValues);
+			const res = await this.authApi.signIn(loginPageData.formValues);
+			console.log(res, 'res authcontroller');
 			const state = this.store.getState();
 			if (state.auth === AuthStatus.Ok) {
 				localStorage.setItem('authorised', Authorised.Y);
@@ -54,6 +55,10 @@ class AuthController {
 		this.authApi.logOut().then(r => {
 			localStorage.setItem('authorised', Authorised.N);
 		});
+	}
+	async getUser() {
+		const res =  await this.authApi.getUser();
+		return res;
 	}
 
 

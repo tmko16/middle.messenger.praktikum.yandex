@@ -13,6 +13,7 @@ class AuthApi {
 	async signIn(formValues: any) {
 		const response = await this.api.post('/auth/signin', {data: formValues, headers: {'Content-Type': 'application/json'}});
 		this.store.set('auth', response.response);
+		await this.getUser();
 		this.store.emit(StoreEvents.Updated);
 	}
 	async signUp(formValues: any) {
@@ -22,8 +23,9 @@ class AuthApi {
 	}
 	async getUser() {
 		const response = await this.api.get('/auth/user', {  headers: {'Content-Type': 'application/json'}});
-		this.store.set('userData', JSON.parse(response.response));
-		this.store.emit(StoreEvents.Updated);
+		// this.store.set('userData', JSON.parse(response.response));
+		// this.store.emit(StoreEvents.Updated);
+		return JSON.parse(response.response);
 	}
 	async logOut() {
 		const response = await this.api.post('/auth/logout', {  headers: {'Content-Type': 'application/json'}});
