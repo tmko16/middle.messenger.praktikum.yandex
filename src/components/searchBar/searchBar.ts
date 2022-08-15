@@ -33,7 +33,8 @@ export class SearchBar extends Block {
 			events: {
 				keyup: (e: any) => {
 					if (e.target.name === 'search-chat') {
-						this.onKeyUp(e);
+						console.log('Поиск в чате');
+						// this.onKeyUp(e);
 					}
 				}
 			}
@@ -42,7 +43,7 @@ export class SearchBar extends Block {
 	}
 
 	onKeyUp(e: any) {
-		this.controller.searchUser(e.target.value);
+		// this.controller.searchUser(e.target.value);
 	}
 
 	protected render() {

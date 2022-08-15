@@ -3,16 +3,19 @@ import './addChat.less';
 import FormInput from '../formInput';
 import Store, {StoreEvents} from '../../core/Store';
 import Button from '../button';
+import ChatController from '../../controllers/chatController';
 
 export class AddChat extends Block {
 	private store: Store;
 	private chatName = '';
 	private chatUserName = '';
+	private chatController: ChatController;
 
 	constructor(props: any) {
 		super({
 			...props
 		});
+		this.chatController = new ChatController();
 		this.store = new Store();
 		this.store.on(StoreEvents.Updated, () => {
 			this.setProps(this.store.getState());
@@ -26,7 +29,7 @@ export class AddChat extends Block {
 		});
 		const okBtn = new Button({
 			text: 'Добавить', onSubmit: () => {
-				console.log(this, 'это адд чат кнопки ОК');
+				this.addChatAndUser();
 			}
 		});
 		const searchUser = new FormInput({
@@ -38,6 +41,13 @@ export class AddChat extends Block {
 		});
 		this.setChildren({
 			chatName, okBtn, searchUser
+		});
+	}
+
+	addChatAndUser() {
+		console.log(this);
+		this.chatController.addChatAndUser(this.chatName, this.chatUserName).then(res => {
+			console.log(res);
 		});
 	}
 

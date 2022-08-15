@@ -16,6 +16,29 @@ class ChatApi {
 		// this.store.set('user.chats', JSON.parse(response.response));
 		// this.store.emit(StoreEvents.Updated);
 	}
+
+	async createChat(chatTitle: string) {
+		const res = await this.api.post('/chats', {
+			headers: {'Content-Type': 'application/json'}, data: {
+				'title': chatTitle
+			}
+		});
+		if (res.status === 200) {
+			return JSON.parse(res.response);
+		}
+	}
+
+	async addUserToChat(userId: string, chatId: string) {
+		const res = await this.api.put('/chats/users', {
+			headers: {'Content-Type': 'application/json'}, data: {
+				'users': [userId],
+				'chatId': chatId
+			}
+		});
+		if (res.status === 200) {
+			return JSON.parse(res.response);
+		}
+	}
 }
 
 export default ChatApi;

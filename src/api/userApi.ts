@@ -29,13 +29,15 @@ class UserApi {
 		this.store.set('user.profile.changed', response.response);
 		this.store.emit(StoreEvents.Updated);
 	}
-	searchUser(login: string) {
-		this.api.post('/user/search', {data: {login}, headers: {'Content-Type': 'application/json'}}).then((response: any) => {
-			this.store.set('user.searchUserResult', JSON.parse(response.response));
-			this.store.emit(StoreEvents.Updated);
-		});
-
-
+	async searchUser(login: string) {
+		// this.api.post('/user/search', {data: {login}, headers: {'Content-Type': 'application/json'}}).then((response: any) => {
+		// 	this.store.set('user.searchUserResult', JSON.parse(response.response));
+		// 	this.store.emit(StoreEvents.Updated);
+		// });
+		const res = await this.api.post('/user/search', {data: {login}, headers: {'Content-Type': 'application/json'}});
+		if (res.status === 200) {
+			return JSON.parse(res.response);
+		}
 	}
 }
 
