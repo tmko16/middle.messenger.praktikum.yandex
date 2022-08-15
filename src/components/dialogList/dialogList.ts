@@ -22,7 +22,7 @@ export class DialogList extends Block {
 		const dialogs = res.map((dialog: any) => {
 			return new Dialog({
 				...dialog, onClick: (e: any) => {
-					this.store.set('selectedChat', e.target.dataset.chatId);
+					this.store.set('selectedChat', e.currentTarget.dataset.chatId);
 					this.store.emit(StoreEvents.Updated);
 				}
 			});

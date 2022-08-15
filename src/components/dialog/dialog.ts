@@ -23,7 +23,7 @@ export class Dialog extends Block {
 	protected render(): string {
 		//language=hbs
 		return `
-            <div class="dialog " data-chat-id={{{id}}}>
+            <div class="dialog" data-chat-id={{{id}}}>
                 <div class="dialog__avatar">
                     <img src="{{ avatar }}" alt="">
                 </div>
