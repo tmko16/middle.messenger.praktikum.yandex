@@ -23,7 +23,7 @@ export class ChatPage extends Block {
 		const searchBar = new SearchBar();
 		const messenger = new Messenger();
 		const dialogList = new DialogList();
-		const modal = new Modal();
+		const modal = new Modal({block: Link, context: {text:'ntcn', to: 'fdsdfds'}});
 
 		super({
 			searchBar,

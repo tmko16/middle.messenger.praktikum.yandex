@@ -4,15 +4,15 @@ import mController from './modalController';
 import './modal.less';
 import Button from '../button';
 
+
 class Modal extends Block {
 	private store: Store;
 
-	//TODO: удалить эни
-	constructor(props: any) {
+	constructor(props: { block: any, context: Record<string, unknown> }) {
 
-		const content = props &&  props.modalContent ? new props.modalContent() : '';
+		const modalContent = new props.block(props.context);
 		const closeBtn = new Button({text: 'Закрыть ❌'});
-		super({closeBtn, content});
+		super({closeBtn, modalContent});
 		this.store = new Store();
 	}
 
@@ -20,13 +20,12 @@ class Modal extends Block {
 		//language=hbs
 		return `
             <div class="modal">
-               
+
                 <div class="modal_content">
                     <div class="modal__close-btn">
                         {{{closeBtn}}}
                     </div>
-<!--                     Тут контент-->
-					{{{content}}}
+                    {{{modalContent}}}
                 </div>
             </div>
 		`;
