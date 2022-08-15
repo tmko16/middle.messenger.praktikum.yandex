@@ -8,6 +8,7 @@ import FormInput from '../formInput';
 import Store, {StoreEvents} from '../../core/Store';
 import {Indexed} from '../../types';
 import store from '../../core/Store';
+import ChatDialog from '../chatDialog';
 
 type MessengerProps = {
 	name: string,
@@ -18,26 +19,27 @@ type MessengerProps = {
 export class Messenger extends Block {
 	protected formValues: Record<string, string | number> = {};
 	private store: Store;
-	private currentChat: unknown;
+	public currentChat: unknown;
 
 	constructor() {
-		
+
 		const message = new FormInput({label: '', name: 'message', type: 'text'});
 		super({message});
-		console.log(this);
 		this.store = new Store();
+		const chatDialog = new ChatDialog({
+			data: this
+		});
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
 				onSubmit: this.onSubmitHandler.bind(this)
-			})
+			}),
+			chatDialog
 		});
 		this.store.on(StoreEvents.Updated, () => {
 			// console.log(this.store.getState(), 'я внутри мессенджера ');
 			this.currentChat = this.store.getState().selectedChat;
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		});
-
-
 	}
 
 
@@ -47,10 +49,7 @@ export class Messenger extends Block {
 	}
 
 	protected render(): string {
-		console.log(this, 'vfvfvfvfvf');
-
 		if (!this.currentChat) {
-			console.log('попали сюда');
 			//language=hbs
 			return '<div class="no-chat"><p>Выберите чат из списка</p></div>';
 		}
@@ -70,6 +69,7 @@ export class Messenger extends Block {
 
                 </div>
                 <div class="msg-area__chat">
+                    {{{chatDialog}}}
                 </div>
                 <div class="msg-area__msg-sender">
                     <div class="msg-area__attach">

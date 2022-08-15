@@ -24,6 +24,7 @@ export class DialogList extends Block {
 				...dialog, onClick: (e: any) => {
 					this.store.set('selectedChat', e.currentTarget.dataset.chatId);
 					this.store.emit(StoreEvents.Updated);
+
 				}
 			});
 		});
