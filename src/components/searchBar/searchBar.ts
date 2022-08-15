@@ -15,11 +15,7 @@ export class SearchBar extends Block {
 
 	constructor() {
 		const modal = new Modal({
-			block: AddChat, context: {
-				text: 'ntcn', to: 'fdsdfds', events: {
-					click: () => console.log('test!')
-				}
-			}
+			block: AddChat, context: {}
 		});
 		const addNewChatButton = new Button({
 			classes: '',
@@ -36,10 +32,13 @@ export class SearchBar extends Block {
 		this.setProps({
 			events: {
 				keyup: (e: any) => {
-					this.onKeyUp(e);
+					if (e.target.name === 'search-chat') {
+						this.onKeyUp(e);
+					}
 				}
 			}
 		});
+		console.log(this.store);
 	}
 
 	onKeyUp(e: any) {
@@ -51,9 +50,10 @@ export class SearchBar extends Block {
 		return `
             <div class="search-bar-wrapper">
                 {{{addNewChatButton}}}
-                <input class="search-bar" type="search" name="search" placeholder="Поиск">
+                <input class="search-bar" type="search" name="search-chat" placeholder="Поиск">
                 {{{modal}}}
             </div>
+           
 		`;
 	}
 }

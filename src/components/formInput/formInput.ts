@@ -1,20 +1,27 @@
 import Block from '../../core/Block';
 
 import './formInput.less';
+import Store, {StoreEvents} from '../../core/Store';
 
 type FormInputProps = {
-    label: string,
-    type: string,
-    name: string,
-    validation?: (value: string) => string | undefined
+	label: string,
+	type: string,
+	name: string,
+	validation?: (value: string) => string | undefined
+	events?: any
 }
 
 export class FormInput extends Block {
 	private value: string | undefined = '';
 
+
 	constructor(props: FormInputProps) {
+		
+		
+
 		super({
 			...props, events: {
+				...props.events,
 				change: (e: Event) => {
 					this.value = (e.target as HTMLInputElement).value;
 					this.setProps({
@@ -29,9 +36,10 @@ export class FormInput extends Block {
 						this.errors = props.validation(this.value);
 						this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 					}
-				}
+				},
 			}
 		});
+
 
 
 	}
@@ -53,6 +61,6 @@ export class FormInput extends Block {
                 </div>
             </div>
 
-        `;
+		`;
 	}
 }
