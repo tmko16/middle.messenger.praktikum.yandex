@@ -19,20 +19,17 @@ export class ChatPage extends Block {
 	private chatController: ChatController;
 
 	constructor() {
-		const profileLink = new Link({text: 'Профиль', to: 'profilePage', onClick: () => {
-			modal.openModal();
-		}});
+		const profileLink = new Link({text: 'Профиль', to: 'profilePage' });
 		const searchBar = new SearchBar();
 		const messenger = new Messenger();
 		const dialogList = new DialogList();
-		const modal = new Modal({block: Link, context: {text:'ntcn', to: 'fdsdfds'}});
+
 
 		super({
 			searchBar,
 			messenger,
 			profileLink,
 			dialogList,
-			modal
 		});
 		this.store = new Store();
 		this.chatController = new ChatController();
