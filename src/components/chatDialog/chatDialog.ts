@@ -20,27 +20,11 @@ export class ChatDialog extends Block {
 		this.store = new Store();
 		this.store.on(StoreEvents.Updated, () => {
 			this.chatId = this.store.getState().selectedChat as string;
-			console.log(this.store);
 			this.setProps(this.store.getState());
-			this.connect();
 		});
 	}
 
-	async connect() {
-		const token = await this.chatController.getChatToken(this.chatId);
-		const userId = await this.authController.getUser();
-		console.log(this.chatId);
 
-
-		const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId.id}/${this.chatId}/${token.token}`);
-		socket.addEventListener('open', () => {
-			console.log('Соединение установлено');
-		});
-		socket.addEventListener('message', event => {
-			console.log('Получены данные', event.data);
-		});
-		this.socket = socket;
-	}
 
 	protected render(): string {
 

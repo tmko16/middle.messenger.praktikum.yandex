@@ -12,7 +12,7 @@ type FormInputProps = {
 }
 
 export class FormInput extends Block {
-	private value: string | undefined = '';
+	public value: string | undefined = '';
 
 
 	constructor(props: FormInputProps) {

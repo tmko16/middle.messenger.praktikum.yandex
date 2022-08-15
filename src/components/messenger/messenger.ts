@@ -9,6 +9,8 @@ import Store, {StoreEvents} from '../../core/Store';
 import {Indexed} from '../../types';
 import store from '../../core/Store';
 import ChatDialog from '../chatDialog';
+import ChatController from '../../controllers/chatController';
+import AuthController from '../../controllers/authController';
 
 type MessengerProps = {
 	name: string,
@@ -20,17 +22,32 @@ export class Messenger extends Block {
 	protected formValues: Record<string, string | number> = {};
 	private store: Store;
 	public currentChat: unknown;
+	private chatController: ChatController;
+	private authController: AuthController;
+	private ws: WebSocket | undefined;
 
 	constructor() {
 
 		const message = new FormInput({label: '', name: 'message', type: 'text'});
+
 		super({message});
+		this.chatController = new ChatController();
+		this.authController = new AuthController();
 		this.store = new Store();
 		const chatDialog = new ChatDialog({
 			data: this
 		});
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
+				// onSubmit: () => {
+				// 	this.onSubmitHandler.bind(this);
+				// 	// const input = document.querySelector('[name="message"]');
+				// 	// if (input) {
+				// 	// 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// 	// 	//@ts-ignore
+				// 	// 	input.value = '';
+				// 	// }
+				// }
 				onSubmit: this.onSubmitHandler.bind(this)
 			}),
 			chatDialog
@@ -38,14 +55,45 @@ export class Messenger extends Block {
 		this.store.on(StoreEvents.Updated, () => {
 			// console.log(this.store.getState(), 'я внутри мессенджера ');
 			this.currentChat = this.store.getState().selectedChat;
+			console.log(this.currentChat, 'currentChat');
+			this.connect();
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+
 		});
 	}
 
 
 	onSubmitHandler() {
 		getFormValues.apply(this);
-		onSubmitValidation(this.formValues, this.children);
+		console.log(this, 'handler');
+
+		const resValidation = onSubmitValidation(this.formValues, this.children);
+		const message = this.formValues.message;
+		if (this.ws) {
+			this.ws.send(JSON.stringify({
+				content: message,
+				type: 'message',
+			}));
+		}
+		const input = document.querySelector('[name="message"]');
+		if (input) {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			//@ts-ignore
+			input.value = '';
+		}
+	}
+
+	async connect() {
+		const token = await this.chatController.getChatToken(this.currentChat as string);
+		const userId = await this.authController.getUser();
+		const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId.id}/${this.currentChat}/${token.token}`);
+		socket.addEventListener('open', () => {
+			console.log('Соединение установлено');
+		});
+		socket.addEventListener('message', event => {
+			console.log('Получены данные', event.data);
+		});
+		this.ws = socket;
 	}
 
 	protected render(): string {
