@@ -11,6 +11,10 @@ import store from '../../core/Store';
 import ChatDialog from '../chatDialog';
 import ChatController from '../../controllers/chatController';
 import AuthController from '../../controllers/authController';
+import {MsgAreaAction} from '../msgAreaAction';
+import Modal from '../modal/modal';
+import AddChat from '../addChat';
+import {ChatActionMenu} from '../chatActionMenu';
 
 type MessengerProps = {
 	name: string,
@@ -36,10 +40,20 @@ export class Messenger extends Block {
 		this.authController = new AuthController();
 		this.store = new Store();
 		const chatDialog = new ChatDialog();
+		const actionModal = new Modal({
+			block: ChatActionMenu, context: {}
+		});
+		console.log(actionModal, 'actionModal');
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
 				onSubmit: this.onSubmitHandler.bind(this)
 			}),
+			msgAreaAction: new MsgAreaAction({
+				onClick: () => {
+					actionModal.openModal();
+				}
+			}),
+			actionModal,
 			chatDialog
 		});
 
@@ -138,11 +152,7 @@ export class Messenger extends Block {
                         <div class="msg-area__chat-name">{{name}}</div>
                         <div class="msg-area__was-online">{{wasOnline}}</div>
                     </div>
-                    <div class="msg-area__action-button">
-                        <div class="circle"></div>
-                        <div class="circle"></div>
-                        <div class="circle"></div>
-                    </div>
+                    {{{msgAreaAction}}}
 
                 </div>
                 <div class="msg-area__chat">
@@ -183,6 +193,7 @@ export class Messenger extends Block {
 
                     </div>
                 </div>
+				{{{actionModal}}}
             </div>
 		`;
 	}

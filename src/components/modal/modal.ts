@@ -10,15 +10,17 @@ class Modal extends Block {
 	modalElement: Element | null | undefined = null;
 
 	constructor(props: { block: any, context: Record<string, unknown> }) {
+		console.log(props.block.name, 'внутри модальки');
 		const modalContent = new props.block(props.context);
 		super({ modalContent});
 		const closeBtn = new Button({text: 'Закрыть', onSubmit: () => this.closeBtn()});
 		this.store = new Store();
 		this.setChildren({closeBtn});
+		this.setProps({contentName: props.block.name});
 	}
 
 	componentDidMount() {
-		this.modalElement = document.getElementsByClassName('modal')[0];
+		this.modalElement = document.getElementById(this.props.contentName);
 	}
 
 	public closeBtn() {
@@ -36,7 +38,7 @@ class Modal extends Block {
 	protected render(): string {
 		//language=hbs
 		return `
-            <div class="modal">
+            <div class="modal" id="{{{contentName}}}">
                 <div class="modal_content">
                     <div class="modal__close-btn">
                         {{{closeBtn}}}
