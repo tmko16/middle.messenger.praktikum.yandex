@@ -24,10 +24,16 @@ export class DialogList extends Block {
 				...dialog, onClick: (e: any) => {
 					this.store.set('selectedChat', e.currentTarget.dataset.chatId);
 					this.store.emit(StoreEvents.Updated);
+					this.clearChat.apply(this);
 				}
 			});
 		});
 		this.setChildren({dialogs});
+	}
+
+	clearChat() {
+		const chatWindow = 	document.querySelector('[role="chat-window"]');
+		if (chatWindow) chatWindow.innerHTML = '';
 	}
 
 	protected render(): string {
