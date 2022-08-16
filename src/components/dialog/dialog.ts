@@ -6,13 +6,14 @@ export type DialogProps = {
 	id: string,
 	title: string,
 	avatar: string,
-	last_message: string,
+	last_message: Record<string, unknown>,
 	unread_count: number,
 	onClick?: () => void
 }
 
 export class Dialog extends Block {
 	private store: Store;
+
 	constructor(props: DialogProps) {
 		super({
 			...props, events: {
@@ -20,9 +21,15 @@ export class Dialog extends Block {
 				click: props.onClick
 			}
 		});
+		console.log(props, 'диалог пропс!');
+		const avatar = props.avatar ? props.avatar : 'https://picsum.photos/200/300';
+
+		const last_message = props.last_message ? props.last_message.content : 'Нет сообщений';
+		const unread_count = props.last_message && props.last_message.unread_count ? props.last_message.unread_count : '0';
+		console.log(unread_count);
+		this.setProps({...props, last_message, avatar, unread_count});
 		this.store = new Store();
-		console.log(this.store, 'inside dialog');
-		
+
 	}
 
 	protected render(): string {
