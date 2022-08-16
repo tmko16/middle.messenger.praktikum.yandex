@@ -47,7 +47,8 @@ export class ChatPage extends Block {
 	protected render(): string {
 		//language=hbs
 		return `
-            <div class="chat">
+            <div class="chat-wrapper">
+				<div class="chat">
                 <div class="chat__sidebar">
                     <div class="chat__profile-link-container">
                         {{{profileLink}}}
@@ -63,6 +64,7 @@ export class ChatPage extends Block {
                     {{{messenger}}}
                 </div>
                 {{{modal}}}
+                </div>
             </div>
 		`;
 	}

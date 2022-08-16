@@ -32,7 +32,6 @@ class Route<P = any> {
 
 	leave() {
 		console.log('=>(Router.ts:35) this._block', this._block);
-
 		if (this._block) {
 			this._block.hide();
 		}
