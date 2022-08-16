@@ -81,7 +81,15 @@ export class Messenger extends Block {
 		});
 		socket.addEventListener('message', event => {
 			const content = JSON.parse(event.data);
-			(this.store.getState().refMsgWindow as HTMLElement).append(content.content);
+			const msg = document.createElement('div');
+			// eslint-disable-next-line no-constant-condition
+			if (1 + 1 === 2) {
+				msg.className = 'i-msg';
+			} else {
+				msg.className = 'o-msg';
+			}
+			msg.textContent = content.content;
+			(this.store.getState().refMsgWindow as HTMLElement).append(msg);
 		});
 
 		socket.addEventListener('close', event => {

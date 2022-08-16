@@ -11,7 +11,6 @@ export class ChatDialog extends Block {
 	private chatId = '';
 	private chatController: ChatController;
 	private authController: AuthController;
-	private socket: WebSocket | undefined;
 
 	constructor() {
 		super();
