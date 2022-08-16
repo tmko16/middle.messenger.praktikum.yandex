@@ -82,10 +82,10 @@ export class Messenger extends Block {
 			const content = JSON.parse(event.data);
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
-			const currentState = this.store.getState()?.dialog?.messages;
+			const currentState = this.store.getState()?.dialogMessages as Array;
 			const allMsg = currentState ?  currentState : [];
 			allMsg.push({...content});
-			this.store.set('dialog.messages', allMsg);
+			this.store.set('dialogMessages', allMsg);
 			this.store.emit(StoreEvents.Updated);
 		});
 
