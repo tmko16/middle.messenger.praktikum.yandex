@@ -6,6 +6,7 @@ import './profilePage.less';
 import ProfileInput from '../../components/profileInput';
 import authController from '../../controllers/authController';
 import AuthController from '../../controllers/authController';
+import {UserController} from '../../controllers/userController';
 
 export class ProfilePage extends Block {
 	private authController: AuthController;
@@ -22,47 +23,64 @@ export class ProfilePage extends Block {
 		super({avatar, ...links});
 		this.authController = new authController();
 		this.setChildren({
+
+
+		});
+	}
+	logOutHandler() {
+		this.authController.logOut();
+	}
+
+	async componentDidMount() {
+		const user = await this.authController.getUser();
+		console.log('=>(profilePage.ts:71) user', user);
+		this.setChildren({
 			email: new ProfileInput({
-				label: 'Почта',
-				name: 'email',
+				label: 'Почта ',
+				name: user.email,
 				type: 'text',
-				placeholder: 'akira-must-die@yandex.ru',
+				placeholder: user.email,
 				isEdit: false
 			}),
-			login: new ProfileInput({label: 'Логин', name: 'login', type: 'text', placeholder: 'setCadena', isEdit: false}),
+			login: new ProfileInput({
+				label: 'Логин',
+				name: 'login',
+				type: 'text',
+				placeholder: user.login,
+				isEdit: false
+			}),
 			first_name: new ProfileInput({
 				label: 'Имя',
 				name: 'first_name',
 				type: 'text',
-				placeholder: 'Сётару',
+				placeholder: user.first_name,
 				isEdit: false
 			}),
 			second_name: new ProfileInput({
 				label: 'Фамилия',
 				name: 'second_name',
 				type: 'text',
-				placeholder: 'Канеда',
+				placeholder: user.second_name,
 				isEdit: false
 			}),
 			displayName: new ProfileInput({
 				label: 'Имя в чате',
 				name: 'display_name',
 				type: 'text',
-				placeholder: 'Канеда С.',
+				placeholder: user.display_name,
 				isEdit: false
 			}),
 			phone: new ProfileInput({
 				label: 'Телефон',
 				name: 'phone',
 				type: 'text',
-				placeholder: '89222229929',
+				placeholder: user.phone,
 				isEdit: false
 			}),
 		});
+
 	}
-	logOutHandler() {
-		this.authController.logOut();
-	}
+
 	protected render(): string {
 		//language=hbs
 		return `

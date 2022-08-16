@@ -24,7 +24,6 @@ export class ChatDialog extends Block {
 		this.store.on(StoreEvents.Updated, () => {
 			this.chatId = this.store.getState().selectedChat as string;
 			this.setProps(this.store);
-			console.log(this.store.getState());
 			const stub = new Msg({content: '123', id: 0, time: '', type: '', user_id: 0, classes: 'stub'});
 			const messagesRaw = this.store.getState().dialogMessages;
 			let msgs;

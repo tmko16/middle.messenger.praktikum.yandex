@@ -18,6 +18,7 @@ const router = new Router();
 export class ProfilePageEdit extends Block {
 	private formValues: Record<string, string | number> = {};
 	private userController: UserController;
+	private authController: AuthController;
 
 
 	constructor() {
@@ -25,6 +26,12 @@ export class ProfilePageEdit extends Block {
 		const backLink = new Link({text: 'Профиль', to: 'profilePage'});
 		super({avatar, backLink});
 		this.userController = new UserController();
+		this.authController = new AuthController();
+
+	}
+
+	async componentDidMount() {
+		const user = await this.authController.getUser();
 		this.setChildren({
 			saveButton: new Button({
 				classes: 'btn_l',
@@ -36,48 +43,54 @@ export class ProfilePageEdit extends Block {
 				label: 'Почта',
 				name: 'email',
 				type: 'text',
-				placeholder: 'akira-must-die@yandex.ru',
+				placeholder: user.email,
 				validation: emailValidation,
-				isEdit: true
+				isEdit: true,
+				value: user.email
 			}),
 			login: new ProfileInput({
 				label: 'Логин',
 				name: 'login',
 				type: 'text',
-				placeholder: 'setCadena',
+				placeholder: user.login,
 				validation: loginValidation,
-				isEdit: true
+				isEdit: true,
+				value: user.login
 			}),
 			first_name: new ProfileInput({
 				label: 'Имя',
 				name: 'first_name',
 				type: 'text',
-				placeholder: 'Сётару',
+				placeholder: user.first_name,
 				validation: nameValidation,
-				isEdit: true
+				isEdit: true,
+				value: user.first_name
 			}),
 			second_name: new ProfileInput({
 				label: 'Фамилия',
 				name: 'second_name',
 				type: 'text',
-				placeholder: 'Канеда',
+				placeholder: user.second_name,
 				validation: nameValidation,
-				isEdit: true
+				isEdit: true,
+				value: user.second_name
 			}),
 			displayName: new ProfileInput({
 				label: 'Имя в чате',
 				name: 'display_name',
 				type: 'text',
-				placeholder: 'Канеда С.',
-				isEdit: true
+				placeholder: user.display_name,
+				isEdit: true,
+				value: user.display_name
 			}),
 			phone: new ProfileInput({
 				label: 'Телефон',
 				name: 'phone',
 				type: 'text',
-				placeholder: '89222229929',
+				placeholder: user.phone,
 				validation: phoneValidation,
-				isEdit: true
+				isEdit: true,
+				value: user.phone
 			}),
 		});
 

@@ -8,11 +8,12 @@ type FormInputProps = {
     name: string,
     placeholder: string
     validation?: (value: string) => string | undefined
-    isEdit: boolean
+    isEdit: boolean,
+	value?: string
 }
 
 export class ProfileInput extends Block {
-	private value = '';
+	private value: string | undefined = '';
 
 	constructor(props: FormInputProps) {
 		super({
@@ -34,6 +35,7 @@ export class ProfileInput extends Block {
 				}
 			}
 		});
+		this.value = props.value;
 	}
 
 	protected render(): string {
