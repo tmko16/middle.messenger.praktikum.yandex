@@ -1,5 +1,6 @@
 import Block from '../../core/Block';
 import './dialog.less';
+import Store from '../../core/Store';
 
 export type DialogProps = {
 	id: string,
@@ -11,6 +12,7 @@ export type DialogProps = {
 }
 
 export class Dialog extends Block {
+	private store: Store;
 	constructor(props: DialogProps) {
 		super({
 			...props, events: {
@@ -18,6 +20,9 @@ export class Dialog extends Block {
 				click: props.onClick
 			}
 		});
+		this.store = new Store();
+		console.log(this.store, 'inside dialog');
+		
 	}
 
 	protected render(): string {

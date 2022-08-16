@@ -3,6 +3,7 @@ import Dialog from '../dialog';
 import chatController from '../../controllers/chatController';
 import Link from '../link';
 import Store, {StoreEvents} from '../../core/Store';
+import store from '../../core/Store';
 
 export class DialogList extends Block {
 	private chatController: any;
@@ -24,6 +25,7 @@ export class DialogList extends Block {
 				...dialog, onClick: (e: any) => {
 					this.store.set('selectedChat', e.currentTarget.dataset.chatId);
 					this.store.emit(StoreEvents.Updated);
+					console.log(store, 'Стор в обработчике');
 					this.clearChat.apply(this);
 				}
 			});

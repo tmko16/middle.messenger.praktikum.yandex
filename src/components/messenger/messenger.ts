@@ -45,9 +45,13 @@ export class Messenger extends Block {
 
 		this.store.on(StoreEvents.Updated, () => {
 			this.currentChat = this.store.getState().selectedChat;
-			this.connect();
+			this.connect().then(() => {
+				// this.store.set('ws', this.ws);
+			});
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		});
+
+		console.log(this.ws);
 
 
 	}
@@ -72,11 +76,14 @@ export class Messenger extends Block {
 
 
 	async connect() {
+
 		const token = await this.chatController.getChatToken(this.currentChat as string);
 		const userId = await this.authController.getUser();
 		const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId.id}/${this.currentChat}/${token.token}`);
-		socket.addEventListener('open', () => {
-			console.log('Соединение установлено');
+		socket.addEventListener('open', (data) => {
+			console.log('Соединение установлено', data, this.ws);
+			// this.store.set('ws', this.ws);
+			// TODO: Обязательно сделать подгрузку старых сообщений
 		});
 		socket.addEventListener('message', event => {
 			const content = JSON.parse(event.data);
@@ -87,7 +94,7 @@ export class Messenger extends Block {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			const currentState = this.store.getState()?.dialogMessages as Array;
-			const allMsg = currentState ?  currentState : [];
+			const allMsg = currentState ? currentState : [];
 			allMsg.push({...content});
 			this.store.set('dialogMessages', allMsg);
 			this.store.emit(StoreEvents.Updated);
@@ -102,8 +109,18 @@ export class Messenger extends Block {
 
 		});
 		this.ws = socket;
-
 	}
+
+	// componentDidMount() {
+	// 	if (this.ws) {
+	// 		console.log('попали сюда');
+	// 		this.ws.send(JSON.stringify({
+	// 			content: '0',
+	// 			type: 'get old',
+	// 		}));
+	// 	}
+	//
+	// }
 
 
 	protected render(): string {
