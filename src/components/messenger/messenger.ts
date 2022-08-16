@@ -93,6 +93,16 @@ export class Messenger extends Block {
 		socket.addEventListener('message', event => {
 			console.log('Получены данные', event.data);
 		});
+
+		socket.addEventListener('close', event => {
+			if (event.wasClean) {
+				console.log('Соединение закрыто чисто');
+			} else {
+				console.log('Обрыв соединения');
+			}
+
+			console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+		});
 		this.ws = socket;
 	}
 
