@@ -12,10 +12,9 @@ export class AvatarEditable extends Block {
                 <div class="profile__avatar-img_editable">
                     <label class="profile__change-avatar" role="button" tabindex="0"
                            title="Замените фото вашего профиля">
-
-
-                        <input class="profile__change-avatar-input" name="avatar" type="file"
-                               accept="image/png, image/jpeg">
+<form id="new-avatar-form">
+                            <input id="new-avatar" class="profile__change-avatar-input" name="avatar" type="file"
+                                   accept="image/png, image/jpeg"> </form>
                         <img src="https://cdn-s-static.arzamas.academy/storage/picture/7196/gallery_picture-673c9ad6-f79e-4890-a291-3e70ebc4f9b3.jpg"
                              alt="аватар">
                         <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,6 +31,6 @@ export class AvatarEditable extends Block {
         online
     </span>
             </div>
-        `;
+		`;
 	}
 }

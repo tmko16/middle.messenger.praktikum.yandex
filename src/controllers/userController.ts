@@ -47,12 +47,11 @@ export class UserController {
 	}
 
 	async searchUser(login: string) {
-		// eslint-disable-next-line @typescript-eslint/no-this-alias
-		// const that = this;
-		// setTimeout(function () {
-		// 	that.userApi.searchUser(login);
-		// }, 1000);
 		return this.userApi.searchUser(login);
+	}
+	async changeAvatar(formData: FormData) {
+		return this.userApi.changeAvatar(formData);
+
 	}
 
 }

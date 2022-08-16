@@ -17,6 +17,7 @@ import HTTPTransport from './core/HTTPTransport';
 import Store from './core/Store';
 import DialogList from './components/dialogList';
 import {Authorised} from './types';
+import {ChangeAvatar} from './pages/changeAvatar';
 
 /**
  * Заметка для проверяющего.
@@ -43,5 +44,6 @@ document.addEventListener('DOMContentLoaded',
 		router.use('/settings', ProfilePageEdit as unknown as Block);
 		router.use('/changePassword', ChangePassword as unknown as Block);
 		router.use('/messenger', ChatPage as unknown as Block);
+		router.use('/changeAvatar', ChangeAvatar as unknown as Block);
 		router.start();
 	});

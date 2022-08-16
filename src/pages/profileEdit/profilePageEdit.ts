@@ -14,6 +14,7 @@ import AuthController from '../../controllers/authController';
 import {UserController} from '../../controllers/userController';
 import {Router} from '../../core/Router';
 import Link from '../../components/link';
+import AvatarProfile from '../../components/avatarProfile';
 const router = new Router();
 export class ProfilePageEdit extends Block {
 	private formValues: Record<string, string | number> = {};
@@ -22,7 +23,7 @@ export class ProfilePageEdit extends Block {
 
 
 	constructor() {
-		const avatar = new AvatarEditable();
+		const avatar = new  AvatarProfile();
 		const backLink = new Link({text: 'Профиль', to: 'profilePage'});
 		super({avatar, backLink});
 		this.userController = new UserController();
