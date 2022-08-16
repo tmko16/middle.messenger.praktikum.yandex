@@ -80,6 +80,10 @@ export class Messenger extends Block {
 		});
 		socket.addEventListener('message', event => {
 			const content = JSON.parse(event.data);
+			console.log(content, 'content');
+			if (content.type === 'user connected') {
+				return;
+			}
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			const currentState = this.store.getState()?.dialogMessages as Array;
