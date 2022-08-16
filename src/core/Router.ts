@@ -31,6 +31,7 @@ class Route<P = any> {
 	}
 
 	leave() {
+		console.log(this._block);
 		if (this._block) {
 			this._block.hide();
 		}
@@ -81,6 +82,7 @@ export class Router {
 	}
 
 	start() {
+		debugger;
 		window.onpopstate = event => {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore

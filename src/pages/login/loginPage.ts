@@ -33,9 +33,6 @@ export class LoginPage extends Block {
 
 		this.store = new Store();
 		this.authController = new AuthController();
-		this.store.on(StoreEvents.Updated, () => {
-			this.setState(this.store.getState());
-		});
 		this.router = router;
 		this.setChildren({
 			button: new Button({
@@ -59,6 +56,7 @@ export class LoginPage extends Block {
 	protected render(): string {
 		//language=hbs
 		return `
+			<div class="login-form-wrapper">
             <div class="login-form">
                 <div class="login-form__content">
                     <div class="login-form__title"><h1>{{ title }}</h1></div>
@@ -71,6 +69,7 @@ export class LoginPage extends Block {
                         {{{noAccount}}}
                     </div>
                 </div>
+            </div>
             </div>
 
 		`;
