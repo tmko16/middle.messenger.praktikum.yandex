@@ -38,9 +38,6 @@ class UserApi {
 	}
 
 	async changeAvatar(formData: FormData) {
-		for (const p of formData) {
-			console.log(p);
-		}
 		const res = await this.api.put('/user/profile/avatar', {
 			data: formData
 		});

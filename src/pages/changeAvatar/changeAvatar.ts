@@ -52,7 +52,6 @@ export class ChangeAvatar extends Block {
 		const res = await this.userController.changeAvatar(form);
 		this.router.go('profilePage');
 		setTimeout(() => location.reload(), 2000);
-		// console.log(inputAvatar);
 
 	}
 

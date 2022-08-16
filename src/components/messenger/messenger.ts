@@ -43,7 +43,6 @@ export class Messenger extends Block {
 		const actionModal = new Modal({
 			block: ChatActionMenu, context: {}
 		});
-		console.log(actionModal, 'actionModal');
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
 				onSubmit: this.onSubmitHandler.bind(this)
@@ -65,7 +64,6 @@ export class Messenger extends Block {
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		});
 
-		console.log(this.ws);
 
 
 	}
@@ -101,7 +99,6 @@ export class Messenger extends Block {
 		});
 		socket.addEventListener('message', event => {
 			const content = JSON.parse(event.data);
-			console.log(content, 'content');
 			if (content.type === 'user connected') {
 				return;
 			}
@@ -125,16 +122,7 @@ export class Messenger extends Block {
 		this.ws = socket;
 	}
 
-	// componentDidMount() {
-	// 	if (this.ws) {
-	// 		console.log('попали сюда');
-	// 		this.ws.send(JSON.stringify({
-	// 			content: '0',
-	// 			type: 'get old',
-	// 		}));
-	// 	}
-	//
-	// }
+
 
 
 	protected render(): string {

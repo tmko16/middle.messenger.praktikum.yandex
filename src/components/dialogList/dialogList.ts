@@ -25,7 +25,6 @@ export class DialogList extends Block {
 				...dialog, onClick: (e: any) => {
 					this.store.set('selectedChat', e.currentTarget.dataset.chatId);
 					this.store.emit(StoreEvents.Updated);
-					console.log(store, 'Стор в обработчике');
 					this.clearChat.apply(this);
 				}
 			});

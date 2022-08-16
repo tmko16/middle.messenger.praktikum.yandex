@@ -10,7 +10,6 @@ class Modal extends Block {
 	modalElement: Element | null | undefined = null;
 
 	constructor(props: { block: any, context: Record<string, unknown> }) {
-		console.log(props.block.name, 'внутри модальки');
 		const modalContent = new props.block(props.context);
 		super({ modalContent});
 		const closeBtn = new Button({text: 'Закрыть', onSubmit: () => this.closeBtn()});

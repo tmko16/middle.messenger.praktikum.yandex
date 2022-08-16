@@ -32,7 +32,6 @@ export class ProfilePage extends Block {
 
 	async componentDidMount() {
 		const user = await this.authController.getUser();
-		console.log('=>(profilePage.ts:71) user', user);
 		this.setChildren({
 			avatar: new AvatarProfile({avatarSrc: user.avatar}),
 			email: new ProfileInput({

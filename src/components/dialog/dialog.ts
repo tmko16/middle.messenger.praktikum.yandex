@@ -21,12 +21,10 @@ export class Dialog extends Block {
 				click: props.onClick
 			}
 		});
-		console.log(props, 'диалог пропс!');
 		const avatar = props.avatar ? props.avatar : 'https://picsum.photos/200/300';
 
 		const last_message = props.last_message ? props.last_message.content : 'Нет сообщений';
 		const unread_count = props.last_message && props.last_message.unread_count ? props.last_message.unread_count : '0';
-		console.log(unread_count);
 		this.setProps({...props, last_message, avatar, unread_count});
 		this.store = new Store();
 

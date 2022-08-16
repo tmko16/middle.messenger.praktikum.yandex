@@ -38,7 +38,6 @@ export class ChatDialog extends Block {
 			this.eventBus().emit(Block.EVENTS.FLOW_CDU);
 		});
 		this.setChildren(this.chats);
-		console.log(this);
 	}
 
 	componentDidMount() {
