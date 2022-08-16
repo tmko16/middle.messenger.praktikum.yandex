@@ -21,13 +21,13 @@ export class ChatDialog extends Block {
 		this.store.on(StoreEvents.Updated, () => {
 			this.chatId = this.store.getState().selectedChat as string;
 			this.setProps(this.store);
-			console.log(this.store.getState(), 'внутри чат диалога');
 		});
 	}
 
 	componentDidMount() {
 		const ref = document.querySelector('[role="chat-window"]');
 		this.store.set('refMsgWindow', ref);
+
 	}
 
 	protected render(): string {

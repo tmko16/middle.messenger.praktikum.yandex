@@ -24,7 +24,6 @@ class Modal extends Block {
 	public closeBtn() {
 		if (this.modalElement) {
 			(this.modalElement as HTMLElement).style.display = 'none';
-			console.log(this, 'закрыли модалку!');
 		}
 	}
 	public openModal() {

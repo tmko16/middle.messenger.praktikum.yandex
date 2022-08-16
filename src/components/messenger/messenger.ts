@@ -45,7 +45,6 @@ export class Messenger extends Block {
 
 		this.store.on(StoreEvents.Updated, () => {
 			this.currentChat = this.store.getState().selectedChat;
-			console.log(this.store.getState(), 'текущее значение стора внутри мессенджера');
 			this.connect();
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		});
@@ -81,15 +80,13 @@ export class Messenger extends Block {
 		});
 		socket.addEventListener('message', event => {
 			const content = JSON.parse(event.data);
-			const msg = document.createElement('div');
-			// eslint-disable-next-line no-constant-condition
-			if (1 + 1 === 2) {
-				msg.className = 'i-msg';
-			} else {
-				msg.className = 'o-msg';
-			}
-			msg.textContent = content.content;
-			(this.store.getState().refMsgWindow as HTMLElement).append(msg);
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			const currentState = this.store.getState()?.dialog?.messages;
+			const allMsg = currentState ?  currentState : [];
+			allMsg.push({...content});
+			this.store.set('dialog.messages', allMsg);
+			this.store.emit(StoreEvents.Updated);
 		});
 
 		socket.addEventListener('close', event => {
@@ -99,10 +96,8 @@ export class Messenger extends Block {
 				console.log('Обрыв соединения');
 			}
 
-			console.log(`Код: ${event.code} | Причина: ${event.reason}`);
 		});
 		this.ws = socket;
-
 
 	}
 

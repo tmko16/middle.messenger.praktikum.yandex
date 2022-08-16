@@ -23,7 +23,6 @@ export class SearchBar extends Block {
 			text: 'Добавить чат',
 			onSubmit: () => {
 				modal.openModal();
-				console.log('Нажали', modal);
 			}
 		});
 		super({addNewChatButton, modal});
@@ -33,13 +32,11 @@ export class SearchBar extends Block {
 			events: {
 				keyup: (e: any) => {
 					if (e.target.name === 'search-chat') {
-						console.log('Поиск в чате');
 						// this.onKeyUp(e);
 					}
 				}
 			}
 		});
-		console.log(this.store);
 	}
 
 	onKeyUp(e: any) {

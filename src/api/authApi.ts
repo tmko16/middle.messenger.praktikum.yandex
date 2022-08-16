@@ -29,7 +29,6 @@ class AuthApi {
 	}
 	async logOut() {
 		const response = await this.api.post('/auth/logout', {  headers: {'Content-Type': 'application/json'}});
-		console.log(response.response, 'Вышли из приложения');
 		this.store.emit(StoreEvents.Updated);
 	}
 }

@@ -17,7 +17,6 @@ class AuthController {
 	async signIn(loginPageData: any) {
 		if (onSubmitValidation(loginPageData.formValues, loginPageData.children)) {
 			const res = await this.authApi.signIn(loginPageData.formValues);
-			console.log(res, 'res authcontroller');
 			const state = this.store.getState();
 			if (state.auth === AuthStatus.Ok) {
 				localStorage.setItem('authorised', Authorised.Y);

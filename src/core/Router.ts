@@ -31,7 +31,6 @@ class Route<P = any> {
 	}
 
 	leave() {
-		console.log(this);
 		console.log('=>(Router.ts:35) this._block', this._block);
 
 		if (this._block) {
@@ -100,7 +99,6 @@ export class Router {
 			return;
 		}
 		if (this._currentRoute) {
-			console.log(this);
 			this._currentRoute.leave();
 		}
 		route.render(route, pathName);

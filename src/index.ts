@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded',
 
 		const router = new Router();
 		const store = new Store();
-		console.log(localStorage);
 		if (localStorage.getItem('authorised') === Authorised.Y) {
 			router.go('messenger');
 		}

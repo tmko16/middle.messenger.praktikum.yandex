@@ -3,7 +3,6 @@ export function debounce(func:any, timeout = 3000){
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	return (...args) => {
-		console.log(...args);
 		if (!timer) {
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore

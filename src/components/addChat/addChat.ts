@@ -45,7 +45,6 @@ export class AddChat extends Block {
 	}
 
 	addChatAndUser() {
-		console.log(this);
 		this.chatController.addChatAndUser(this.chatName, this.chatUserName).then(res => {
 			console.log(res);
 		});

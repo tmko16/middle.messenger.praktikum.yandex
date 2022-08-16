@@ -28,7 +28,6 @@ class ChatController {
 		const similarUsers = await this.userController.searchUser(userName);
 		const user = similarUsers.filter((user: any) => user.login === userName)[0];
 		const addUserToChat = await this.chatApi.addUserToChat(user.id, createdChat.id);
-		console.log(addUserToChat);
 	}
 
 	async  getChatToken(chatId: string) {
