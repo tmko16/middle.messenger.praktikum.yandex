@@ -26,47 +26,35 @@ export class Messenger extends Block {
 	private authController: AuthController;
 	private ws: WebSocket | undefined;
 
+
 	constructor() {
 
-		const message = new FormInput({label: '', name: 'message', type: 'text'});
 
+		const message = new FormInput({label: '', name: 'message', type: 'text'});
 		super({message});
 		this.chatController = new ChatController();
 		this.authController = new AuthController();
 		this.store = new Store();
-		const chatDialog = new ChatDialog({
-			data: this
-		});
+		const chatDialog = new ChatDialog();
 		this.setChildren({
 			sendMsg: new SendMsgBtn({
-				// onSubmit: () => {
-				// 	this.onSubmitHandler.bind(this);
-				// 	// const input = document.querySelector('[name="message"]');
-				// 	// if (input) {
-				// 	// 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-				// 	// 	//@ts-ignore
-				// 	// 	input.value = '';
-				// 	// }
-				// }
 				onSubmit: this.onSubmitHandler.bind(this)
 			}),
 			chatDialog
 		});
+
 		this.store.on(StoreEvents.Updated, () => {
-			// console.log(this.store.getState(), 'я внутри мессенджера ');
 			this.currentChat = this.store.getState().selectedChat;
-			console.log(this.currentChat, 'currentChat');
+			console.log(this.store.getState(), 'текущее значение стора внутри мессенджера');
 			this.connect();
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-
 		});
-	}
 
+
+	}
 
 	onSubmitHandler() {
 		getFormValues.apply(this);
-		console.log(this, 'handler');
-
 		const resValidation = onSubmitValidation(this.formValues, this.children);
 		const message = this.formValues.message;
 		if (this.ws) {
@@ -83,6 +71,7 @@ export class Messenger extends Block {
 		}
 	}
 
+
 	async connect() {
 		const token = await this.chatController.getChatToken(this.currentChat as string);
 		const userId = await this.authController.getUser();
@@ -91,7 +80,8 @@ export class Messenger extends Block {
 			console.log('Соединение установлено');
 		});
 		socket.addEventListener('message', event => {
-			console.log('Получены данные', event.data);
+			const content = JSON.parse(event.data);
+			(this.store.getState().refMsgWindow as HTMLElement).append(content.content);
 		});
 
 		socket.addEventListener('close', event => {
@@ -104,13 +94,18 @@ export class Messenger extends Block {
 			console.log(`Код: ${event.code} | Причина: ${event.reason}`);
 		});
 		this.ws = socket;
+
+
 	}
+
 
 	protected render(): string {
 		if (!this.currentChat) {
 			//language=hbs
 			return '<div class="no-chat"><p>Выберите чат из списка</p></div>';
 		}
+
+
 		//language=hbs
 		return `
             <div class="msg-area">
