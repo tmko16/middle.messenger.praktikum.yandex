@@ -141,8 +141,10 @@ export default class Block<P = any> {
 		// Может тут сделать кучу аппендов?
 		this._removeEvents();
 		const newElement = fragment.firstElementChild!;
-		this._element!.replaceWith(newElement);
-		this._element = newElement as HTMLElement;
+		if (this._element) {
+			this._element.replaceWith(newElement);
+			this._element = newElement as HTMLElement;
+		}
 		this._addEvents();
 	}
 
