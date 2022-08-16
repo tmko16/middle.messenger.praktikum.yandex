@@ -13,37 +13,29 @@ export class ChatDialog extends Block {
 	private authController: AuthController;
 	private socket: WebSocket | undefined;
 
-	constructor(props: any) {
-		super(props);
+	constructor() {
+		super();
 		this.chatController = new ChatController();
 		this.authController = new AuthController();
 		this.store = new Store();
+
 		this.store.on(StoreEvents.Updated, () => {
 			this.chatId = this.store.getState().selectedChat as string;
-			this.setProps(this.store.getState());
-			this.connect();
+			this.setProps(this.store);
+			console.log(this.store.getState(), 'внутри чат диалога');
 		});
 	}
 
-	async connect() {
-		const token = await this.chatController.getChatToken(this.chatId);
-		const userId = await this.authController.getUser();
-		console.log(this.chatId);
-
-
-		const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId.id}/${this.chatId}/${token.token}`);
-		socket.addEventListener('open', () => {
-			console.log('Соединение установлено');
-		});
-		this.socket = socket;
+	componentDidMount() {
+		const ref = document.querySelector('[role="chat-window"]');
+		this.store.set('refMsgWindow', ref);
 	}
-
 
 	protected render(): string {
 
 		//language=hbs
 		return `
-            <div class="chat-dialog">
+            <div class="chat-dialog" role="chat-window">
                 <p>тут будут сообщения людей</p>
             </div>
 		`;

@@ -17,13 +17,13 @@ export class ChatPage extends Block {
 	router: Router;
 	private store: Store;
 	private chatController: ChatController;
+	private authController: AuthController;
 
 	constructor() {
-		const profileLink = new Link({text: 'Профиль', to: 'profilePage' });
+		const profileLink = new Link({text: 'Профиль', to: 'profilePage'});
 		const searchBar = new SearchBar();
 		const messenger = new Messenger();
 		const dialogList = new DialogList();
-
 
 
 		super({
@@ -33,8 +33,12 @@ export class ChatPage extends Block {
 			dialogList,
 		});
 		this.store = new Store();
+		this.authController = new AuthController();
 		this.chatController = new ChatController();
 		this.router = new Router();
+		this.authController.getUser().then(res => {
+			this.store.set('currentUserId', res.id);
+		});
 		this.store.on(StoreEvents.Updated, () => {
 			this.setProps(this.store.getState());
 		});
