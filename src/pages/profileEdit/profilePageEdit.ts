@@ -23,9 +23,8 @@ export class ProfilePageEdit extends Block {
 
 
 	constructor() {
-		const avatar = new  AvatarProfile();
 		const backLink = new Link({text: 'Профиль', to: 'profilePage'});
-		super({avatar, backLink});
+		super({  backLink});
 		this.userController = new UserController();
 		this.authController = new AuthController();
 
@@ -130,7 +129,6 @@ export class ProfilePageEdit extends Block {
                     {{{backLink}}}
 
                 </div>
-                {{{avatar}}}
                 <div class="profile__fields">
                     <div class="profile-form">
                         {{{email}}}
