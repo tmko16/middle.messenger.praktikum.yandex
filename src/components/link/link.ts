@@ -12,7 +12,6 @@ export class Link extends Block {
 	constructor(props: LinkProps) {
 		super({...props, events: {
 			click: () => {
-				debugger;
 				if(props.onClick) {
 					props.onClick();
 				}
