@@ -106,7 +106,7 @@ export class Router {
 	}
 
 	go(pathName: string) {
-		this.history?.pushState({}, '', pathName);
+		this.history?.pushState(location.host, '', pathName);
 		this._onRoute(pathName);
 	}
 	back() {
