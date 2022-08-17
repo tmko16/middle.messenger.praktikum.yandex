@@ -3,7 +3,6 @@ import './reset.less';
 import LoginPage from './pages/login';
 import RegistrationPage from './pages/registration';
 import ChatPage from './pages/chat';
-import ProfilePage from './pages/profilePage';
 import ProfilePageEdit from './pages/profileEdit';
 import ChangePassword from './pages/changePassword';
 import Page404 from './pages/404';
@@ -18,6 +17,7 @@ import Store from './core/Store';
 import DialogList from './components/dialogList';
 import {Authorised} from './types';
 import {ChangeAvatar} from './pages/changeAvatar';
+import ProfilePage from './pages/profilePage';
 
 /**
  * Заметка для проверяющего.
