@@ -1,0 +1,1 @@
+export {ProfilePageEdit as default} from './profilepageedit';

@@ -16,7 +16,7 @@ import {Router} from '../../core/Router';
 import Link from '../../components/link';
 import AvatarProfile from '../../components/avatarProfile';
 const router = new Router();
-export default  class ProfilePageEdit extends Block {
+export  class ProfilePageEdit extends Block {
 	private formValues: Record<string, string | number> = {};
 	private userController: UserController;
 	private authController: AuthController;

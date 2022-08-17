@@ -8,7 +8,7 @@ import authController from '../../controllers/authController';
 import AuthController from '../../controllers/authController';
 import {UserController} from '../../controllers/userController';
 
-export default class ProfilePage extends Block {
+export  class ProfilePage extends Block {
 	private authController: AuthController;
 
 	constructor() {
