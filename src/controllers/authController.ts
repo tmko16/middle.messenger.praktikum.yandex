@@ -1,34 +1,27 @@
 import AuthApi from '../api/authApi';
 import Store from '../core/Store';
-import Block from '../core/Block';
-import LoginPage from '../pages/login';
-import {formValidators, onSubmitValidation} from '../utils/validators';
-import {Authorised, AuthStatus} from '../types';
+import {onSubmitValidation} from '../utils/validators';
+import {Authorised} from '../types';
+import {Router} from '../core/Router';
 
 class AuthController {
 	private authApi: AuthApi;
 	private store: Store;
+	private router: Router;
 
 	constructor() {
+		this.router = new Router();
 		this.authApi = new AuthApi();
 		this.store = new Store();
 	}
 
 	async signIn(loginPageData: any) {
+		debugger;
 		if (onSubmitValidation(loginPageData.formValues, loginPageData.children)) {
-			const res = await this.authApi.signIn(loginPageData.formValues);
-			const state = this.store.getState();
-			if (state.auth === AuthStatus.Ok) {
-				localStorage.setItem('authorised', Authorised.Y);
-				return true;
-			} else {
-				localStorage.setItem('authorised', Authorised.N);
-				return false;
-			}
-		} else {
-			return false;
+			return await this.authApi.signIn(loginPageData.formValues);
 		}
 	}
+
 	// TODO: разобраться с тс игнорами везде где только возможно будет.
 	async signUp(RegistrationPageData: any) {
 		if (onSubmitValidation(RegistrationPageData.formValues, RegistrationPageData.children)) {
@@ -42,7 +35,7 @@ class AuthController {
 			} else {
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-ignore
-				alert('Не удалось авторизоваться ' + state.registrationData.reason );
+				alert('Не удалось авторизоваться ' + state.registrationData.reason);
 				return false;
 			}
 		} else {
@@ -55,11 +48,11 @@ class AuthController {
 			localStorage.setItem('authorised', Authorised.N);
 		});
 	}
+
 	async getUser() {
-		const res =  await this.authApi.getUser();
+		const res = await this.authApi.getUser();
 		return res;
 	}
-
 
 
 }

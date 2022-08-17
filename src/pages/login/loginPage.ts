@@ -48,7 +48,7 @@ export class LoginPage extends Block {
 			children: this.children
 		};
 		const signedIn = await this.authController.signIn(loginPageData);
-		if (signedIn) {
+		if (signedIn && signedIn.reason === 'User already in system' || signedIn === 'OK') {
 			this.router.go('/messenger');
 		}
 	}
