@@ -18,7 +18,7 @@ export class ProfilePage extends Block {
 			changeAvatar: new Link({text: 'Изменить аватар', to: 'changeAvatar'}),
 			changePassword: new Link({text: 'Изменить пароль', to: 'changePassword'}),
 			logOut: new Link({text: 'Выйти', to: '/', onClick: () => this.logOutHandler.call(this)}),
-			backLink: new Link({text: 'К чатам', to: 'messenger'})
+			backLink: new Link({text: 'К чатам', to: '/'})
 		};
 
 		super({...links});

@@ -65,7 +65,6 @@ export class Messenger extends Block {
 		});
 
 
-
 	}
 
 	onSubmitHandler() {
@@ -102,12 +101,11 @@ export class Messenger extends Block {
 			if (content.type === 'user connected') {
 				return;
 			}
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			const currentState = this.store.getState()?.dialogMessages as Array;
+			const currentState = this.store.getState()?.dialogMessages as Array<unknown>;
 			const allMsg = currentState ? currentState : [];
-			allMsg.push({...content});
-			this.store.set('dialogMessages', allMsg);
+			const filteredAllMsg = allMsg.filter((msg: any) => msg.chatId == this.store.getState().selectedChat);
+			filteredAllMsg.push({...content, chatId: this.store.getState().selectedChat});
+			this.store.set('dialogMessages', filteredAllMsg);
 			this.store.emit(StoreEvents.Updated);
 		});
 
@@ -121,8 +119,6 @@ export class Messenger extends Block {
 		});
 		this.ws = socket;
 	}
-
-
 
 
 	protected render(): string {
@@ -181,7 +177,7 @@ export class Messenger extends Block {
 
                     </div>
                 </div>
-				{{{actionModal}}}
+                {{{actionModal}}}
             </div>
 		`;
 	}
