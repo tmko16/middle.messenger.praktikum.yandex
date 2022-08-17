@@ -14,7 +14,6 @@ import store, {Store, StoreEvents} from '../../core/Store';
 import AuthController from '../../controllers/authController';
 import {Router} from '../../core/Router';
 
-// const router = new Router();
 
 export class RegistrationPage extends Block {
 	protected formValues: Record<string, string | number> = {};

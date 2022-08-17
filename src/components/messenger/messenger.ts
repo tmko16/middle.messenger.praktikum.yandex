@@ -58,9 +58,7 @@ export class Messenger extends Block {
 
 		this.store.on(StoreEvents.Updated, () => {
 			this.currentChat = this.store.getState().selectedChat;
-			this.connect().then(() => {
-				// this.store.set('ws', this.ws);
-			});
+			this.connect();
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		});
 
@@ -93,7 +91,6 @@ export class Messenger extends Block {
 		const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId.id}/${this.currentChat}/${token.token}`);
 		socket.addEventListener('open', (data) => {
 			console.log('Соединение установлено', data, this.ws);
-			// this.store.set('ws', this.ws);
 			// TODO: Обязательно сделать подгрузку старых сообщений
 		});
 		socket.addEventListener('message', event => {

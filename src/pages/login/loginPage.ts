@@ -40,7 +40,6 @@ export class LoginPage extends Block {
 			})
 		});
 	}
-	// TODO: рефактор кода требуется
 	async onSubmitHandler() {
 		getFormValues.apply(this);
 		const loginPageData = {

@@ -36,8 +36,6 @@ class AuthApi {
 
 	async getUser() {
 		const response = await this.api.get('/auth/user', {headers: {'Content-Type': 'application/json'}});
-		// this.store.set('userData', JSON.parse(response.response));
-		// this.store.emit(StoreEvents.Updated);
 		return JSON.parse(response.response);
 	}
 

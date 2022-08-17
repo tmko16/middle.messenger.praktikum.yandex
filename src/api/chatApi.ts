@@ -13,8 +13,6 @@ class ChatApi {
 
 	async getChats() {
 		return this.api.get('/chats', {headers: {'Content-Type': 'application/json'}});
-		// this.store.set('user.chats', JSON.parse(response.response));
-		// this.store.emit(StoreEvents.Updated);
 	}
 
 	async createChat(chatTitle: string) {

@@ -138,7 +138,6 @@ export default class Block<P = any> {
 
 	_render() {
 		const fragment = this._compile();
-		// Может тут сделать кучу аппендов?
 		this._removeEvents();
 		const newElement = fragment.firstElementChild!;
 		if (this._element) {
@@ -255,8 +254,7 @@ export default class Block<P = any> {
 		 */
 
 		Object.entries(this.children).forEach(([id, component]) => {
-			// TODO: переписать корректным образом.
-			if(Array.isArray(component)) {
+			if (Array.isArray(component)) {
 				component.forEach(c => {
 					const stub = fragment.content.querySelector(`[data-id="${c.id}"]`);
 					if (!stub) {
@@ -281,7 +279,6 @@ export default class Block<P = any> {
 				return;
 			}
 
-			// const stubChilds = stub.childNodes.length ? stub.childNodes : [];
 
 			/**
 			 * Заменяем заглушку на component._element
@@ -289,13 +286,7 @@ export default class Block<P = any> {
 			const content = component.getContent();
 			stub.replaceWith(content);
 
-			/**
-			 * Ищем элемент layout-а, куда вставлять детей
-			 */
-			// const layoutContent = (content as HTMLElement).querySelector('[data-layout="1"]');
-			// if (layoutContent && stubChilds.length) {
-			// 	layoutContent.append(...stubChilds);
-			// }
+
 		});
 
 		/**

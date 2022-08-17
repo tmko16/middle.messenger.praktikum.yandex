@@ -28,27 +28,13 @@ export class ChangeAvatar extends Block {
 	}
 
 	async onChangeAvatarButton() {
-		// const inputAvatar = (document.getElementById('new-avatar') as HTMLInputElement);
 		const inputAvatar = (document.getElementById('new-avatar') as HTMLInputElement);
 		let file;
 		if (inputAvatar && inputAvatar.files) {
 			file = inputAvatar.files[0];
 		}
 		const form = new FormData();
-		// form.set('avatar', file as Blob);
 		form.append('avatar', file as Blob);
-		// const form  = document.getElementById('new-avatar-form');
-		// const inputAvatar = document.getElementById('new-avatar');
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		// const formData = new FormData(form);
-		// let file;
-		// if (inputAvatar && inputAvatar.files) {
-		// 	file = inputAvatar.files[0];
-		// }
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		// formData.append('avatar', inputAvatar);
 		const res = await this.userController.changeAvatar(form);
 		this.router.go('profilePage');
 		setTimeout(() => location.reload(), 2000);
