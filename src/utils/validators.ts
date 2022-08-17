@@ -90,8 +90,10 @@ export function onSubmitValidation(formData: Record<string, string | number>, ch
 				if (errors) {
 					isValid = false;
 				}
-				children[key].errors = errors;
-				children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
+				if (children[key] && children[key].errors) {
+					children[key].errors = errors;
+					children[key].eventBus().emit(Block.EVENTS.FLOW_RENDER);
+				}
 			}
 		}
 	}

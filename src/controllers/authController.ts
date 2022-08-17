@@ -16,7 +16,6 @@ class AuthController {
 	}
 
 	async signIn(loginPageData: any) {
-		debugger;
 		if (onSubmitValidation(loginPageData.formValues, loginPageData.children)) {
 			return await this.authApi.signIn(loginPageData.formValues);
 		}
