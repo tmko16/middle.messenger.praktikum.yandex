@@ -39,10 +39,9 @@ import ProfilePageEdit from './pages/profileedit';
  *
  * Регистрация пользоватля также работает.
  */
-
+console.log('индекс тс')
 document.addEventListener('DOMContentLoaded',
 	() => {
-
 		const router = new Router();
 		const store = new Store();
 		router.use('/', LoginPage as unknown as Block);

@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "parcel ./src/index.html   --open --no-cache",
-    "build": "parcel build ./src/index.html",
-    "start": "pnpm run build && node ./server.js -p 3000"
+    "build": "parcel build  ./src/index.html ",
+    "start": "yarn run build && node ./server.js -p 3000"
   },
   "author": "",
   "license": "ISC",
