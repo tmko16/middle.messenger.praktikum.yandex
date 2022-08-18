@@ -1,0 +1,89 @@
+.msg-area {
+  height: 100%;
+
+  &__chat-info {
+    border: 1px solid var(--background-color);
+    padding: 5px 10px;
+    background-color: var(--background-light-color);
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left-block-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+  }
+
+  &__was-online {
+    color: var(--text-color-light);
+  }
+
+  &__action-button {
+    margin-right: 10px;
+
+    .circle {
+      background-color: var(--accent-color);
+      height: 10px;
+      width: 10px;
+      border-radius: 100px;
+      margin: 2px;
+    }
+  }
+
+
+  &__chat {
+    padding: 10px;
+    height: calc(100% - 120px - 50px);
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  &__msg-sender {
+
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  &__attach {
+    height: 35px;
+    width: 35px;
+    padding-top: 10px;
+  }
+
+  &__msg-input {
+    width: 100%;
+    border-top: 1px solid var(--accent-color);
+    padding-top: 20px;
+
+    input {
+      outline: none;
+      width: 100%;
+      height: 35px;
+      border-radius: var(--border-radius);
+      background-color: var(--background-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 5px 20px;
+    }
+  }
+
+  &__send-btn {
+    padding-top: 20px;
+  }
+}
+
+.no-chat {
+  height: 100%;
+  display: flex;
+  padding-top: 50%;
+  justify-content: center;
+  align-self: center;
+}

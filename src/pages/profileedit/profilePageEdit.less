@@ -1,0 +1,94 @@
+@nav-height: 100px;
+@avatar-height: 300px;
+
+.profile-edit {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__nav {
+    height: 50px;
+    padding: 10px 0 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  &__back {
+    font-weight: 200;
+  }
+
+  &__avatar {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    gap: 5px;
+  }
+
+  &__name {
+    color: var(--text-color);
+  }
+
+  &__is-online {
+    color: var(--accent-color);
+  }
+
+  &__change-avatar-input {
+    display: none;
+  }
+
+  &__change-avatar {
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__avatar-img,
+  &__avatar-img_editable {
+
+    img {
+      border-radius: 100px;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+  }
+
+  &__avatar-img_editable {
+    img {
+      opacity: .5;
+    }
+
+    svg {
+      position: absolute;
+      left: 35px;
+      bottom: 35px;
+    }
+  }
+
+  &__fields {
+    height: calc(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 420px;
+    align-items: center;
+  }
+
+  .profile-form {
+    width: 420px;
+    margin-bottom: 40px;
+  }
+
+}

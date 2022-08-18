@@ -1,0 +1,1 @@
+export {SendMsgBtn as default} from './sendMsgBtn';

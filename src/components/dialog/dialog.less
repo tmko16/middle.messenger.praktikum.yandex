@@ -1,0 +1,66 @@
+.dialog {
+    border-top: 1px solid var(--accent-color);
+    align-items: center;
+    justify-content: space-around;
+    height: 90px;
+    display: flex;
+
+    &__avatar {
+        height: 50px;
+
+        img {
+            height: 50px;
+            width: 50px;
+            border-radius: 100px;
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 200px;
+    }
+
+
+    &__last-msg {
+        font-weight: lighter;
+        color: var(--text-color-light);
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+
+    }
+
+    &__last-msg-time {
+        letter-spacing: 2px;
+        color: var(--text-color-light);
+        font-size: 10px;
+
+    }
+
+    &__msg-count {
+        background-color: var(--accent-color);
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+
+        span {}
+    }
+}
+
+.dialog:last-child {
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.dialog:hover {
+    background-color: var(--accent-rgba);
+}
