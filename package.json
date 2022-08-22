@@ -56,7 +56,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run dev",
+      "pre-commit": "yarn run lint",
       "pre-push": "npm run other command"
     }
   }
