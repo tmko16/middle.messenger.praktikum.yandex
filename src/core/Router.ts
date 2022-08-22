@@ -72,6 +72,9 @@ export class Router {
 
 		Router._instance = this;
 	}
+	public getRoutes() {
+		return this.routes;
+	}
 
 	use(pathName: string, block: Block) {
 		const route = new Route(pathName, block, {rootQuery: this._rootQuery});

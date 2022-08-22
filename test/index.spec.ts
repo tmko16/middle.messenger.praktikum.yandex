@@ -10,3 +10,12 @@ describe('Typescript + Babel usage suite', () => {
 		expect(hello('mocha'), 'Hello mocha');
 	});
 });
+
+
+/**
+ * TODO:
+ * Напишите тесты для шаблонизатора,
+ * роутера,
+ * компонента,
+ * модуля отправки запросов.
+ */
