@@ -1,15 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es2017", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    "module": "commonjs", /* Specify what module code is generated. */
+    "rootDir": ".",
+    "outDir": "dist",
+    "target": "es2019",
+    "declaration": false,
+    "module": "es6",
+    "strictNullChecks": true,
+    "sourceMap": false,
+    "noImplicitAny": true,
     "typeRoots": [
       "node_modules/@types",
       "typings/app.d.ts"
     ],
+    "moduleResolution": "node",
     "resolveJsonModule": true, /* Enable importing .json files */
     "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS pagesOld. This enables `allowSyntheticDefaultImports` for type compatibility. */
     "forceConsistentCasingInFileNames": false, /* Ensure that casing is correct in imports. */
     "strict": true, /* Enable all strict type-checking options. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
-  }
+  },
+  "include": [
+    "**/*"
+  ],
+  "exclude": ["./node_modules", "./src/test"]
 }
