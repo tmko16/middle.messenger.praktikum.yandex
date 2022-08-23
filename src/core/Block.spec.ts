@@ -1,6 +1,7 @@
 import {assert} from 'chai';
 import {Router} from './Router';
 import Block from './Block';
+import mocha from 'mocha'
 import Messenger from '../components/messenger';
 
 describe('Block', function () {
@@ -9,7 +10,7 @@ describe('Block', function () {
 			a: string
 		}
 		let a:y;
-		const b = new Block(); // ЕСЛИ импортирую Блок - все падает, иначе - все ок.
+		 const b = new Block(); // ЕСЛИ импортирую Блок - все падает, иначе - все ок.
 		const router = 'new Block()';
 	});
 });
