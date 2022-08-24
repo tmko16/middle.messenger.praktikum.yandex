@@ -1,4 +1,0 @@
-{
-  "extension": ["ts", "js"],
-  "require": "test/babel-register.js"
-}
