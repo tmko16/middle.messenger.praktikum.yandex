@@ -2,9 +2,9 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "dist",
-    "target": "es2019",
+    "target": "esnext",
     "declaration": false,
-    "module": "es6",
+    "module": "commonjs",
     "strictNullChecks": true,
     "sourceMap": false,
     "noImplicitAny": true,
@@ -19,8 +19,7 @@
     "strict": true, /* Enable all strict type-checking options. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": [
-    "**/*"
-  ],
-  "exclude": ["./node_modules", "./src/test"]
+  "ts-node": {
+    "esm": true
+  }
 }
