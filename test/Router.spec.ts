@@ -1,7 +1,7 @@
 import {assert} from 'chai';
 import {Router} from '../src/core/Router';
 import Block from '../src/core/Block';
-import Messenger from '../src/components/messenger';
+import LoginPage from '../src/pages/login';
 
 describe('Router', function () {
 	it('Must be defined', function () {

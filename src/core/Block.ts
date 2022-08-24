@@ -54,6 +54,7 @@ export default class Block<P = any> {
 		const children: Record<string, any> = {};
 		const props: Record<string, any> = {};
 
+		// @ts-ignore
 		Object.entries(propsAndChildren as P).forEach(([key, value]) => {
 			if (value instanceof Block) {
 				children[key] = value;
@@ -112,6 +113,7 @@ export default class Block<P = any> {
 		if (!nextProps) {
 			return;
 		}
+		// @ts-ignore
 		Object.assign(this.props, nextProps);
 	};
 
@@ -227,6 +229,7 @@ export default class Block<P = any> {
 		 * мне надо сделать так - дать ему через детей массив дочек которые нужно склеить
 		 * пройтись по этим детям и нафигачить для каждого свою заглушку.
 		 */
+		//@ts-ignore
 		const propsAndStubs: Record<string, any> = {...this.props};
 		Object.entries(this.children).forEach(([key, child]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
