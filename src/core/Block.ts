@@ -75,7 +75,8 @@ export default class Block<P = any> {
 	private _createResources() {
 		this._element = this._createDocumentElement('div');
 	}
-
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	protected getStateFromProps(props: any): void {
 		this.state = {};
 	}
@@ -89,7 +90,8 @@ export default class Block<P = any> {
 		this.componentDidMount(props);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	componentDidMount(props: P) {
 	}
 
@@ -100,7 +102,8 @@ export default class Block<P = any> {
 		}
 		this._render();
 	}
-
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	componentDidUpdate(oldProps: P, newProps: P) {
 		return true;
 	}
@@ -252,7 +255,8 @@ export default class Block<P = any> {
 		/**
 		 * Заменяем заглушки на компоненты
 		 */
-
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		Object.entries(this.children).forEach(([id, component]) => {
 			if (Array.isArray(component)) {
 				component.forEach(c => {

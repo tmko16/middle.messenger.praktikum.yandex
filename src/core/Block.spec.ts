@@ -8,9 +8,8 @@ describe('Block', () => {
 			return '<div>321</div>';
 		}
 	}
-
-	const a = 1;
+	const ab = new Test();
 	it('should be rendered', () => {
-		expect(a).to.eq(1);
+		expect(ab).to.eq(1);
 	});
 });

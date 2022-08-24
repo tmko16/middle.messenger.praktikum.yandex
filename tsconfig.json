@@ -1,25 +1,23 @@
 {
+  "exclude": ["server.js", "dist", "node_modules"],
   "compilerOptions": {
-    "rootDir": ".",
+    "types": ["mocha"],
     "outDir": "dist",
-    "target": "esnext",
+    "target": "ES2021",
     "declaration": false,
-    "module": "commonjs",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
     "strictNullChecks": true,
-    "sourceMap": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
     "noImplicitAny": true,
-    "typeRoots": [
-      "node_modules/@types",
-      "typings/app.d.ts"
-    ],
-    "moduleResolution": "node",
-    "resolveJsonModule": true, /* Enable importing .json files */
-    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS pagesOld. This enables `allowSyntheticDefaultImports` for type compatibility. */
-    "forceConsistentCasingInFileNames": false, /* Ensure that casing is correct in imports. */
-    "strict": true, /* Enable all strict type-checking options. */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
-  },
-  "ts-node": {
-    "esm": true
+    "noUnusedParameters": true,
+    "baseUrl": "./",
+    "paths": {
+      "src/*": [
+        "src/*"
+      ]
+    }
   }
 }
