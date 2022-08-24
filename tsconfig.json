@@ -1,23 +1,12 @@
 {
-  "exclude": ["server.js", "dist", "node_modules"],
   "compilerOptions": {
-    "types": ["mocha"],
-    "outDir": "dist",
-    "target": "ES2021",
-    "declaration": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "strict": true,
-    "strictNullChecks": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": "./",
-    "paths": {
-      "src/*": [
-        "src/*"
-      ]
-    }
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "target": "es2018",
+    "moduleResolution": "node",
+    "module": "esnext"
   }
 }
