@@ -1,6 +1,6 @@
 import {assert, expect} from 'chai';
-import HTTPTransport from '../src/core/HTTPTransport';
-import {BASE_URL} from '../src/enums';
+import HTTPTransport from './HTTPTransport';
+import {BASE_URL} from '../enums';
 
 
 describe('HTTPTransport', () => {

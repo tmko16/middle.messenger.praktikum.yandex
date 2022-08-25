@@ -1,6 +1,5 @@
 import {assert, expect} from 'chai';
-import Block from '../src/core/Block';
-import Button from '../src/components/button';
+import Button from '../components/button';
 
 
 describe('Block', () => {

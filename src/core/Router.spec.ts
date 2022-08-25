@@ -1,8 +1,7 @@
 import {assert, expect} from 'chai';
-import {Router} from '../src/core/Router';
-import {LoginPage} from '../src/pages/login/loginPage';
-import Block from '../src/core/Block';
-import RegistrationPage from '../src/pages/registration';
+import {Router} from './Router';
+import RegistrationPage from '../pages/registration';
+import Block from './Block';
 
 describe('Router', function () {
 	const router = new Router();
