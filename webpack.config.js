@@ -7,12 +7,15 @@ module.exports = {
 	entry: './src/index.ts',
 
 	output: {
-		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist'),
+		filename: 'index.js',
+		path: path.resolve(__dirname, 'dist')
 	},
 	resolve: {
 		// Add `.ts` and `.tsx` as a resolvable extension.
-		extensions: ['.ts', '.tsx', '.js']
+		extensions: ['.ts', '.tsx', '.js'],
+		alias: {
+			handlebars: 'handlebars/dist/handlebars.min.js'
+		}
 		// alias: {
 		// 	'handlebars/runtime': 'handlebars/dist/cjs/handlebars.runtime',
 		// 	'handlebars': 'handlebars/dist/cjs/handlebars.runtime',
@@ -42,6 +45,8 @@ module.exports = {
 		port: 9000,
 	},
 	plugins: [new HtmlWebpackPlugin({
-		scriptLoading: 'module'
+		title: 'Чат Спринт 4',
+		template: './src/index.html',
+		filename: 'index.html',
 	})],
 };

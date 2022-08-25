@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "webpack serve",
-    "build": "webpack --mode=production",
+    "build": "webpack",
     "test": "mocha -r ts-node --require ignore-styles"
   },
   "directories": {
