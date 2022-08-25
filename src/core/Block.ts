@@ -54,6 +54,7 @@ export default class Block<P = any> {
 		const children: Record<string, any> = {};
 		const props: Record<string, any> = {};
 
+		// @ts-ignore
 		Object.entries(propsAndChildren as P).forEach(([key, value]) => {
 			if (value instanceof Block) {
 				children[key] = value;
@@ -75,7 +76,8 @@ export default class Block<P = any> {
 	private _createResources() {
 		this._element = this._createDocumentElement('div');
 	}
-
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	protected getStateFromProps(props: any): void {
 		this.state = {};
 	}
@@ -89,7 +91,8 @@ export default class Block<P = any> {
 		this.componentDidMount(props);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	componentDidMount(props: P) {
 	}
 
@@ -100,7 +103,8 @@ export default class Block<P = any> {
 		}
 		this._render();
 	}
-
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	componentDidUpdate(oldProps: P, newProps: P) {
 		return true;
 	}
@@ -109,6 +113,7 @@ export default class Block<P = any> {
 		if (!nextProps) {
 			return;
 		}
+		// @ts-ignore
 		Object.assign(this.props, nextProps);
 	};
 
@@ -224,6 +229,7 @@ export default class Block<P = any> {
 		 * мне надо сделать так - дать ему через детей массив дочек которые нужно склеить
 		 * пройтись по этим детям и нафигачить для каждого свою заглушку.
 		 */
+		//@ts-ignore
 		const propsAndStubs: Record<string, any> = {...this.props};
 		Object.entries(this.children).forEach(([key, child]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
@@ -252,7 +258,8 @@ export default class Block<P = any> {
 		/**
 		 * Заменяем заглушки на компоненты
 		 */
-
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		Object.entries(this.children).forEach(([id, component]) => {
 			if (Array.isArray(component)) {
 				component.forEach(c => {
