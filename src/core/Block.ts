@@ -1,6 +1,5 @@
 import EventBus from './EventBus';
 import Handlebars from 'handlebars';
-
 interface BlockMeta<P = any> {
 	props: P;
 }
@@ -14,7 +13,7 @@ export default class Block<P = any> {
 		FLOW_RENDER: 'flow:render',
 	} as const;
 	// хак для генерации уникального id
-	public id = Math.floor(Math.random() * Date.now())
+	public id = Math.floor(Math.random() * Date.now());
 	private readonly _meta: BlockMeta;
 
 	protected _element: HTMLElement | null = null;

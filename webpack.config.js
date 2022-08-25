@@ -1,11 +1,9 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 	target: 'web',
 	mode: 'development',
 	devtool: 'inline-source-map',
-	externals: [nodeExternals()],
 	entry: './src/index.ts',
 
 	output: {
@@ -14,12 +12,16 @@ module.exports = {
 	},
 	resolve: {
 		// Add `.ts` and `.tsx` as a resolvable extension.
-		extensions: ['.ts', '.tsx', '.js'],
+		extensions: ['.ts', '.tsx', '.js']
+		// alias: {
+		// 	'handlebars/runtime': 'handlebars/dist/cjs/handlebars.runtime',
+		// 	'handlebars': 'handlebars/dist/cjs/handlebars.runtime',
+		// }
 	},
 	module: {
 		rules: [
 			// all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-			{ test: /\.tsx?$/, loader: 'ts-loader' , exclude: /\.\/node_modules/ },
+			{ test: /\.tsx?$/, loader: 'ts-loader' , exclude:  /(node_modules)/ },
 			{
 				test: /\.less$/i,
 				use: [
@@ -28,7 +30,7 @@ module.exports = {
 					'css-loader',
 					'less-loader',
 				],
-				exclude: /\.\/node_modules/
+				exclude:  /(node_modules)/
 			},
 		],
 	},
@@ -39,5 +41,7 @@ module.exports = {
 		compress: true,
 		port: 9000,
 	},
-	plugins: [new HtmlWebpackPlugin()],
+	plugins: [new HtmlWebpackPlugin({
+		scriptLoading: 'module'
+	})],
 };

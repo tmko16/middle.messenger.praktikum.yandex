@@ -25,13 +25,7 @@ import ProfilePageEdit from './pages/profileedit';
  * NarutoUzumaki
  * Ikfjshy6
  * ```
- *
- * Добавление нового чата происходит в списке чатов на нажатие кнопки Добавить чат, внутри которого создается
- * название чата и указывается Логин пользователя, с которым будет вестись переписка.
- *
- * Регистрация пользоватля также работает.
  */
-console.log('индекс тс');
 document.addEventListener('DOMContentLoaded',
 	() => {
 		const router = new Router();
