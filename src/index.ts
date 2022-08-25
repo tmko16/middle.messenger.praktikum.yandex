@@ -11,21 +11,6 @@ import {ChangeAvatar} from './pages/changeAvatar';
 import ProfilePage from './pages/profilepage';
 import ProfilePageEdit from './pages/profileedit';
 
-/**
- * Заметка для проверяющего.
- *
- * Тестовыве данные пользователей:
- * Пользователь 1
- * ````
- * SaskeUchiha
- * Fazidi12341
- * ````
- * Пользователь 2
- * ```
- * NarutoUzumaki
- * Ikfjshy6
- * ```
- */
 document.addEventListener('DOMContentLoaded',
 	() => {
 		const router = new Router();
