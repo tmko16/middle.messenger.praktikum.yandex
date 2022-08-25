@@ -22,6 +22,9 @@ class Route<P = any> {
 		this._block = null;
 		this._props = props;
 	}
+	getPathName () {
+		return this._pathName
+	}
 
 	navigate(pathName: string) {
 		if (this.match(pathName)) {
@@ -31,7 +34,6 @@ class Route<P = any> {
 	}
 
 	leave() {
-		console.log(this._block);
 		if (this._block) {
 			this._block.hide();
 		}
@@ -72,6 +74,9 @@ export class Router {
 
 		Router._instance = this;
 	}
+	public getCurrentRoute () {
+		return this._currentRoute
+	}
 	public getRoutes() {
 		return this.routes;
 	}
@@ -109,7 +114,7 @@ export class Router {
 	}
 
 	go(pathName: string) {
-		this.history?.pushState(location.host, '', pathName);
+		this.history?.pushState(window.location.host, '', pathName);
 		this._onRoute(pathName);
 	}
 	back() {
