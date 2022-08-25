@@ -23,7 +23,7 @@ class Route<P = any> {
 		this._props = props;
 	}
 	getPathName () {
-		return this._pathName
+		return this._pathName;
 	}
 
 	navigate(pathName: string) {
@@ -75,7 +75,7 @@ export class Router {
 		Router._instance = this;
 	}
 	public getCurrentRoute () {
-		return this._currentRoute
+		return this._currentRoute;
 	}
 	public getRoutes() {
 		return this.routes;
