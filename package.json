@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js",
+    "start": " webpack && node server.js",
+    "prepare": "husky install",
     "dev": "webpack serve",
     "build": "webpack",
     "test": "mocha -r ts-node --require ignore-styles",
