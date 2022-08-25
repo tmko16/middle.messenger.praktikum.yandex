@@ -1,5 +1,4 @@
 import EventBus from './EventBus';
-import {nanoid} from 'nanoid';
 import Handlebars from 'handlebars';
 
 interface BlockMeta<P = any> {
@@ -14,8 +13,8 @@ export default class Block<P = any> {
 		FLOW_CDU: 'flow:component-did-update',
 		FLOW_RENDER: 'flow:render',
 	} as const;
-
-	public id = nanoid(6);
+	// хак для генерации уникального id
+	public id = Math.floor(Math.random() * Date.now())
 	private readonly _meta: BlockMeta;
 
 	protected _element: HTMLElement | null = null;
@@ -65,6 +64,9 @@ export default class Block<P = any> {
 
 		return {children, props};
 	}
+	public getProps() {
+		return this.props;
+	}
 
 	private _registerEvents(eventBus: EventBus) {
 		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -109,7 +111,7 @@ export default class Block<P = any> {
 		return true;
 	}
 
-	protected setProps = (nextProps: P) => {
+	public setProps = (nextProps: P) => {
 		if (!nextProps) {
 			return;
 		}

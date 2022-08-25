@@ -11,7 +11,6 @@ describe('Router', function () {
 
 	it('Empty routes on init', function() {
 		const router = new Router();
-		router.use('signin', LoginPage as unknown as Block)
 		const rl = router.getRoutes();
 		assert.lengthOf(rl, 0, 'Routes are epmty');
 	});
