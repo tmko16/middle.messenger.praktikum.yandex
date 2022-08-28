@@ -54,7 +54,7 @@ export default class HTTPTransport {
 		const {headers = {}, method, data} = options;
 
 		return new Promise((resolve, reject) => {
-			const xhr = new XMLHttpRequest();
+			const xhr = new window.XMLHttpRequest();
 			xhr.open(
 				method,
 				method === METHOD.GET && data

@@ -1,7 +1,5 @@
 import EventBus from './EventBus';
-import {nanoid} from 'nanoid';
 import Handlebars from 'handlebars';
-
 interface BlockMeta<P = any> {
 	props: P;
 }
@@ -14,8 +12,8 @@ export default class Block<P = any> {
 		FLOW_CDU: 'flow:component-did-update',
 		FLOW_RENDER: 'flow:render',
 	} as const;
-
-	public id = nanoid(6);
+	// хак для генерации уникального id
+	public id = Math.floor(Math.random() * Date.now());
 	private readonly _meta: BlockMeta;
 
 	protected _element: HTMLElement | null = null;
@@ -54,6 +52,7 @@ export default class Block<P = any> {
 		const children: Record<string, any> = {};
 		const props: Record<string, any> = {};
 
+		// @ts-ignore
 		Object.entries(propsAndChildren as P).forEach(([key, value]) => {
 			if (value instanceof Block) {
 				children[key] = value;
@@ -63,6 +62,9 @@ export default class Block<P = any> {
 		});
 
 		return {children, props};
+	}
+	public getProps() {
+		return this.props;
 	}
 
 	private _registerEvents(eventBus: EventBus) {
@@ -75,7 +77,8 @@ export default class Block<P = any> {
 	private _createResources() {
 		this._element = this._createDocumentElement('div');
 	}
-
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	protected getStateFromProps(props: any): void {
 		this.state = {};
 	}
@@ -89,7 +92,8 @@ export default class Block<P = any> {
 		this.componentDidMount(props);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	componentDidMount(props: P) {
 	}
 
@@ -100,15 +104,17 @@ export default class Block<P = any> {
 		}
 		this._render();
 	}
-
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
 	componentDidUpdate(oldProps: P, newProps: P) {
 		return true;
 	}
 
-	protected setProps = (nextProps: P) => {
+	public setProps = (nextProps: P) => {
 		if (!nextProps) {
 			return;
 		}
+		// @ts-ignore
 		Object.assign(this.props, nextProps);
 	};
 
@@ -153,9 +159,9 @@ export default class Block<P = any> {
 
 	getContent(): HTMLElement {
 		// Хак, чтобы вызвать CDM только после добавления в DOM
-		if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+		if (this.element?.parentNode?.nodeType === window.Node.DOCUMENT_FRAGMENT_NODE) {
 			setTimeout(() => {
-				if (this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
+				if (this.element?.parentNode?.nodeType !== window.Node.DOCUMENT_FRAGMENT_NODE) {
 					this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 				}
 			}, 100);
@@ -224,6 +230,7 @@ export default class Block<P = any> {
 		 * мне надо сделать так - дать ему через детей массив дочек которые нужно склеить
 		 * пройтись по этим детям и нафигачить для каждого свою заглушку.
 		 */
+		//@ts-ignore
 		const propsAndStubs: Record<string, any> = {...this.props};
 		Object.entries(this.children).forEach(([key, child]) => {
 			propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
@@ -252,7 +259,8 @@ export default class Block<P = any> {
 		/**
 		 * Заменяем заглушки на компоненты
 		 */
-
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		Object.entries(this.children).forEach(([id, component]) => {
 			if (Array.isArray(component)) {
 				component.forEach(c => {

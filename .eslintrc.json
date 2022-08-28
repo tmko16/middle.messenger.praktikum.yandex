@@ -16,10 +16,15 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-empty-function": "off",
     "indent": [
       "error",
       "tab"
     ],
+    "ban-ts-comment": 0,
+    "no-empty-function": "warn",
     "linebreak-style": [
       "error",
       "windows"
